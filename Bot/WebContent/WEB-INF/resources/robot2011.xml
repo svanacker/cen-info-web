@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+	default-init-method="initialize" default-destroy-method="shutdown">
+	<bean id="LoggingService" class="org.cen.logging.LoggingService" />
+	<bean id="ComService" class="org.cen.com.ComManager">
+		<property name="properties">
+			<props>
+				<prop key="comport">COM5</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- <bean id="ComService" class="org.cen.com.TCPManager"> -->
+	<!-- <property name="properties"> -->
+	<!-- <props> -->
+	<!-- <prop key="tcpport">1234</prop> -->
+	<!-- </props> -->
+	<!-- </property> -->
+	<!-- </bean> -->
+	<bean id="GameBoard" class="org.cen.cup.cup2011.gameboard.GameBoard2011" />
+	<bean id="NavigationMap" class="org.cen.cup.cup2011.navigation.NavigationMap2011">
+		<property name="resourcesPath"
+			value="classpath:/org/cen/cup/cup2011/robot/robot2011.properties" />
+	</bean>
+	<bean id="TrajectoryService" class="org.cen.navigation.TrajectoryService">
+		<property name="navigationMap" ref="NavigationMap" />
+		<property name="rotationAngleThresholdInDegrees" value="1" />
+	</bean>
+
+	<!--
+		<bean id="TrajectoryRecorder"
+		class="org.cen.navigation.TrajectoryRecorder" />
+	-->
+
+	<bean id="ConsoleService" class="org.cen.robot.device.console.ConsoleService" />
+
+	<bean id="VideoControl" class="org.cen.vision.logitech.QuickCamControl" />
+	<bean id="VisionService" class="org.cen.vision.VisionService">
+		<property name="enabled" value="false" />
+		<property name="videoControl" ref="VideoControl" />
+	</bean>
+
+	<bean id="DevicesHandler" class="org.cen.robot.device.RobotDevicesHandler" />
+	<bean id="robot" class="org.cen.cup.cup2011.robot.RobotFactory2011">
+		<property name="configuration"
+			value="classpath:/org/cen/cup/cup2011/robot/robot2011.properties" />
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="MatchStrategy" class="org.cen.robot.match.DefaultMatchStrategy" />
+	<bean id="MatchStrategyHandler" class="org.cen.cup.cup2011.robot.match.StrategyHandler2011">
+		<property name="debugPath" value="d:/temp/" />
+		<property name="resourcesPath"
+			value="classpath:/org/cen/cup/cup2011/robot/robot2011.properties" />
+		<property name="analysisDuringMatch" value="false" />
+		<property name="sequenceNumber" value="2" />
+		<property name="pickerEnabled" value="true" />
+	</bean>
+	<bean id="VideoRecorder" class="org.cen.ui.rtp.VideoRecorder">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="servicesProvider" class="org.cen.robot.RobotServiceProvider">
+		<property name="services">
+			<set>
+				<ref bean="DevicesHandler" />
+				<ref bean="LoggingService" />
+				<ref bean="VisionService" />
+				<ref bean="ComService" />
+				<ref bean="TrajectoryService" />
+				<!-- <ref bean="TrajectoryRecorder" /> -->
+				<ref bean="ConsoleService" />
+				<ref bean="GameBoard" />
+				<ref bean="&amp;robot" />
+				<ref bean="MatchStrategy" />
+				<ref bean="MatchStrategyHandler" />
+				<ref bean="VideoRecorder" />
+			</set>
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+	default-init-method="initialize" default-destroy-method="shutdown">
+	 <!-- 
+	<bean id="LoggingService" class="org.cen.logging.LoggingService" />
+	 -->
+	<bean id="ClientTCPManager" class="org.cen.com.ClientTCPManager">
+		<property name="properties">
+			<props>
+				<prop key="tcpport">1234</prop>
+				<prop key="tcphost">localhost</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="SimulGameBoard" class="org.cen.cup.cup2011.simulGameboard.SimulGameBoard2011" >
+		<property name="configuration"
+			value="classpath:/org/cen/cup/cup2011/simulRobot/robot2011.properties" />
+	</bean>
+	
+	<bean id="SimulNavigationMap" class="org.cen.cup.cup2011.navigation.NavigationMap2011">
+		<property name="resourcesPath"
+			value="classpath:/org/cen/cup/cup2011/simulRobot/robot2011.properties" />
+	</bean>
+	<bean id="SimulTrajectoryService" class="org.cen.navigation.TrajectoryService">
+		<property name="navigationMap" ref="SimulNavigationMap" />
+	</bean>
+	<bean id="SimulConsoleService" class="org.cen.robot.device.console.ConsoleService" />
+	<bean id="SimulDevicesHandler" class="org.cen.robot.device.RobotDevicesHandler" />
+	<bean id="simulRobot" class="org.cen.cup.cup2011.simulRobot.SimulRobotFactory2011">
+		<property name="configuration"
+			value="classpath:/org/cen/cup/cup2011/simulRobot/robot2011.properties" />
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	 
+	<bean id="SimulMatchStrategy2011" class="org.cen.cup.cup2011.simulRobot.match.SimulMatchStrategy2011">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="servicesProvider" class="org.cen.robot.RobotServiceProvider">
+		<property name="services">
+			<set>
+				<ref bean="SimulDevicesHandler" />
+				<!--  
+				<ref bean="LoggingService" />
+				-->
+				<ref bean="ClientTCPManager" />
+				<ref bean="SimulTrajectoryService" />
+				<ref bean="SimulConsoleService" />
+				<ref bean="&amp;simulRobot" />		
+				<ref bean="SimulGameBoard" />			
+				<ref bean="SimulMatchStrategy2011" />
+			</set>
+		</property>
+	</bean>
+</beans>

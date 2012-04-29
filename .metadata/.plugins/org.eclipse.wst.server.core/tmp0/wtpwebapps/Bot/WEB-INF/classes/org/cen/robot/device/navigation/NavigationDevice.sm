@@ -1,0 +1,120 @@
+%{
+%}
+
+%class NavigationDevice
+%package org.cen.robot.device.navigation
+%access public
+
+%start NavigationFSM::StateStanding
+%map NavigationFSM
+%%
+StateStanding
+{
+	NewPosition(request: NavigationRequest)
+		StateMoving
+		{
+			setRequest(request);
+			sendData();
+		}
+	ReadPosition
+		StateMoving
+		{
+		}
+}
+
+StateMoving
+{
+	CollisionDetected
+		StateCollision
+		{
+		}
+	PositionReached
+		StateReached
+		{
+		}
+	Stop
+		StateStopped
+		{
+		}
+	PositionFailed
+		StateFailed
+		{
+		}
+}
+
+StateCollision
+	Entry
+	{
+		setCollision();
+	}
+{
+	Next
+		StateStanding
+		{
+		}
+}
+
+StateInterrupted
+	Entry
+	{
+		setInterrupted();
+	}
+{
+	Next
+		StateStanding
+		{
+		}
+}
+
+StateStopped
+	Entry
+	{
+		setStopped();
+	}
+{
+	Next
+		StateStanding
+		{
+		}
+}
+	
+StateFailed
+	Entry
+	{
+		setFailed();
+		notifyResult();
+	}
+{
+	Next
+		StateStanding
+		{
+		}
+}
+
+StateReached
+	Entry
+	{
+		setReached();
+		notifyResult();
+	}
+{
+	Next
+		StateStanding
+		{
+		}
+}
+
+Default
+{
+	Restart
+		StateStanding
+		{
+			notifyRestart();
+		}
+	Default
+		nil
+		{
+			unhandled();
+		}
+}
+%%

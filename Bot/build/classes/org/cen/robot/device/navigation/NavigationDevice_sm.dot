@@ -1,0 +1,143 @@
+digraph NavigationDevice {
+  graph [
+    bb = "0,0,1171,380"
+  ];
+
+  node [
+    shape = record,
+    tip = "Here is a default llama."
+  ];
+
+  edge [
+    tip = "Special Llama effects by Ralph, the Wonder Llama."
+  ];
+
+  subgraph cluster_NavigationFSM {
+    graph [
+      lp = "585,360",
+      bb = "8,16,1163,372",
+      label = NavigationFSM
+    ];
+
+    "NavigationFSM::pop(Next)" [
+      height = "0.50",
+      shape = plaintext,
+      width = "2.36",
+      pos = "656,234"
+    ];
+    "NavigationFSM::StateReached" [
+      height = "0.50",
+      rects = "870,128,1059,164",
+      width = "2.61",
+      pos = "964,146"
+    ];
+    "NavigationFSM::DefaultState" [
+      height = "0.50",
+      rects = "16,304,199,340",
+      width = "2.53",
+      pos = "107,322"
+    ];
+    "NavigationFSM::StateStopped" [
+      height = "0.50",
+      rects = "666,128,853,164",
+      width = "2.58",
+      pos = "759,146"
+    ];
+    "NavigationFSM::StateStanding" [
+      height = "0.50",
+      rects = "790,304,981,340",
+      width = "2.64",
+      pos = "885,322"
+    ];
+    "NavigationFSM::StateReadingPosition" [
+      height = "0.50",
+      rects = "540,304,773,340",
+      width = "3.22",
+      pos = "656,322"
+    ];
+    "NavigationFSM::StateMoving" [
+      height = "0.50",
+      rects = "767,216,952,252",
+      width = "2.56",
+      pos = "859,234"
+    ];
+    "NavigationFSM::Default" [
+      height = "0.50",
+      rects = "368,304,523,340",
+      width = "2.14",
+      pos = "445,322"
+    ];
+    "NavigationFSM::StateInterrupted" [
+      height = "0.50",
+      rects = "444,128,649,164",
+      width = "2.83",
+      pos = "546,146"
+    ];
+    "NavigationFSM::StateUpdatingPosition" [
+      height = "0.50",
+      rects = "717,24,955,60",
+      width = "3.31",
+      pos = "836,42"
+    ];
+    "NavigationFSM::StateInterrupted" -> "NavigationFSM::StateUpdatingPosition" [
+      label = "Next/\lpush(StateReadingPosition)",
+      lp = "657,94",
+      pos = "e,717,48 550,128 554,112 563,90 579,78 600,63 654,54 707,49"
+    ];
+    "NavigationFSM::StateUpdatingPosition" -> "NavigationFSM::StateStanding" [
+      label = Next,
+      lp = "1088,190",
+      pos = "e,920,304 955,52 1014,58 1075,67 1084,78 1152,157 1006,255 929,299"
+    ];
+    "NavigationFSM::DefaultState" -> "NavigationFSM::DefaultState" [
+      label = Default,
+      lp = "311,322",
+      pos = "e,199,306 199,338 245,339 289,334 289,322 289,311 251,306 209,306"
+    ];
+    "NavigationFSM::StateStanding" -> "NavigationFSM::StateMoving" [
+      label = Next,
+      lp = "887,278",
+      pos = "e,864,252 880,304 876,292 871,276 867,262"
+    ];
+    "NavigationFSM::StateMoving" -> "NavigationFSM::StateReached" [
+      label = PositionReached,
+      lp = "964,190",
+      pos = "e,942,164 881,216 896,203 917,185 934,171"
+    ];
+    "NavigationFSM::StateStopped" -> "NavigationFSM::StateUpdatingPosition" [
+      label = "Next/\lpush(StateReadingPosition)",
+      lp = "825,94",
+      pos = "e,765,60 749,128 742,113 737,93 747,78 750,74 753,70 757,67"
+    ];
+    "NavigationFSM::StateReadingPosition" -> "NavigationFSM::pop(Next)" [
+      label = PositionRead,
+      lp = "694,278",
+      pos = "e,656,252 656,304 656,292 656,276 656,262"
+    ];
+    "NavigationFSM::DefaultState" -> "NavigationFSM::DefaultState" [
+      label = NewPosition,
+      lp = "253,322",
+      pos = "e,199,319 199,325 209,325 216,324 216,322 216,321 213,320 209,319"
+    ];
+    "NavigationFSM::StateMoving" -> "NavigationFSM::StateStopped" [
+      label = Stop,
+      lp = "830,190",
+      pos = "e,780,164 838,216 823,203 804,185 788,171"
+    ];
+    "NavigationFSM::StateReached" -> "NavigationFSM::StateUpdatingPosition" [
+      label = "Next/\lpush(StateReadingPosition)",
+      lp = "1005,94",
+      pos = "e,878,60 944,128 938,122 932,116 927,110 915,96 917,89 904,78 899,73 893,69 887,65"
+    ];
+    "NavigationFSM::StateStanding" -> "NavigationFSM::StateStanding" [
+      label = "NewPosition/\lpush(StateReadingPosition)",
+      lp = "1076,322",
+      pos = "e,981,315 981,329 991,328 998,325 998,322 998,320 995,318 991,317"
+    ];
+    "NavigationFSM::StateMoving" -> "NavigationFSM::StateInterrupted" [
+      label = CollisionDetected,
+      lp = "753,190",
+      pos = "e,594,164 769,216 745,211 720,205 697,198 666,189 632,178 604,168"
+    ];
+  }
+}

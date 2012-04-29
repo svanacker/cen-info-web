@@ -1,0 +1,84 @@
+%{
+%}
+
+%class StrategyHandler2010
+%package org.cen.cup.cup2010.robot.match
+%access package
+
+%start GlobalStrategy::StateInitialization
+%map GlobalStrategy
+%%
+StateInitialization
+{
+	Start
+		StateRobotInitialization
+		{
+		}
+}
+
+StateRobotInitialization
+	Entry
+	{
+		doWaitForRobotInitialization();
+	}
+{
+	RobotInitializationDone
+		StateConfiguration
+		{
+		}
+}
+
+StateConfiguration
+	Entry
+	{
+		doConfiguration();
+	}
+{
+	ConfigurationDone
+		StateWaitMatchStart
+		{
+			setInitialPosition();
+		}
+}
+
+StateWaitMatchStart
+	Entry
+	{
+		doWaitForMatchStart();
+	}
+{
+	MatchStarted
+		StateRunTrajectory
+		{
+		}
+}
+
+StateRunTrajectory
+	Entry
+	{
+		doStartTrajectory();
+	}
+{
+	MatchStopped
+		StateStopTrajectory
+		{
+		}
+}
+
+StateStopTrajectory
+	Entry
+	{
+		doStopTrajectory();
+	}
+{
+}
+
+Default
+{
+	Default
+		nil
+		{
+			unhandled();
+		}
+}
+%%

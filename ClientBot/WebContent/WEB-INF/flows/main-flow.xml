@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+              http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
+
+	<start-state idref="start" />
+
+	<view-state id="start" view="/views/start.jsp">
+		<transition on="log" to="log" />
+		<transition on="attributes" to="attributes" />
+		<transition on="gameboard" to="gameboard" />
+		<transition on="vision" to="vision" />			
+		<transition on="com" to="com" />				
+		<transition on="parameters" to="parameters" />
+		<!--  
+		<transition on="config" to="config" />
+		<transition on="com" to="com" />	
+		-->	
+		<transition on="click" to="start" />
+	</view-state>
+
+<!--  
+	<view-state id="robot-status" view="/views/robot-status.jsp">
+		<render-actions>
+			<action bean="RobotStatus" method="display" />
+		</render-actions>
+		<transition on="submit" to="ok" />
+	</view-state>
+-->
+	<view-state id="log" view="/views/log.jsp">
+		<transition on="refresh" to="log" />
+		<transition on="close" to="start" />
+	</view-state>
+
+	<view-state id="attributes" view="/views/attributes.jsp">
+		<transition on="refresh" to="attributes" />
+		<transition on="close" to="start" />
+	</view-state>
+
+	<view-state id="gameboard" view="/views/gameboard.jsp">
+		<transition on="click" to="gameboard" />
+	</view-state>
+
+	<view-state id="vision" view="/views/vision.jsp">
+		<transition on="close" to="start" />
+	</view-state>
+	
+	<view-state id="com" view="/views/com.jsp">
+		<transition on="refresh" to="com" />	
+		<transition on="close" to="start" />
+	</view-state>	
+	
+	<view-state id="parameters" view="/views/parameters.jsp">
+		<transition on="refresh" to="parameters" />	
+		<transition on="close" to="start" />
+	</view-state>
+	
+<!--  
+<view-state id="config" view="/views/config.jsp">
+		<transition on="close" to="start" />
+	</view-state>
+	<view-state id="ok" view="/views/ok.jsp"></view-state>
+-->
+</flow>

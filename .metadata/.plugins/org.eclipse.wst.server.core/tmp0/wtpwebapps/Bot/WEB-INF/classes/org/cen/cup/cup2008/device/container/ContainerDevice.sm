@@ -1,0 +1,37 @@
+%{
+%}
+
+%class ContainerDevice
+%package org.cen.robot.device.container
+%access package
+
+%start ContainerFSM::StateWaiting
+%map ContainerFSM
+%%
+StateWaiting
+{
+	Send(request: ContainerRequest)
+		StateSending
+		{
+			sendData(request);
+		}
+}
+
+StateSending
+{
+	Receive(result: ContainerResult)
+		StateWaiting
+		{
+			notifyResult(result);
+		}
+}
+
+Default
+{
+	Default
+		nil
+		{
+			unhandled();
+		}
+}
+%%

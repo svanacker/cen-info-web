@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="RobotStatus" class="org.cen.ui.web.RobotStatus" />
+	<bean id="GameBoardView" class="org.cen.ui.web.GameBoardView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="LogView" class="org.cen.ui.web.LogView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="AttributesView" class="org.cen.ui.web.AttributesView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="VisionView" class="org.cen.ui.web.VisionView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="ServoView" class="org.cen.ui.web.ServoView">
+		<property name="servicesProvider" ref="servicesProvider" />
+		<property name="maxCount" value="6" />
+		<property name="count" value="6" />
+	</bean>
+	<bean id="RelayView" class="org.cen.ui.web.RelayView">
+		<property name="servicesProvider" ref="servicesProvider" />
+		<property name="maxCount" value="8" />
+		<property name="count" value="8" />
+	</bean>
+	<bean id="SonarView" class="org.cen.ui.web.SonarView">
+		<property name="servicesProvider" ref="servicesProvider" />
+		<property name="maxCount" value="2" />
+		<property name="count" value="2" />
+	</bean>
+	<bean id="ComView" class="org.cen.ui.web.ComView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="MotorView" class="org.cen.ui.web.MotorView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="MotorComputeView" class="org.cen.ui.web.MotorComputeView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="BatteryView" class="org.cen.ui.web.BatteryView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="LCDView" class="org.cen.ui.web.LCDView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="PIDView" class="org.cen.ui.web.PIDView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="VideoPreview" class="org.cen.ui.web.VideoPreview">
+		<property name="servicesProvider" ref="servicesProvider" />
+		<property name="refreshInterval" value="2000" />
+	</bean>
+	<bean id="VideoControlView" class="org.cen.ui.web.VideoControlView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="ChartView" class="org.cen.ui.web.ChartView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="TrajectoryBuilder" class="org.cen.ui.web.TrajectoryBuilder">
+		<property name="servicesProvider" ref="servicesProvider" />
+		<property name="configuration"
+			value="classpath:/org/cen/cup/cup2012/gameboard/trajectories2012.properties" />
+	</bean>
+	<!-- <bean id="TrajectoryRecorderView" class="org.cen.ui.web.TrajectoryRecorderView"> 
+		<property name="servicesProvider" ref="servicesProvider" /> </bean> -->
+	<bean id="ServicesView" class="org.cen.ui.web.ServicesView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="Actions2012View" class="org.cen.cup.cup2012.ui.web.Actions2012View">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="TargetsView2012" class="org.cen.cup.cup2012.ui.web.TargetsView2012">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="VideoRecorderView" class="org.cen.ui.web.VideoRecorderView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+</beans>

@@ -1,0 +1,62 @@
+digraph ContainerDevice {
+  graph [
+    bb = "0,0,631,188"
+  ];
+
+  node [
+    shape = record,
+    tip = "Here is a default llama."
+  ];
+
+  edge [
+    tip = "Special Llama effects by Ralph, the Wonder Llama."
+  ];
+
+  subgraph cluster_ContainerFSM {
+    graph [
+      lp = "315,168",
+      bb = "8,16,623,180",
+      label = ContainerFSM
+    ];
+
+    "ContainerFSM::Default" [
+      height = "0.50",
+      rects = "271,112,420,148",
+      width = "2.06",
+      pos = "345,130"
+    ];
+    "ContainerFSM::DefaultState" [
+      height = "0.50",
+      rects = "16,112,193,148",
+      width = "2.44",
+      pos = "104,130"
+    ];
+    "ContainerFSM::StateSending" [
+      height = "0.50",
+      rects = "422,24,603,60",
+      width = "2.50",
+      pos = "512,42"
+    ];
+    "ContainerFSM::StateWaiting" [
+      height = "0.50",
+      rects = "437,112,616,148",
+      width = "2.47",
+      pos = "526,130"
+    ];
+    "ContainerFSM::StateWaiting" -> "ContainerFSM::StateSending" [
+      label = Send,
+      lp = "502,86",
+      pos = "e,495,60 501,112 496,107 491,101 488,94 484,86 486,77 490,69"
+    ];
+    "ContainerFSM::DefaultState" -> "ContainerFSM::DefaultState" [
+      label = Default,
+      lp = "231,130",
+      pos = "e,193,123 193,137 203,136 210,133 210,130 210,128 207,126 203,125"
+    ];
+    "ContainerFSM::StateSending" -> "ContainerFSM::StateWaiting" [
+      label = Receive,
+      lp = "540,86",
+      pos = "e,523,112 515,60 517,72 519,88 522,102"
+    ];
+  }
+}

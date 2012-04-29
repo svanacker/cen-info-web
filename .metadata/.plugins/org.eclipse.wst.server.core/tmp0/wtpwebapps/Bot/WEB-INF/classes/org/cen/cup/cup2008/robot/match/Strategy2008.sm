@@ -1,0 +1,88 @@
+%{
+%}
+
+%class Strategy2008
+%package org.cen.cup.cup2008.robot.match
+%access package
+
+%start GlobalStrategy::StateInitialization
+%map GlobalStrategy
+%%
+StateInitialization
+{
+	Start
+		StateConfiguration
+		{
+		}
+}
+
+StateConfiguration
+	Entry
+	{
+		doConfiguration();
+	}
+{
+	ConfigurationDone
+		StateWaitMatchStart
+		{
+			setInitialPosition();
+		}
+}
+
+StateWaitMatchStart
+	Entry
+	{
+		doWaitForMatchStart();
+	}
+{
+	MatchStarted
+		StateMoveToDispenser
+		{
+		}
+}
+
+StateMoveToDispenser
+{
+	Ok
+		StateCollecting
+		{
+		}
+	Failed
+		StateMoveToDispenser
+		{
+		}
+}
+
+StateCollecting
+{
+	Ok
+		StateLaunching
+		{
+		}
+	Failed
+		StateMoveToDispenser
+		{
+		}
+}
+
+StateLaunching
+{
+	Ok
+		StateMoveToDispenser
+		{
+		}
+	Failed
+		StateMoveToDispenser
+		{
+		}
+}
+
+Default
+{
+	Default
+		nil
+		{
+			unhandled();
+		}
+}
+%%

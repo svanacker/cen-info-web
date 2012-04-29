@@ -1,0 +1,68 @@
+%{
+%}
+
+%class TriangulationDevice
+%package org.cen.robot.device.triangulation
+%access package
+
+%start TriangulationFSM::StateWaiting
+%map TriangulationFSM
+%%
+StateWaiting
+{
+	Read(request: TriangulationRequest)
+		StateRequest
+		{
+			clearHistory();
+			setRequest(request);
+		}
+}
+
+StateRequest
+	Entry
+	{
+		send();
+	}	
+{
+	DataReceived(data: TriangulationData)
+		StateRead
+		{
+			storeData(data);
+		}
+}
+
+StateRead
+{
+	Next
+		[ctxt.hasEnoughData()]
+		StateDone
+		{
+		}
+	Read
+		[!ctxt.hasEnoughData()]
+		StateRequest
+		{
+		}
+}
+
+StateDone
+	Entry
+	{
+		updatePosition();
+	}
+{
+	Next
+		StateWaiting
+		{
+		}
+}
+
+Default
+{
+	Default
+		nil
+		{
+			unhandled();
+		}
+}
+%%

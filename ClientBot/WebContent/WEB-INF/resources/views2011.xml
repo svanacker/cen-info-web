@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<bean id="RobotStatus" class="org.cen.ui.web.RobotStatus" />
+	<bean id="GameBoardView" class="org.cen.ui.web.GameBoardView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="LogView" class="org.cen.ui.web.LogView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="AttributesView" class="org.cen.ui.web.AttributesView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="ComView" class="org.cen.ui.web.ComView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+<!--	<bean id="TrajectoryBuilder" class="org.cen.ui.web.TrajectoryBuilder">-->
+<!--		<property name="servicesProvider" ref="servicesProvider" />-->
+<!--		<property name="configuration"-->
+<!--			value="classpath:/org/cen/cup/cup2011/gameboard/trajectories.properties" />-->
+<!--	</bean>-->
+	<bean id="ServicesView" class="org.cen.ui.web.ServicesView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="ParametersView" class="org.cen.ui.web.ParametersView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+	<bean id="SwingView" class="org.cen.ui.web.SwingView">
+		<property name="servicesProvider" ref="servicesProvider" />
+	</bean>
+</beans>

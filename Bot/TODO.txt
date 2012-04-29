@@ -1,0 +1,85 @@
+Effacement de la valeur absolue renvoie des erreurs bizarres
+
+Séparer nettement la détection de fin de blocage de la détection.
+Dans les deux cas, calculer uIntegral
+Si uIntegral est trop faible, arrêter le mouvement
+Si uIntegral est très élevé > maxUIntegral, détecter le blocage.
+Faire en sorte de calculer d'abord maxUIntegral (en prenant la vitesse attendue à cet instant, et non pas la vitesse max qui est attendue par le système (speed ou maxSpeed)
+Virer le PID_NEXT_VALUE_LIMIT
+Ajouter la possibilité de ne pas détecter le blocage dans l'interface graphique (afin de pouvoir vérifier le type de problèmes)
+
+1. Permettre d'afficher graphiquement une courbe de bézier qui serait demandé
+Faire les objets OutData permettant de les faire
+1. Faire des tests sur l'établissement d'une trajectoire
+2. Mettre en place les courbes en arc de cercles.
+2. Gérer l'accélération par défaut et la vitesse par défaut (réglage au niveau de la vue)
+3. Vérifier l'asservissement au niveau de la position à atteindre
+4. Gérer l'enregistrement de trajectoire
+Réglage des détection de fin de trajectoire (MotionBlock / MotionStop)
+Gérer la gestion des Headers dans com.jsp
+
+
+Mettre en place une analyse par la courbe de la position atteinte et mettre ça sur JFreeChart
+Gérer les trajectoires b splines
+Gérer les détections des intégrales par glissement et non par calcul d'échantillon pour pouvoir réagir plus vite
+Utiliser GIT pour la sauvegarde des sources
+
+Stratégie à adopter :
+
+Stratégie 1
+
+Départ à 45°
+On avance de 600 mm
+On tourne à 90°
+On avance de 600 mm pour taper sur le lingot
+On tourne dans le sens inverse de sorte d'ejecter le lingot
+
+Stratégie 2 :
+
+Mesure des temps :
+On avance : 2 secondes
+
+On tourne : 2 secondes
+
+On avance : 2,5 secondes : On fonce dans la bouteille
+
+On recule : 2 secondes
+90 ° en utilisant 2 roues, mais une rotation complète de sorte de se dégager de la piste, mais d'éviter de revenir en arrière, tourner ...
+
+
+Avancer jusqu'à la 2ème bouteille : 2.5 secondes
+
+Taper la 2ème bouteille : 2 secondes
+Refaire la rotation avec les 2 roues décalées
+
+Stratégie 3 : a tester
+FCF2C0
+FD8F00
+gFCF2C0FD8F000810
+
+gFF0000FF80000810
+
+Georges Mickael
+
+
+
+EZ:
+
+* GameboardView
+- ok: bouger le bouton rafraichir
+- corriger décalage du scroll firefox
+- ok: ajouter case à cocher rafraichissement automatique
+- ok: libellé unités
+- ok: ajouter bouton aller à la position finale sans envoi
+- ok: afficher l'instruction de déplacement
+- vérifier valeurs en absolu
+
+- ok: faire register ITarget avec nom
+- ok: gérer ajout symétrique rouge et violet
+- ok: implémenter lien PathVectorSpline avec BezierCurve
+- ok: lien ITarget et ITargetAction
+- ok: implémentation rotation intermédiaire
+- ok: gérer symétrie des targets et targetactions
+- ok: ajouter tracé des itargetactions
+- implémentation des mouvements relatifs
+- nom des points

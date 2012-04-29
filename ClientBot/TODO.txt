@@ -1,0 +1,11 @@
+- gérer les actions en swing sur le principe GameBoardView
+- ajouter dans l'interface swing les propriétés du robot (position, orientation, ...)
+- utiliser des termes anglais
+- corrections dans les déplacement : le robot ne va pas toujours au bon endroit
+- rendre l'intervalle de simulation paramétrable
+- robot adverse : rendre plus réaliste, vitesse plus lente
+- collision : retirer la collision h
+- arrêt et redémarrages propres
+
+
+- numéroter les cases et permettre la saisie de la configuration initiale 
