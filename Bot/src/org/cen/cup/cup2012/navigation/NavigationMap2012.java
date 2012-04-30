@@ -1,5 +1,18 @@
 package org.cen.cup.cup2012.navigation;
 
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.AFTER_BULLION_LEFT_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.AFTER_BULLION_LEFT_2;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BOTTLE_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BOTTLE_2;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BOTTLE_2_FRONT;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BULLION_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BULLION_RIGHT;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.CD_FIXED_RED;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.DROP_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.HOME_FRONT_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.OUT_DROP_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.START;
+
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -11,6 +24,7 @@ import org.cen.cup.cup2012.gameboard.elements.StartArea2012;
 import org.cen.cup.cup2012.gameboard.elements.Totem;
 import org.cen.cup.cup2012.gameboard.lines.FollowLine2012;
 import org.cen.cup.cup2012.robot.Robot2012;
+import org.cen.cup.cup2012.robot.match.ElementsName2012;
 import org.cen.logging.LoggingUtils;
 import org.cen.navigation.AbstractNavigationMap;
 import org.springframework.context.ResourceLoaderAware;
@@ -30,13 +44,16 @@ public class NavigationMap2012 extends AbstractNavigationMap implements Resource
 
 	// Distance to take bullion
 
-	private static final double X_TO_TAKE_BULLION_LEFT = GameBoard2012.BOARD_MIDDLE_WIDTH - Robot2012.DISTANCE_ROBOT_CENTER_TO_ARM - Totem.TOTEM_INTERNAL_WIDTH;
+	private static final double X_TO_TAKE_BULLION_LEFT = GameBoard2012.BOARD_MIDDLE_WIDTH
+			- Robot2012.DISTANCE_ROBOT_CENTER_TO_ARM - Totem.TOTEM_INTERNAL_WIDTH;
 
-	private static final double X_TO_TAKE_BULLION_RIGHT = GameBoard2012.BOARD_MIDDLE_WIDTH + Robot2012.DISTANCE_ROBOT_CENTER_TO_ARM + Totem.TOTEM_INTERNAL_WIDTH;
+	private static final double X_TO_TAKE_BULLION_RIGHT = GameBoard2012.BOARD_MIDDLE_WIDTH
+			+ Robot2012.DISTANCE_ROBOT_CENTER_TO_ARM + Totem.TOTEM_INTERNAL_WIDTH;
 
 	// Global value
 
-	private static final double FOLLOW_LINE_MIDDLE_HEIGHT = StartArea2012.START_AREA_HEIGHT + FollowLine2012.LINE_VERTICAL_HEIGHT - (FollowLine2012.LINE_WIDTH / 2);
+	private static final double FOLLOW_LINE_MIDDLE_HEIGHT = StartArea2012.START_AREA_HEIGHT + FollowLine2012.LINE_VERTICAL_HEIGHT
+			- (FollowLine2012.LINE_WIDTH / 2);
 
 	private static final double SECURITY_DISTANCE = 40;
 
@@ -71,7 +88,8 @@ public class NavigationMap2012 extends AbstractNavigationMap implements Resource
 	private static final double CBKP_Y1 = 550d;
 
 	// Captain Boat unload Point
-	private static final double CBU_X1 = GameBoard2012.BOARD_WIDTH - ShipHold.SHIP_PROTECTION_WIDTH - Robot2012.ROBOT_WIDTH / 2 - BIG_SECURITY_DISTANCE;
+	private static final double CBU_X1 = GameBoard2012.BOARD_WIDTH - ShipHold.SHIP_PROTECTION_WIDTH - Robot2012.ROBOT_WIDTH / 2
+			- BIG_SECURITY_DISTANCE;
 
 	private static final double CBU_Y1 = 200d;
 
@@ -155,37 +173,39 @@ public class NavigationMap2012 extends AbstractNavigationMap implements Resource
 		addLocation(locationName + SUFFIX_RED, x, GameBoard2012.BOARD_HEIGHT - y);
 	}
 
-	public void addSymmetricSplinePath(String location1, String location2, int cpDistance1, int cpDistance2, int angle1, int angle2) {
+	public void addSymmetricSplinePath(String location1, String location2, int cpDistance1, int cpDistance2, int angle1,
+			int angle2) {
 		double a1 = toAngle(angle1);
 		double a2 = toAngle(angle2);
 
-		addSplinePath(location1 + SUFFIX_RED, location2 + SUFFIX_RED, cpDistance1, cpDistance2, getSymmetricAngle(a1), getSymmetricAngle(a2));
+		addSplinePath(location1 + SUFFIX_RED, location2 + SUFFIX_RED, cpDistance1, cpDistance2, getSymmetricAngle(a1),
+				getSymmetricAngle(a2));
 		addSplinePath(location1 + SUFFIX_VIOLET, location2 + SUFFIX_VIOLET, cpDistance1, cpDistance2, a1, a2);
 	}
 
 	private void buildGrid() {
-		addSymmetricLocation("Start", 0, 0);
-		addSymmetricLocation("Bullion1", 0x0370, 0x0156);
-		addSymmetricLocation("Bottle1", 0x0720, 0x0280);
-		addSymmetricLocation("Bottle2", 0x07AF, 0x076C);
-		addSymmetricLocation("B2Front", 0x05DC, 0x0800);
-		addSymmetricLocation("BullionRight", 0x0560, 0x0580);
-		addSymmetricLocation("Drop1", 0x0402, 0x0115);
-		addSymmetricLocation("OutDrop1", 0x0315, 0x01A2);
-		addSymmetricLocation("AfterBullionLeft1", 0x025C, 0x055C);
-		addSymmetricLocation("Home", 0x00F5, 0x016F);
-		addSymmetricLocation("HomeFront1", 0x0208, 0x02C2);
-		addSymmetricLocation("AfterBullionLeft2", 0x0282, 0x083C);
-		addSymmetricLocation("CDFixedRed", 0x06A8, 0x05D5);
+		addSymmetricLocation(ElementsName2012.START, 0, 0);
+		addSymmetricLocation(ElementsName2012.BULLION_1, 0x0370, 0x0156);
+		addSymmetricLocation(ElementsName2012.BOTTLE_1, 0x0720, 0x0280);
+		addSymmetricLocation(BOTTLE_2, 0x07AF, 0x076C);
+		addSymmetricLocation(ElementsName2012.BOTTLE_2_FRONT, 0x05DC, 0x0800);
+		addSymmetricLocation(BULLION_RIGHT, 0x0560, 0x0580);
+		addSymmetricLocation(DROP_1, 0x0402, 0x0115);
+		addSymmetricLocation(ElementsName2012.OUT_DROP_1, 0x0315, 0x01A2);
+		addSymmetricLocation(AFTER_BULLION_LEFT_1, 0x025C, 0x055C);
+		addSymmetricLocation(ElementsName2012.HOME, 0x00F5, 0x016F);
+		addSymmetricLocation(HOME_FRONT_1, 0x0208, 0x02C2);
+		addSymmetricLocation(ElementsName2012.AFTER_BULLION_LEFT_2, 0x0282, 0x083C);
+		addSymmetricLocation(CD_FIXED_RED, 0x06A8, 0x05D5);
 
-		addSymmetricSplinePath("Start", "Bullion1", 0x40, 0x40, 675, 0xFC7C);
-		addSymmetricSplinePath("Bullion1", "Bottle1", 0xF0, 0xC0, 0xFC7C, 0x0708);
-		addSymmetricSplinePath("Bottle1", "B2Front", 0x57, 0x0A, 0x0708, 0x0384);
-		addSymmetricSplinePath("B2Front", "Bottle2", 0xD8, 0xF8, 0x0384, 0xF8F8);
-		addSymmetricSplinePath("Bottle2", "BullionRight", 0x1E, 0x1E, 0xF8F8, 0xFC7C);
-		addSymmetricSplinePath("BullionRight", "Drop1", 0x64, 0x32, 0xFC7C, 0xFC7C);
-		addSymmetricSplinePath("Drop1", "OutDrop1", 0xD9, 0xEC, 0xFC7C, 0x04BA);
-		addSymmetricSplinePath("HomeFront1", "AfterBullionLeft2", 0x1E, 0x78, 0x0384, 0x0384);
+		addSymmetricSplinePath(START, BULLION_1, 0x40, 0x40, 675, 0xFC7C);
+		addSymmetricSplinePath(BULLION_1, BOTTLE_1, 0xF0, 0xC0, 0xFC7C, 0x0708);
+		addSymmetricSplinePath(BOTTLE_1, BOTTLE_2_FRONT, 0x57, 0x0A, 0x0708, 0x0384);
+		addSymmetricSplinePath(BOTTLE_2_FRONT, BOTTLE_2, 0xD8, 0xF8, 0x0384, 0xF8F8);
+		addSymmetricSplinePath(BOTTLE_2, BULLION_RIGHT, 0x1E, 0x1E, 0xF8F8, 0xFC7C);
+		addSymmetricSplinePath(BULLION_RIGHT, DROP_1, 0x64, 0x32, 0xFC7C, 0xFC7C);
+		addSymmetricSplinePath(DROP_1, OUT_DROP_1, 0xD9, 0xEC, 0xFC7C, 0x04BA);
+		addSymmetricSplinePath(HOME_FRONT_1, AFTER_BULLION_LEFT_2, 0x1E, 0x78, 0x0384, 0x0384);
 	}
 
 	@Override
@@ -200,109 +220,6 @@ public class NavigationMap2012 extends AbstractNavigationMap implements Resource
 			i -= 0x100;
 		}
 		return i;
-	}
-
-	private void buildGrid2() {
-		/*
-		 * for (int y = 0; y < GRID_SIZE_Y; y++) { for (int x = 0; x <
-		 * GRID_SIZE_X + 1; x++) { String name = getLocationName(x, y);
-		 * addLocation(new Location(name, (int) (x * DISTANCE), (int) (y *
-		 * DISTANCE))); } }
-		 * 
-		 * for (int y = -2; y < GRID_SIZE_Y + 2; y++) { for (int x = 0; x <
-		 * GRID_SIZE_X + 1; x++) { addPath(x, y, x + 1, y); addPath(x, y, x + 1,
-		 * y + 1); addPath(x, y, x, y + 1); addPath(x + 1, y, x, y + 1); } }
-		 */
-
-		// Line 1
-		addLocation("A1", A_X, Y_1);
-		addLocation("B1", B_X, Y_1);
-		addLocation("C1", C_X, Y_1);
-		addLocation("D1", D_X, Y_1);
-
-		// Line 2
-		addLocation("A2", A_X, Y_2);
-		addLocation("B2", B_X, Y_2);
-		addLocation("C2", C_X, Y_2);
-		addLocation("D2", D_X, Y_2);
-
-		// Line 3
-		addLocation("A3", A_X, Y_3);
-		addLocation("B3", B_X, Y_3);
-		addLocation("C3", C_X, Y_3);
-		addLocation("D3", D_X, Y_3);
-
-		// Line 4
-		addLocation("A4", A_X, Y_4);
-		addLocation("B4", B_X, Y_4);
-		addLocation("C4", C_X, Y_4);
-		addLocation("D4", D_X, Y_4);
-
-		// Line 5
-		addLocation("A5", A_X, Y_5);
-		addLocation("B5", B_X, Y_5);
-		addLocation("C5", C_X, Y_5);
-		addLocation("D5", D_X, Y_5);
-
-		// Special Points : Captain Boat
-		addLocation("CB1", CBKP_X1, CBKP_Y1);
-		addLocation("CBU1", CBU_X1, CBU_Y1);
-		addLocation("M1", GameBoard2012.BOARD_MIDDLE_WIDTH, Y_1);
-
-		// Special Points : Message Bottle 2
-		addLocation("MBU1", MBU_X1, Y_1);
-
-		// Special Points : Message Bottle 2
-		addLocation("MB2", MB_X2, MB_Y2);
-		addLocation("MBU2", MBU_X2, MBU_Y2);
-
-		// Special Points : Map Island
-		addLocation("MI", MI_X, MI_Y);
-		addLocation("MIU", MIU_X, MIU_Y);
-
-		// Paths
-
-		// Vertical lines
-		addPath("A1", "A2", "A3", "A4", "A5");
-		addPath("B1", "B2", "B3", "B4", "B5");
-		addPath("C1", "C2", "C3", "C4", "C5");
-		addPath("D1", "D2", "D3", "D4", "D5");
-
-		// Big horizontal lines
-		addPath("A1", "B1", "C1", "D1");
-		addPath("A5", "B5", "C5", "D5");
-
-		// Left horizontal lines
-		addPath("A2", "B2");
-		addPath("A3", "B3");
-		addPath("A4", "B4");
-
-		// Right horizontal lines
-		addPath("C2", "D2");
-		addPath("C3", "D3");
-		addPath("C4", "D4");
-
-		addPath("B1", "A2");
-
-		// Message Bottle 2 trajectory
-		addPath("A1", "CB1", "MB2", "MBU2", "C5");
-		addPath("C2", "CBU1");
-
-		// Captain Boat
-		addPath("CBU1", "B1");
-		addPath("CBU1", "M1");
-
-		// Message Bottle 1 trajectory
-		addPath("D1", "MBU1");
-
-		// Go to MapIsland
-		addPath("B1", "MI", "MIU");
-		addPath("A2", "MI");
-		addPath("A3", "MI");
-		addPath("A4", "MI");
-		addPath("B2", "MI");
-		addPath("B3", "MI");
-		addPath("B4", "MI");
 	}
 
 	private String getLocationName(int x, int y) {

@@ -1,5 +1,17 @@
 package org.cen.cup.cup2012.robot.match;
 
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.AFTER_BULLION_LEFT_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.AFTER_BULLION_LEFT_2;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BOTTLE_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BOTTLE_2;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BULLION_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.BULLION_RIGHT;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.CD_FIXED_RED;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.DROP_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.HOME;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.HOME_FRONT_1;
+import static org.cen.cup.cup2012.robot.match.ElementsName2012.OUT_DROP_1;
+
 import java.awt.Point;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -29,9 +41,9 @@ import org.cen.robot.match.strategy.impl.SimpleTargetActionItem;
 public class TargetsFactory2012 {
 	private static final Logger LOGGER = LoggingUtils.getClassLogger();
 
-	private IRobotServiceProvider servicesProvider;
+	private final IRobotServiceProvider servicesProvider;
 
-	private INavigationMap map;
+	private final INavigationMap map;
 
 	private TargetList targets;
 
@@ -138,9 +150,11 @@ public class TargetsFactory2012 {
 
 	private ITargetAction[] addSymmetricTargetAction(ITarget[] targets, String start, String end, int time) {
 		// red
-		ITargetAction a1 = addTargetAction(targets[0], NavigationMap2012.getRedName(start), NavigationMap2012.getRedName(end), time);
+		ITargetAction a1 = addTargetAction(targets[0], NavigationMap2012.getRedName(start), NavigationMap2012.getRedName(end),
+				time);
 		// violet
-		ITargetAction a2 = addTargetAction(targets[1], NavigationMap2012.getVioletName(start), NavigationMap2012.getVioletName(end), time);
+		ITargetAction a2 = addTargetAction(targets[1], NavigationMap2012.getVioletName(start),
+				NavigationMap2012.getVioletName(end), time);
 		return new ITargetAction[] { a1, a2 };
 	}
 
@@ -165,41 +179,39 @@ public class TargetsFactory2012 {
 		// la symétrie se base toujours sur les coordonnées du côté VIOLET
 
 		targets = new TargetList();
-		ITarget[] t = addSymmetricSimpleTarget("Bullion1", 3);
-		ITargetAction[] a = addSymmetricTargetAction(t, "Bullion1", "Bullion1", 0);
-		// addSymmetricSplineRequest(a, "Bullion1", 0x40, 0x40,
-		// NavigationMap2012.toAngle(0xFC7C));
+		ITarget[] t = addSymmetricSimpleTarget(BULLION_1, 3);
+		ITargetAction[] a = addSymmetricTargetAction(t, BULLION_1, BULLION_1, 0);
 
-		t = addSymmetricSimpleTarget("Bottle1", 5);
-		a = addSymmetricTargetAction(t, "Bottle1", "Bottle1", 5);
+		t = addSymmetricSimpleTarget(BOTTLE_1, 5);
+		a = addSymmetricTargetAction(t, BOTTLE_1, BOTTLE_1, 5);
 
-		t = addSymmetricSimpleTarget("Bottle2", 5);
-		a = addSymmetricTargetAction(t, "Bottle2", "Bottle2", 5);
+		t = addSymmetricSimpleTarget(BOTTLE_2, 5);
+		a = addSymmetricTargetAction(t, BOTTLE_2, BOTTLE_2, 5);
 
-		t = addSymmetricSimpleTarget("BullionRight", 3);
-		a = addSymmetricTargetAction(t, "BullionRight", "BullionRight", 5);
+		t = addSymmetricSimpleTarget(BULLION_RIGHT, 3);
+		a = addSymmetricTargetAction(t, BULLION_RIGHT, BULLION_RIGHT, 5);
 		addSymmetricOpenArm(a, ArmType2012.RIGHT);
 		addSymmetricSleepTime(a, 1000);
-		addSymmetricSplineRequest(a, "Drop1", 0x64, 0x32, 0xFC7C);
+		addSymmetricSplineRequest(a, DROP_1, 0x64, 0x32, 0xFC7C);
 		addSymmetricCloseArm(a, ArmType2012.RIGHT);
 
-		t = addSymmetricSimpleTarget("AfterBullionLeft1", 3);
-		a = addSymmetricTargetAction(t, "OutDrop1", "HomeFront1", 5);
+		t = addSymmetricSimpleTarget(AFTER_BULLION_LEFT_1, 3);
+		a = addSymmetricTargetAction(t, OUT_DROP_1, HOME_FRONT_1, 5);
 		addSymmetricOpenArm(a, ArmType2012.RIGHT);
 		addSymmetricSleepTime(a, 1000);
-		addSymmetricSplineRequest(a, "AfterBullionLeft1", 0x0D, 0x46, 0x0384);
+		addSymmetricSplineRequest(a, AFTER_BULLION_LEFT_1, 0x0D, 0x46, 0x0384);
 		addSymmetricRotation(a, 1800);
-		addSymmetricSplineRequest(a, "Home", 0x33, 0x27, 0xFC7C);
+		addSymmetricSplineRequest(a, HOME, 0x33, 0x27, 0xFC7C);
 		addSymmetricCloseArm(a, ArmType2012.RIGHT);
-		addSymmetricSplineRequest(a, "HomeFront1", 0xB6, 0xCB, 0x384);
+		addSymmetricSplineRequest(a, HOME_FRONT_1, 0xB6, 0xCB, 0x384);
 
-		t = addSymmetricSimpleTarget("AfterBullionLeft2", 3);
-		a = addSymmetricTargetAction(t, "HomeFront1", "Drop1", 5);
+		t = addSymmetricSimpleTarget(AFTER_BULLION_LEFT_2, 3);
+		a = addSymmetricTargetAction(t, HOME_FRONT_1, DROP_1, 5);
 		addSymmetricOpenArm(a, ArmType2012.RIGHT);
 		addSymmetricSleepTime(a, 1000);
-		addSymmetricSplineRequest(a, "AfterBullionLeft2", 0x1E, 0x78, 0x0384);
-		addSymmetricSplineRequest(a, "CDFixedRed", 0x3E, 0x53, 0xFC7C);
-		addSymmetricSplineRequest(a, "Drop1", 0x3C, 0x1E, 0xFC7C);
+		addSymmetricSplineRequest(a, AFTER_BULLION_LEFT_2, 0x1E, 0x78, 0x0384);
+		addSymmetricSplineRequest(a, CD_FIXED_RED, 0x3E, 0x53, 0xFC7C);
+		addSymmetricSplineRequest(a, DROP_1, 0x3C, 0x1E, 0xFC7C);
 		addSymmetricCloseArm(a, ArmType2012.RIGHT);
 	}
 
