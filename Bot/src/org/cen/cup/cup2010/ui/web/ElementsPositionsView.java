@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.ajax4jsf.event.PushEventListener;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.cen.cup.cup2010.gameboard.GameBoard2010;
 import org.cen.cup.cup2010.gameboard.elements.Corn;
 import org.cen.cup.cup2010.robot.match.MatchData2010;
@@ -26,10 +26,10 @@ import org.cen.robot.match.MatchData;
 import org.cen.robot.match.MatchSide;
 import org.cen.robot.match.Opponent;
 import org.cen.robot.match.OpponentPosition;
-import org.cen.ui.gameboard.IGameBoardService;
 import org.cen.ui.gameboard.IGameBoardElement;
 import org.cen.ui.gameboard.IGameBoardEvent;
 import org.cen.ui.gameboard.IGameBoardEventListener;
+import org.cen.ui.gameboard.IGameBoardService;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -56,7 +56,7 @@ public class ElementsPositionsView implements ResourceLoaderAware, IGameBoardEve
 
 	private PushEventListener listener;
 
-	private Map<String, Point2D> positions = new HashMap<String, Point2D>();
+	private final Map<String, Point2D> positions = new HashMap<String, Point2D>();
 
 	private Properties properties;
 

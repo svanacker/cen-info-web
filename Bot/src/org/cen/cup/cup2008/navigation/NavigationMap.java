@@ -13,6 +13,7 @@ import org.cen.ui.gameboard.IGameBoardService;
 import org.springframework.beans.factory.annotation.Required;
 
 public class NavigationMap extends AbstractNavigationMap {
+
 	private IGameBoardService gameBoard;
 
 	private double gridSize;
@@ -24,23 +25,29 @@ public class NavigationMap extends AbstractNavigationMap {
 		int cx = (int) (width / gridSize) + 1;
 		int cy = (int) (height / gridSize) + 1;
 		Location[] l = new Location[cx * cy];
-		for (int i = 0; i < cx; i++)
+		for (int i = 0; i < cx; i++) {
 			for (int j = 0; j < cy; j++) {
 				l[i * cy + j] = new Location("x" + i + " y" + j, (int) (i * gridSize), (int) (j * gridSize));
 				addLocation(l[i * cy + j]);
 			}
+		}
 
-		for (int x = 0; x < cx; x++)
-			for (int y = 0; y < cy; y++)
-				for (int j = 0; j <= 1; j++)
+		for (int x = 0; x < cx; x++) {
+			for (int y = 0; y < cy; y++) {
+				for (int j = 0; j <= 1; j++) {
 					for (int k = -1; k <= 1; k++) {
-						if (j == 0 && k <= 0)
+						if (j == 0 && k <= 0) {
 							continue;
+						}
 						int xx = x + k;
 						int yy = y + j;
-						if (xx >= 0 && xx < cx && yy >= 0 && yy < cy && !(j == 0 && k == 0))
+						if (xx >= 0 && xx < cx && yy >= 0 && yy < cy && !(j == 0 && k == 0)) {
 							addVector(l[x * cy + y], l[xx * cy + yy]);
+						}
 					}
+				}
+			}
+		}
 	}
 
 	private void buildGrid2() {

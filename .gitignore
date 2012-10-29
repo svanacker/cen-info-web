@@ -1,12 +1,9 @@
 *.class
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
 *.svn
-.metadata
+*.metadata
 *.settings
-*.jsp
-*.txt

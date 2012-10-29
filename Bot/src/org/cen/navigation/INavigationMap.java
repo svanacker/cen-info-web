@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Map;
 
 public interface INavigationMap {
+
 	/**
 	 * Ajoute le noeud spécifié.
 	 * 

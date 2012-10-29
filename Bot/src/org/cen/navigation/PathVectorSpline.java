@@ -4,6 +4,7 @@ import org.cen.ui.gameboard.IGameBoardElement;
 import org.cen.ui.gameboard.elements.BezierCurve;
 
 public class PathVectorSpline extends AbstractPathVector {
+
 	protected double cpDistance1;
 
 	protected double cpDistance2;

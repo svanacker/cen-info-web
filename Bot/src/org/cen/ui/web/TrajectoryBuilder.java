@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.cen.com.out.OutData;
 import org.cen.cup.cup2010.gameboard.elements.Trajectory;
 import org.cen.logging.LoggingUtils;

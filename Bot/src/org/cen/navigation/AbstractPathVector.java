@@ -3,9 +3,8 @@ package org.cen.navigation;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.cen.ui.gameboard.IGameBoardElement;
-
 public abstract class AbstractPathVector implements IPathVector {
+
 	protected final Location l1;
 
 	protected final Location l2;
@@ -23,12 +22,13 @@ public abstract class AbstractPathVector implements IPathVector {
 
 	@Override
 	public Location getOtherEnd(Location l) {
-		if (l == l1)
+		if (l == l1) {
 			return l2;
-		else if (l == l2)
+		} else if (l == l2) {
 			return l1;
-		else
+		} else {
 			return null;
+		}
 	}
 
 	@Override

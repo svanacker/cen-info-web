@@ -8,6 +8,7 @@ import org.cen.robot.match.strategy.gain.ITargetGain;
  * @author Emmanuel ZURMELY
  */
 public interface IGameStrategyItem {
+
 	ITarget getTarget();
 
 	ITargetGain getTargetGain();

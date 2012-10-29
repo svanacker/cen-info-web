@@ -151,12 +151,6 @@ public class NavigationMap2012 extends AbstractNavigationMap implements Resource
 
 	private Properties robotProperties;
 
-	private void addPath(int x1, int y1, int x2, int y2) {
-		String start = getLocationName(x1, y1);
-		String end = getLocationName(x2, y2);
-		addPath(start, end);
-	}
-
 	/**
 	 * Adds a symmetric location by appending its name with the "R" suffix for
 	 * the red side and the "V" suffix for the violet side.

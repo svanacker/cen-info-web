@@ -6,5 +6,7 @@ import org.cen.navigation.Location;
 import org.cen.util.Holder;
 
 public interface INextGameStrategyItemComputer {
-	public ITargetAction getNextTarget(double elapsedMatchTime, Location currentLocation, Holder<List<Location>> path, StringBuilder gainData);
+
+	ITargetAction getNextTarget(double elapsedMatchTime, Location currentLocation, Holder<List<Location>> path,
+			StringBuilder gainData);
 }

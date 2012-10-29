@@ -9,7 +9,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.cen.com.IComService;
 import org.cen.com.in.InData;
 import org.cen.com.in.InDataListener;

@@ -11,13 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.commons.lang.StringUtils;
 import org.cen.cup.cup2009.gameboard.GameBoard2009;
 import org.cen.cup.cup2009.gameboard.elements.ColumnElement;
+import org.cen.cup.cup2009.gameboard.elements.ColumnElement.ColumnElementColor;
 import org.cen.cup.cup2009.gameboard.elements.ColumnElementPosition;
 import org.cen.cup.cup2009.gameboard.elements.Trajectory;
 import org.cen.cup.cup2009.gameboard.elements.VerticalDispenser;
-import org.cen.cup.cup2009.gameboard.elements.ColumnElement.ColumnElementColor;
 import org.cen.navigation.INavigationMap;
 import org.cen.navigation.ITrajectoryService;
 import org.cen.navigation.Location;
@@ -25,8 +24,8 @@ import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.RobotUtils;
 import org.cen.robot.match.MatchData;
 import org.cen.robot.match.MatchSide;
-import org.cen.ui.gameboard.IGameBoardService;
 import org.cen.ui.gameboard.IGameBoardElement;
+import org.cen.ui.gameboard.IGameBoardService;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
@@ -46,7 +45,7 @@ public class ColumnElementPositionsView implements ResourceLoaderAware {
 
 	private int dispensersConfigurationId;
 
-	private Map<String, Point2D> positions = new HashMap<String, Point2D>();
+	private final Map<String, Point2D> positions = new HashMap<String, Point2D>();
 
 	private Properties properties;
 
@@ -56,7 +55,7 @@ public class ColumnElementPositionsView implements ResourceLoaderAware {
 
 	private double time;
 
-	private boolean[] trajectory = new boolean[] { true, false, false };
+	private final boolean[] trajectory = new boolean[] { true, false, false };
 
 	private void buildPositionsMap() {
 		IGameBoardService gameBoard = servicesProvider.getService(IGameBoardService.class);
@@ -139,11 +138,11 @@ public class ColumnElementPositionsView implements ResourceLoaderAware {
 		if (s != null) {
 			String[] positionIds = s.split("\\W*,\\W*");
 			for (String id : positionIds) {
-				// Si une position n'existe pas, on l�ve une exception, pour �tre s�r de ne pas passer � c�t�
+				// Si une position n'existe pas, on l�ve une exception, pour
+				// �tre s�r de ne pas passer � c�t�
 				if (!positions.containsKey(id)) {
 					throw new RuntimeException("Point with id does not exist : " + id);
-				}
-				else {
+				} else {
 					Point2D point = positions.get(id);
 					if (point != null) {
 						result.add(point);
@@ -194,17 +193,17 @@ public class ColumnElementPositionsView implements ResourceLoaderAware {
 		Properties p = getProperties();
 		String s = p.getProperty("trajectory" + configurationId + "." + index);
 		if (s != null) {
-			String[] positionIds = StringUtils.split(s, ",");
+			String[] positionIds = org.apache.commons.lang3.StringUtils.split(s, ",");
 			for (String id : positionIds) {
 				if (id.startsWith("^")) {
 					continue;
 				}
-				// Si une position n'existe pas, on l�ve une exception, pour �tre s�r de ne pas passer � c�t�
+				// Si une position n'existe pas, on l�ve une exception, pour
+				// �tre s�r de ne pas passer � c�t�
 				if (!locations.containsKey(prefix + id)) {
 					throw new RuntimeException("Point with id does not exist : " + id);
-				}
-				else {
-					
+				} else {
+
 					Location l = locations.get(prefix + id);
 					if (l != null) {
 						results.add(l.getPosition());

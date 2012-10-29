@@ -136,7 +136,8 @@ public class StrategyHandler2012 extends AbstractMatchStrategyHandler implements
 			double cp2Distance = r.getD2() * 10.0;
 			double initialAngle = position.getAlpha();
 			double finalAngle = r.getAngle();
-			BezierCurve element = new BezierCurve(ELEMENT_TRAJECTORY, start, end, cp1Distance, cp2Distance, initialAngle, finalAngle);
+			BezierCurve element = new BezierCurve(ELEMENT_TRAJECTORY, start, end, cp1Distance, cp2Distance, initialAngle,
+					finalAngle);
 			List<IGameBoardElement> elements = gameBoard.getElements();
 			elements.add(element);
 		}
