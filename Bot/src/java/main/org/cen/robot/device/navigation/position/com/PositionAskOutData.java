@@ -11,6 +11,7 @@ import org.cen.robot.device.navigation.NavigationDevice;
  */
 @DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
 		header = PositionAskOutData.HEADER,
+		methodName = "positionRead",
 		type = DeviceMethodType.OUTPUT,
 		parameters = {}) })
 public class PositionAskOutData extends OutData {

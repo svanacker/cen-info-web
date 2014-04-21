@@ -11,10 +11,13 @@ import org.cen.math.MathUtils;
 import org.cen.robot.device.navigation.NavigationDevice;
 import org.cen.robot.device.pid.com.WritePIDOutData;
 
+//@formatter:off
 @DeviceDataSignature(
 		deviceName = NavigationDevice.NAME,
-		methods = { @DeviceMethodSignature(
+		methods = {
+		        @DeviceMethodSignature(
 				header = WritePIDOutData.HEADER,
+				methodName = "writePID",
 				type = DeviceMethodType.INPUT,
 				parameters = {
 						@DeviceParameter(name = "x", length = 4, type = DeviceParameterType.UNSIGNED, unit = "mm"),
@@ -25,43 +28,45 @@ import org.cen.robot.device.pid.com.WritePIDOutData;
 								name = "orientation",
 								length = 4,
 								type = DeviceParameterType.UNSIGNED,
-								unit = "mrad") }) })
+								unit = "mrad") })
+		})
+//@formatter:on
 public class SetInitialPositionOutData extends OutData {
 
-	private static final String HEADER = "K";
+    private static final String HEADER = "K";
 
-	private final double x;
+    private final double x;
 
-	private final double y;
+    private final double y;
 
-	private final double orientation;
+    private final double orientation;
 
-	public SetInitialPositionOutData(double x, double y, double orientation) {
-		super();
-		this.x = x;
-		this.y = y;
-		this.orientation = orientation;
-	}
+    public SetInitialPositionOutData(double x, double y, double orientation) {
+        super();
+        this.x = x;
+        this.y = y;
+        this.orientation = orientation;
+    }
 
-	@Override
-	public String getArguments() {
-		int xx = (int) x;
-		int yy = (int) y;
-		int angle = (int) MathUtils.radToDeciDegree(orientation);
-		String sx = ComDataUtils.format(xx, 4);
-		String sy = ComDataUtils.format(yy, 4);
-		String sAngle = ComDataUtils.format(angle, 4);
-		return sx + "-" + sy + "-" + sAngle;
-	}
+    @Override
+    public String getArguments() {
+        int xx = (int) x;
+        int yy = (int) y;
+        int angle = (int) MathUtils.radToDeciDegree(orientation);
+        String sx = ComDataUtils.format(xx, 4);
+        String sy = ComDataUtils.format(yy, 4);
+        String sAngle = ComDataUtils.format(angle, 4);
+        return sx + "-" + sy + "-" + sAngle;
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[x=" + x + ", y=" + y + ", orientation=" + Math.toDegrees(orientation)
-				+ "°]";
-	}
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[x=" + x + ", y=" + y + ", orientation=" + Math.toDegrees(orientation)
+                + "°]";
+    }
 }

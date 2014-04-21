@@ -9,8 +9,12 @@ import org.cen.com.documentation.DeviceParameterType;
 import org.cen.com.out.OutData;
 import org.cen.robot.device.navigation.NavigationDevice;
 
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
-		header = WriteMotionEndDetectionParameterOutData.HEADER, type = DeviceMethodType.INPUT, parameters = {
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { 
+        @DeviceMethodSignature(
+                header = WriteMotionEndDetectionParameterOutData.HEADER,
+                methodName="writeMotionEndDetection",
+                type = DeviceMethodType.INPUT, parameters = {
 				@DeviceParameter(name = "absDeltaPositionIntegralFactorThreshold", length = 2,
 						type = DeviceParameterType.UNSIGNED, unit = ""),
 				@DeviceParameter(name = "maxUIntegralFactorThreshold", length = 2, type = DeviceParameterType.UNSIGNED,
@@ -21,37 +25,38 @@ import org.cen.robot.device.navigation.NavigationDevice;
 						unit = " pidTime"),
 				@DeviceParameter(name = "noAnalysisAtStartupTime", length = 2, type = DeviceParameterType.UNSIGNED,
 						unit = "pidTime") }) })
+//@formatter:on
 public class WriteMotionEndDetectionParameterOutData extends OutData {
 
-	final static String HEADER = "=";
+    final static String HEADER = "=";
 
-	public MotionEndDetectionParameter getEndDetectionParameter() {
-		return endDetectionParameter;
-	}
+    public MotionEndDetectionParameter getEndDetectionParameter() {
+        return endDetectionParameter;
+    }
 
-	private final MotionEndDetectionParameter endDetectionParameter;
+    private final MotionEndDetectionParameter endDetectionParameter;
 
-	/**
-	 * Constructor.
-	 */
-	public WriteMotionEndDetectionParameterOutData(MotionEndDetectionParameter endDetectionParameter) {
-		super();
-		this.endDetectionParameter = endDetectionParameter;
-	}
+    /**
+     * Constructor.
+     */
+    public WriteMotionEndDetectionParameterOutData(MotionEndDetectionParameter endDetectionParameter) {
+        super();
+        this.endDetectionParameter = endDetectionParameter;
+    }
 
-	@Override
-	public String getArguments() {
-		String result = ComDataUtils
-				.format((int) endDetectionParameter.getAbsDeltaPositionIntegralFactorThreshold(), 2);
-		result += ComDataUtils.format((int) endDetectionParameter.getMaxUIntegralFactorThreshold(), 2);
-		result += ComDataUtils.format((int) endDetectionParameter.getMaxUIntegralConstantThreshold(), 2);
-		result += ComDataUtils.format(endDetectionParameter.getTimeRangeAnalysis(), 2);
-		result += ComDataUtils.format(endDetectionParameter.getNoAnalysisAtStartupTime(), 2);
-		return result;
-	}
+    @Override
+    public String getArguments() {
+        String result = ComDataUtils
+                .format((int) endDetectionParameter.getAbsDeltaPositionIntegralFactorThreshold(), 2);
+        result += ComDataUtils.format((int) endDetectionParameter.getMaxUIntegralFactorThreshold(), 2);
+        result += ComDataUtils.format((int) endDetectionParameter.getMaxUIntegralConstantThreshold(), 2);
+        result += ComDataUtils.format(endDetectionParameter.getTimeRangeAnalysis(), 2);
+        result += ComDataUtils.format(endDetectionParameter.getNoAnalysisAtStartupTime(), 2);
+        return result;
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 }

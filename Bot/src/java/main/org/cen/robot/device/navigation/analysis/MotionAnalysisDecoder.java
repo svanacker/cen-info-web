@@ -19,9 +19,13 @@ import org.cen.robot.control.PIDMotionType;
 import org.cen.robot.control.PIDType;
 import org.cen.robot.device.navigation.NavigationDevice;
 
+//@formatter:off
 @DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
 // MotionInstructionInData
-        @DeviceMethodSignature(header = MotionInstructionInData.HEADER, type = DeviceMethodType.OUTPUT, parameters = {
+        @DeviceMethodSignature(
+                header = MotionInstructionInData.HEADER,
+                methodName = "motionInstruction",
+                type = DeviceMethodType.OUTPUT, parameters = {
                 @DeviceParameter(name = "index", length = 1, type = DeviceParameterType.UNSIGNED, unit = ""),
                 @DeviceParameter(name = "a", length = 2, type = DeviceParameterType.UNSIGNED, unit = ""),
                 @DeviceParameter(name = "speed", length = 2, type = DeviceParameterType.UNSIGNED, unit = ""),
@@ -38,7 +42,11 @@ import org.cen.robot.device.navigation.NavigationDevice;
                 @DeviceParameter(name = "motionType", length = 1, type = DeviceParameterType.UNSIGNED, unit = ""),
                 @DeviceParameter(name = "pidType", length = 1, type = DeviceParameterType.UNSIGNED, unit = "") }),
         // Motion
-        @DeviceMethodSignature(header = PIDMotionDataInData.HEADER, type = DeviceMethodType.OUTPUT, parameters = {
+        @DeviceMethodSignature(
+                header = PIDMotionDataInData.HEADER,
+                methodName="pidMotionDataInData",
+                type = DeviceMethodType.OUTPUT,
+                parameters = {
                 @DeviceParameter(name = "index", length = 1, type = DeviceParameterType.UNSIGNED, unit = ""),
                 @DeviceParameter(name = "pidTime", length = 3, type = DeviceParameterType.UNSIGNED, unit = ""),
                 @DeviceParameter(name = "pidType", length = 1, type = DeviceParameterType.UNSIGNED, unit = ""),
@@ -52,6 +60,7 @@ import org.cen.robot.device.navigation.NavigationDevice;
                 @DeviceParameter(name = "time", length = 4, type = DeviceParameterType.UNSIGNED, unit = "pidTime"),
                 @DeviceParameter(name = "absDeltaPositionIntegral", length = 4, type = DeviceParameterType.UNSIGNED, unit = "pulse"),
                 @DeviceParameter(name = "uIntegral", length = 4, type = DeviceParameterType.UNSIGNED, unit = "pulse") }) })
+//@formatter:on
 public class MotionAnalysisDecoder extends DefaultDecoder {
 
     public final static Set<String> handled = new HashSet<String>();

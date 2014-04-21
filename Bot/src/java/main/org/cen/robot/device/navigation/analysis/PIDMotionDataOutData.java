@@ -13,31 +13,37 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * OutData to ask the motor board to get current parameters about motion.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(header = PIDMotionDataInData.HEADER,
-		type = DeviceMethodType.INPUT, parameters = { @DeviceParameter(name = "instructionType", length = 1,
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
+        @DeviceMethodSignature(
+                header = PIDMotionDataInData.HEADER,
+                        methodName = "?????",
+                type = DeviceMethodType.INPUT, parameters = { 
+                        @DeviceParameter(name = "instructionType", length = 1,
 				type = DeviceParameterType.SIGNED, unit = ""), }) })
+//@formatter:on
 public class PIDMotionDataOutData extends OutData {
 
-	private final PIDInstructionType pidInstructionType;
+    private final PIDInstructionType pidInstructionType;
 
-	public PIDMotionDataOutData(PIDInstructionType pidInstructionType) {
-		this.pidInstructionType = pidInstructionType;
-	}
+    public PIDMotionDataOutData(PIDInstructionType pidInstructionType) {
+        this.pidInstructionType = pidInstructionType;
+    }
 
-	@Override
-	public String getArguments() {
-		String argumentString = ComDataUtils.format(pidInstructionType.getIndex(), 1);
+    @Override
+    public String getArguments() {
+        String argumentString = ComDataUtils.format(pidInstructionType.getIndex(), 1);
 
-		return argumentString;
-	}
+        return argumentString;
+    }
 
-	@Override
-	public String getDebugString() {
-		return "{instructionType=" + pidInstructionType + "}";
-	}
+    @Override
+    public String getDebugString() {
+        return "{instructionType=" + pidInstructionType + "}";
+    }
 
-	@Override
-	public String getHeader() {
-		return PIDMotionDataInData.HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return PIDMotionDataInData.HEADER;
+    }
 }

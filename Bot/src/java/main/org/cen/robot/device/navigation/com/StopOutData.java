@@ -11,9 +11,16 @@ import org.cen.robot.device.navigation.NavigationDevice;
  * 
  * @author Emmanuel ZURMELY
  */
+//@formatter:off
 @DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
-    @DeviceMethodSignature(header = StopOutData.HEADER, parameters = {}, type = DeviceMethodType.INPUT)
+    @DeviceMethodSignature(
+            header = StopOutData.HEADER, 
+            methodName = "Stop",
+            type = DeviceMethodType.INPUT,
+            parameters = {}
+            )
 })
+//@formatter:on
 public class StopOutData extends OutData {
 
     protected static final String HEADER = "Z";

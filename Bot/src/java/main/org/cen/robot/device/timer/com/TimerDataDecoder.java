@@ -18,37 +18,39 @@ import org.cen.robot.device.timer.TimerDevice;
  * 
  * @author Emmanuel ZURMELY
  */
+//@formatter:off
 @DeviceDataSignature(deviceName = TimerDevice.NAME, methods = {
-		@DeviceMethodSignature(header = "e", type = DeviceMethodType.OUTPUT, parameters = {}),
-		@DeviceMethodSignature(header = "s", type = DeviceMethodType.OUTPUT, parameters = {}),
-		@DeviceMethodSignature(header = "x", type = DeviceMethodType.OUTPUT, parameters = { @DeviceParameter(length = 3,
+		@DeviceMethodSignature(header = MatchFinishedInData.HEADER, methodName="endOfMatch", type = DeviceMethodType.OUTPUT, parameters = {}),
+		@DeviceMethodSignature(header = MatchStartedInData.HEADER, methodName="startOfMatch", type = DeviceMethodType.OUTPUT, parameters = {}),
+		@DeviceMethodSignature(header = RobotInitializedInData.HEADER, methodName="initMatch", type = DeviceMethodType.OUTPUT, parameters = { @DeviceParameter(length = 3,
 				type = DeviceParameterType.UNSPECIFIED, name = "sequence", unit = "") }) })
+//@formatter:on
 public class TimerDataDecoder extends DefaultDecoder {
 
-	private final static Set<String> handled = new HashSet<String>();
+    private final static Set<String> handled = new HashSet<String>();
 
-	private static final String INITIALIZATION_SEQUENCE = "xXyY";
+    private static final String INITIALIZATION_SEQUENCE = "xXyY";
 
-	static {
-		handled.add(MatchStartedInData.HEADER);
-		handled.add(MatchFinishedInData.HEADER);
-		handled.add(RobotInitializedInData.HEADER);
-	}
+    static {
+        handled.add(MatchStartedInData.HEADER);
+        handled.add(MatchFinishedInData.HEADER);
+        handled.add(RobotInitializedInData.HEADER);
+    }
 
-	@Override
-	public InData decode(String data) throws IllegalComDataException {
-		if (data.substring(0, 1).equals(MatchStartedInData.HEADER)) {
-			return new MatchStartedInData();
-		} else if (data.substring(0, INITIALIZATION_SEQUENCE.length()).equals(INITIALIZATION_SEQUENCE)) {
-			return new RobotInitializedInData();
-		} else if (data.substring(0, 1).equals(MatchFinishedInData.HEADER)) {
-			return new MatchFinishedInData();
-		}
-		throw new IllegalComDataException();
-	}
+    @Override
+    public InData decode(String data) throws IllegalComDataException {
+        if (data.substring(0, 1).equals(MatchStartedInData.HEADER)) {
+            return new MatchStartedInData();
+        } else if (data.substring(0, INITIALIZATION_SEQUENCE.length()).equals(INITIALIZATION_SEQUENCE)) {
+            return new RobotInitializedInData();
+        } else if (data.substring(0, 1).equals(MatchFinishedInData.HEADER)) {
+            return new MatchFinishedInData();
+        }
+        throw new IllegalComDataException();
+    }
 
-	@Override
-	public Set<String> getHandledHeaders() {
-		return handled;
-	}
+    @Override
+    public Set<String> getHandledHeaders() {
+        return handled;
+    }
 }

@@ -13,44 +13,49 @@ import org.cen.robot.device.navigation.NavigationDevice;
  * Corresponds to the data which is sent to the COM stream to go backward the
  * robot.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
+        @DeviceMethodSignature(
 		header = MoveBackwardOutData.HEADER,
+		methodName="moveBackward",
 		type = DeviceMethodType.INPUT,
 		parameters = { @DeviceParameter(
 				name = "distance",
 				length = 4,
 				type = DeviceParameterType.SIGNED,
-				unit = "distance in mm"), }) })
+				unit = "distance in mm"), })
+        })
+//@formatter:on
 public class MoveBackwardOutData extends OutData {
 
-	public static final String HEADER = "b";
+    public static final String HEADER = "b";
 
-	/**
-	 * The angle for rotation.
-	 */
-	protected double distance;
+    /**
+     * The angle for rotation.
+     */
+    protected double distance;
 
-	/**
-	 * Constructor with all arguments.
-	 */
-	public MoveBackwardOutData(double distance) {
-		this.distance = distance;
-	}
+    /**
+     * Constructor with all arguments.
+     */
+    public MoveBackwardOutData(double distance) {
+        this.distance = distance;
+    }
 
-	@Override
-	public String getArguments() {
-		String argumentString = ComDataUtils.format((int) distance, 4);
+    @Override
+    public String getArguments() {
+        String argumentString = ComDataUtils.format((int) distance, 4);
 
-		return argumentString;
-	}
+        return argumentString;
+    }
 
-	@Override
-	public String getDebugString() {
-		return "{distance=" + distance + "}";
-	}
+    @Override
+    public String getDebugString() {
+        return "{distance=" + distance + "}";
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 }

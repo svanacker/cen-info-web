@@ -11,22 +11,33 @@ import java.lang.annotation.Target;
 @Target(ElementType.ANNOTATION_TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DeviceMethodSignature {
-    
+
     /**
-     * The header as first characters to determine which devices is concerned by the call.
+     * The header as first characters to determine which devices is concerned by
+     * the call.
+     * 
      * @return
      */
-	String header();
+    String header();
 
-	/**
-	 * If data comes from the main board or is sent by the main Board.
-	 * @return
-	 */
-	DeviceMethodType type();
+    /**
+     * The name of the method which is called (hint very useful)
+     * 
+     * @return
+     */
+    String methodName();
 
-	/**
-	 * Parameters array for the device method.
-	 * @return
-	 */
-	DeviceParameter[] parameters();
+    /**
+     * If data comes from the main board or is sent by the main Board.
+     * 
+     * @return
+     */
+    DeviceMethodType type();
+
+    /**
+     * Parameters array for the device method.
+     * 
+     * @return
+     */
+    DeviceParameter[] parameters();
 }

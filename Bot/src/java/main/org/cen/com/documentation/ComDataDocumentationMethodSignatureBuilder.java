@@ -7,9 +7,16 @@ import java.util.List;
  */
 public class ComDataDocumentationMethodSignatureBuilder {
 
-    private static final String ARGUMENT_SEPARATOR = " | ";
-    private static final String DEVICE_NAME_SEPARATOR = ":";
-    private static final String DEVICE_TYPE_SEPARATOR = ":";
+    private static final String DEVICE_NAME_AND_HEADER_SEPARATOR = ":";
+
+    private static final String DEVICE_HEADER_AND_METHOD_NAME_SEPARATOR = "/";
+
+    private static final String DEVICE_METHOD_NAME_AND_TYPE_SEPARATOR = ":";
+
+    private static final String ARGUMENTS_SEPARATOR = " | ";
+
+    private static final String ARGUMENTS_NAME_AND_TYPE_SEPARATOR = ";";
+
     private static final String ARGUMENTS_START_CHAR = "(";
     private static final String ARGUMENTS_STOP_CHAR = ")";
 
@@ -37,29 +44,39 @@ public class ComDataDocumentationMethodSignatureBuilder {
         // deviceName
         String deviceName = signature.deviceName();
         builder.append(deviceName);
-        builder.append(DEVICE_NAME_SEPARATOR);
+        builder.append(DEVICE_NAME_AND_HEADER_SEPARATOR);
 
-        // Header
+        // Header char
         String header = method.header();
         builder.append(header);
-        builder.append(DEVICE_TYPE_SEPARATOR);
+        builder.append(DEVICE_HEADER_AND_METHOD_NAME_SEPARATOR);
+
+        // MethodName
+        String methodName = method.methodName();
+        builder.append(methodName);
+        builder.append(DEVICE_METHOD_NAME_AND_TYPE_SEPARATOR);
 
         // Input/Output
         DeviceMethodType type = method.type();
-        String shortName = type.getShortName();
-        builder.append(shortName);
+        String typeShortName = type.getShortName();
+        builder.append(typeShortName);
         builder.append(ARGUMENTS_START_CHAR);
 
         DeviceParameter[] parameters = method.parameters();
         boolean first = true;
         for (DeviceParameter parameter : parameters) {
+            // separator
             if (!first) {
-                builder.append(ARGUMENT_SEPARATOR);
+                builder.append(ARGUMENTS_SEPARATOR);
             }
             first = false;
+
+            // argument name
             String name = parameter.name();
             builder.append(name);
-            builder.append(';');
+            builder.append(ARGUMENTS_NAME_AND_TYPE_SEPARATOR);
+
+            // type and length
             int l = parameter.length();
             DeviceParameterType parameterType = parameter.type();
             String parameterTypeShortName = parameterType.getShortName();
@@ -70,7 +87,7 @@ public class ComDataDocumentationMethodSignatureBuilder {
                 builder.append('?');
             } else {
                 builder.append(l);
-                builder.append(';');
+                builder.append(ARGUMENTS_NAME_AND_TYPE_SEPARATOR);
             }
             String unit = parameter.unit();
             builder.append(unit);

@@ -15,8 +15,12 @@ import org.cen.com.documentation.DeviceParameterType;
 import org.cen.com.in.InData;
 import org.cen.robot.device.collision.CollisionDetectionDevice;
 
+//@formatter:off
 @DeviceDataSignature(deviceName = CollisionDetectionDevice.NAME, methods = {
-		@DeviceMethodSignature(header = CollisionReadInData.HEADER, type = DeviceMethodType.OUTPUT, parameters = {
+		@DeviceMethodSignature(header = CollisionReadInData.HEADER,
+		        methodName="collisionRead",
+		        type = DeviceMethodType.OUTPUT,
+		        parameters = {
 				@DeviceParameter(name = "left", length = 4, type = DeviceParameterType.SIGNED, unit = "mm"),
 				@DeviceParameter(name = "-", length = 1, type = DeviceParameterType.UNSPECIFIED, unit = ""),
 				@DeviceParameter(name = "right", length = 4, type = DeviceParameterType.SIGNED, unit = "mm"),
@@ -24,9 +28,14 @@ import org.cen.robot.device.collision.CollisionDetectionDevice;
 				@DeviceParameter(name = "distance", length = 4, type = DeviceParameterType.SIGNED, unit = "mm"),
 				@DeviceParameter(name = "-", length = 1, type = DeviceParameterType.UNSPECIFIED, unit = ""),
 				@DeviceParameter(name = "angle", length = 4, type = DeviceParameterType.SIGNED, unit = "deg") }),
-		@DeviceMethodSignature(header = OpponentPositionInData.HEADER, type = DeviceMethodType.OUTPUT, parameters = {
+		@DeviceMethodSignature(
+		        header = OpponentPositionInData.HEADER,
+		        methodName = "opponentPosition",
+		        type = DeviceMethodType.OUTPUT,
+		        parameters = {
 				@DeviceParameter(name = "x", length = 4, type = DeviceParameterType.SIGNED, unit = "mm"),
 				@DeviceParameter(name = "y", length = 4, type = DeviceParameterType.SIGNED, unit = "mm") }) })
+//@formatter:off
 public class CollisionDataDecoder extends DefaultDecoder {
 
 	final static Set<String> handled = new HashSet<String>();

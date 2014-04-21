@@ -13,46 +13,51 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * Corresponds to the data which is sent to the COM stream to rotate the robot.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { 
+        @DeviceMethodSignature(
 		header = RotateLeftOutData.HEADER,
+		methodName = "rotateLeft",
 		type = DeviceMethodType.INPUT,
 		parameters = { @DeviceParameter(
 				name = "left",
 				length = 4,
 				type = DeviceParameterType.SIGNED,
-				unit = "angle in mmRad"), }) })
+				unit = "angle in mmRad"), })
+})
+//@formatter:on
 public class RotateLeftOutData extends OutData {
 
-	public static final String HEADER = "l";
+    public static final String HEADER = "l";
 
-	/**
-	 * The angle for rotation.
-	 */
-	protected double angleRad;
+    /**
+     * The angle for rotation.
+     */
+    protected double angleRad;
 
-	/**
-	 * Constructor with all arguments.
-	 */
-	public RotateLeftOutData(double angleRad) {
-		this.angleRad = angleRad;
-	}
+    /**
+     * Constructor with all arguments.
+     */
+    public RotateLeftOutData(double angleRad) {
+        this.angleRad = angleRad;
+    }
 
-	@Override
-	public String getArguments() {
-		int deciDegree = (int) MathUtils.radToDeciDegree(angleRad);
-		String argumentString = ComDataUtils.format(deciDegree, 4);
+    @Override
+    public String getArguments() {
+        int deciDegree = (int) MathUtils.radToDeciDegree(angleRad);
+        String argumentString = ComDataUtils.format(deciDegree, 4);
 
-		return argumentString;
-	}
+        return argumentString;
+    }
 
-	@Override
-	public String getDebugString() {
-		return "{angle=" + MathUtils.radToDeciDegree(angleRad) + "°}";
-	}
+    @Override
+    public String getDebugString() {
+        return "{angle=" + MathUtils.radToDeciDegree(angleRad) + "°}";
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 
 }

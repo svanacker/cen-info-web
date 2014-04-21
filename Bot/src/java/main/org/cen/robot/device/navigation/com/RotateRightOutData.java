@@ -13,45 +13,50 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * Corresponds to the data which is sent to the COM stream to rotate the robot.
  */
+//@formatter:off
 @DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
 		header = RotateRightOutData.HEADER,
+		methodName = "rotateRight",
 		type = DeviceMethodType.INPUT,
 		parameters = { @DeviceParameter(
 				name = "right",
 				length = 4,
 				type = DeviceParameterType.SIGNED,
-				unit = "angle in deciDeg"), }) })
+				unit = "angle in deciDeg")
+		})
+})
+//@formatter:on
 public class RotateRightOutData extends OutData {
 
-	public static final String HEADER = "r";
+    public static final String HEADER = "r";
 
-	/**
-	 * The angle for rotation.
-	 */
-	protected double angleRad;
+    /**
+     * The angle for rotation.
+     */
+    protected double angleRad;
 
-	/**
-	 * Constructor with all arguments.
-	 */
-	public RotateRightOutData(double angleRad) {
-		this.angleRad = angleRad;
-	}
+    /**
+     * Constructor with all arguments.
+     */
+    public RotateRightOutData(double angleRad) {
+        this.angleRad = angleRad;
+    }
 
-	@Override
-	public String getArguments() {
-		int deciDegree = (int) MathUtils.radToDeciDegree(angleRad);
-		String argumentString = ComDataUtils.format(deciDegree, 4);
+    @Override
+    public String getArguments() {
+        int deciDegree = (int) MathUtils.radToDeciDegree(angleRad);
+        String argumentString = ComDataUtils.format(deciDegree, 4);
 
-		return argumentString;
-	}
+        return argumentString;
+    }
 
-	@Override
-	public String getDebugString() {
-		return "{angle=" + MathUtils.radToDeciDegree(angleRad) + "°}";
-	}
+    @Override
+    public String getDebugString() {
+        return "{angle=" + MathUtils.radToDeciDegree(angleRad) + "°}";
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 }

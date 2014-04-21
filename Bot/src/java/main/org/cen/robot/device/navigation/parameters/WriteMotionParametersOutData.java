@@ -12,45 +12,50 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * Message to change the default parameters for the speed and acceleration.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
-		header = WriteMotionParametersOutData.HEADER, type = DeviceMethodType.INPUT, parameters = {
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
+        @DeviceMethodSignature(
+		header = WriteMotionParametersOutData.HEADER,
+		methodName="writeMotion",
+		type = DeviceMethodType.INPUT, parameters = {
 				@DeviceParameter(name = "motionType", length = 2, type = DeviceParameterType.UNSIGNED, unit = ""),
 				@DeviceParameter(name = "acceleration", length = 2, type = DeviceParameterType.UNSIGNED, unit = ""),
 				@DeviceParameter(name = "speed", length = 2, type = DeviceParameterType.UNSIGNED, unit = ""), }) })
+//@formatter:on
 public class WriteMotionParametersOutData extends OutData {
 
-	public static final String HEADER = ":";
+    public static final String HEADER = ":";
 
-	protected MotionParametersData data;
+    protected MotionParametersData data;
 
-	/**
-	 * Build an encapsulation of outData from the object model
-	 */
-	public WriteMotionParametersOutData(MotionParametersData data) {
-		super();
-		this.data = data;
-	}
+    /**
+     * Build an encapsulation of outData from the object model
+     */
+    public WriteMotionParametersOutData(MotionParametersData data) {
+        super();
+        this.data = data;
+    }
 
-	@Override
-	public String getArguments() {
-		// First Argument
-		String motionTypeString = ComDataUtils.format(data.getMotionType(), 2);
-		// Second Argument
-		String accelerationString = ComDataUtils.format(data.getAcceleration(), 2);
-		// Third Argument
-		String speedString = ComDataUtils.format(data.getSpeed(), 2);
-		String result = motionTypeString + accelerationString + speedString;
+    @Override
+    public String getArguments() {
+        // First Argument
+        String motionTypeString = ComDataUtils.format(data.getMotionType(), 2);
+        // Second Argument
+        String accelerationString = ComDataUtils.format(data.getAcceleration(), 2);
+        // Third Argument
+        String speedString = ComDataUtils.format(data.getSpeed(), 2);
+        String result = motionTypeString + accelerationString + speedString;
 
-		return result;
-	}
+        return result;
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[data=" + data + "]";
-	}
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[data=" + data + "]";
+    }
 }

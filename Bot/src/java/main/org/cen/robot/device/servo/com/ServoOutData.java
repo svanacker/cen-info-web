@@ -14,60 +14,68 @@ import org.cen.robot.device.servo.ServoData;
  * 
  * @author svanacker
  */
-@DeviceDataSignature(deviceName = "servo", methods = {
-	    @DeviceMethodSignature(header = ServoOutData.HEADER, type = DeviceMethodType.INPUT, parameters = {
+//@formatter:off
+@DeviceDataSignature(
+      deviceName = "servo", 
+      methods = {
+	    @DeviceMethodSignature(
+	            header = ServoOutData.HEADER,
+	            methodName = "servoSet",
+	            type = DeviceMethodType.INPUT, parameters = {
 	            @DeviceParameter(name = "index", length = 2, type = DeviceParameterType.UNSIGNED, unit = ""),
 	            @DeviceParameter(name = "speed", length = 2, type = DeviceParameterType.UNSIGNED, unit = ""),
 	            @DeviceParameter(name = "value", length = 4, type = DeviceParameterType.UNSIGNED, unit = ""),
 	    })
 	})
+//@formatter:on
 public class ServoOutData extends OutData {
-	protected static final String HEADER = "S";
 
-	/** The id of the relay (between 0 and 20). */
-	private int id;
+    protected static final String HEADER = "S";
 
-	/** The value which must be applied for this servo. */
-	private int value;
+    /** The id of the relay (between 0 and 20). */
+    private final int id;
 
-	/** The speed which must be used for the move. */
-	private int speed;
+    /** The value which must be applied for this servo. */
+    private final int value;
 
-	public ServoOutData(int id, int speed, int value) {
-		super();
-		this.id = id;
-		this.speed = speed;
-		this.value = value;
-	}
+    /** The speed which must be used for the move. */
+    private final int speed;
 
-	/**
-	 * Build an encapsulation of outData from the object model
-	 * 
-	 * @param servoData
-	 *            the object model which represents servo
-	 */
-	public ServoOutData(ServoData servoData) {
-		super();
-		this.id = servoData.getId() + 1;
-		this.speed = servoData.getSpeed();
-		this.value = servoData.getValue();
-	}
+    public ServoOutData(int id, int speed, int value) {
+        super();
+        this.id = id;
+        this.speed = speed;
+        this.value = value;
+    }
 
-	@Override
-	public String getArguments() {
-		String servoId = ComDataUtils.format(id, 2);
-		String servoSpeed = ComDataUtils.format(speed, 2);
-		String servoValue = ComDataUtils.format(value, 4);
-		return servoId + servoSpeed + servoValue;
-	}
+    /**
+     * Build an encapsulation of outData from the object model
+     * 
+     * @param servoData
+     *            the object model which represents servo
+     */
+    public ServoOutData(ServoData servoData) {
+        super();
+        this.id = servoData.getId() + 1;
+        this.speed = servoData.getSpeed();
+        this.value = servoData.getValue();
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getArguments() {
+        String servoId = ComDataUtils.format(id, 2);
+        String servoSpeed = ComDataUtils.format(speed, 2);
+        String servoValue = ComDataUtils.format(value, 4);
+        return servoId + servoSpeed + servoValue;
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[id=" + id + ", speed=" + speed + ", value=" + value + "]";
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[id=" + id + ", speed=" + speed + ", value=" + value + "]";
+    }
 }

@@ -12,7 +12,19 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * Message to change the default parameters for the speed and acceleration.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(header = ReadMotionParametersOutData.HEADER, type = DeviceMethodType.INPUT, parameters = { @DeviceParameter(name = "motionType", length = 2, type = DeviceParameterType.UNSIGNED, unit = "") }) })
+//@formatter:off
+@DeviceDataSignature(
+        deviceName = NavigationDevice.NAME,
+        methods = { 
+                @DeviceMethodSignature(
+                        header = ReadMotionParametersOutData.HEADER,
+                        methodName="readMotionParameter",
+                        type = DeviceMethodType.INPUT,
+                        parameters = {
+                                @DeviceParameter(name = "motionType", length = 2, type = DeviceParameterType.UNSIGNED, unit = "")
+                                })
+                })
+//@formatter:on
 public class ReadMotionParametersOutData extends OutData {
 
     public static final String HEADER = "?";

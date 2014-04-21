@@ -11,12 +11,24 @@ import org.cen.robot.device.configuration.ConfigurationDevice;
  * 
  * @author Emmanuel ZURMELY
  */
-@DeviceDataSignature(deviceName = ConfigurationDevice.NAME, methods = { @DeviceMethodSignature(header = ConfigurationReadOutData.HEADER, type = DeviceMethodType.INPUT, parameters = {}) })
+//@formatter:off
+@DeviceDataSignature(
+        deviceName = ConfigurationDevice.NAME,
+        methods = { 
+                @DeviceMethodSignature(
+                        header = ConfigurationReadOutData.HEADER,
+                        methodName = "configuration",
+                        type = DeviceMethodType.INPUT,
+                        parameters = {}
+                )
+})
+//@formatter:on
 public class ConfigurationReadOutData extends OutData {
-	static final String HEADER = "c";
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    static final String HEADER = "c";
+
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 }

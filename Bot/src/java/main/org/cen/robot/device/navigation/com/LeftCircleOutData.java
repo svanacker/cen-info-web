@@ -14,8 +14,11 @@ import org.cen.robot.device.navigation.NavigationDevice;
  * Corresponds to the data which is sent to the COM stream to rotate the robot
  * to the left arround a point which is at the left of the robot
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
+        @DeviceMethodSignature(
 		header = LeftCircleOutData.HEADER,
+		methodName = "leftCircle",
 		type = DeviceMethodType.INPUT,
 		parameters = {
 				@DeviceParameter(
@@ -25,45 +28,47 @@ import org.cen.robot.device.navigation.NavigationDevice;
 						unit = "angle in deciDeg"),
 				@DeviceParameter(name = "radius", length = 4, type = DeviceParameterType.SIGNED, unit = "mm"),
 
-		}) })
+		})
+})
+//@formatter:on
 public class LeftCircleOutData extends OutData {
 
-	public static final String HEADER = "}";
+    public static final String HEADER = "}";
 
-	/**
-	 * The angle for rotation.
-	 */
-	protected double angleRad;
+    /**
+     * The angle for rotation.
+     */
+    protected double angleRad;
 
-	/**
-	 * The distance to the center
-	 */
-	protected int radius;
+    /**
+     * The distance to the center
+     */
+    protected int radius;
 
-	/**
-	 * Constructor with all arguments.
-	 */
-	public LeftCircleOutData(double angleRad) {
-		this.angleRad = angleRad;
-	}
+    /**
+     * Constructor with all arguments.
+     */
+    public LeftCircleOutData(double angleRad) {
+        this.angleRad = angleRad;
+    }
 
-	@Override
-	public String getArguments() {
-		int deciDegree = (int) MathUtils.radToDeciDegree(angleRad);
-		String result = ComDataUtils.format(deciDegree, 4);
+    @Override
+    public String getArguments() {
+        int deciDegree = (int) MathUtils.radToDeciDegree(angleRad);
+        String result = ComDataUtils.format(deciDegree, 4);
 
-		result += ComDataUtils.format(radius, 4);
+        result += ComDataUtils.format(radius, 4);
 
-		return result;
-	}
+        return result;
+    }
 
-	@Override
-	public String getDebugString() {
-		return "{angle=" + MathUtils.radToDeciDegree(angleRad) + "°, radius=" + radius + " mm}";
-	}
+    @Override
+    public String getDebugString() {
+        return "{angle=" + MathUtils.radToDeciDegree(angleRad) + "°, radius=" + radius + " mm}";
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 }

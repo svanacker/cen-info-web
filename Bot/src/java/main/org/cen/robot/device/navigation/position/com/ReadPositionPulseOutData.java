@@ -9,23 +9,27 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * The data which ask the position in pulse to the micro-controller.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
+        @DeviceMethodSignature(
 		header = ReadPositionPulseOutData.HEADER,
+		methodName = "readPositionPulse",
 		type = DeviceMethodType.INPUT,
 		parameters = {}) })
+//@formatter:on
 public class ReadPositionPulseOutData extends OutData {
 
-	public final static String HEADER = "w";
+    public final static String HEADER = "w";
 
-	/**
-	 * Creates an object corresponding to the position
-	 */
-	public ReadPositionPulseOutData() {
-		super();
-	}
+    /**
+     * Creates an object corresponding to the position
+     */
+    public ReadPositionPulseOutData() {
+        super();
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 }

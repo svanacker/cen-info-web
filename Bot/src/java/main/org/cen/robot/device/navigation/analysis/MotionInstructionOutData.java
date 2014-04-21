@@ -13,9 +13,19 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * OutData to ask the motor board to get current parameters about motion.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
-		header = MotionInstructionInData.HEADER, type = DeviceMethodType.INPUT, parameters = { @DeviceParameter(
-				name = "instructionType", length = 1, type = DeviceParameterType.SIGNED, unit = ""), }) })
+//@formatter:off
+@DeviceDataSignature(
+        deviceName = NavigationDevice.NAME,
+        methods = { 
+                @DeviceMethodSignature(
+                        header = MotionInstructionInData.HEADER,
+                        methodName = "motion",
+                        type = DeviceMethodType.INPUT,
+                        parameters = {
+                                @DeviceParameter(name = "instructionType", length = 1, type = DeviceParameterType.SIGNED, unit = ""), 
+                                })
+                })
+//@formatter:off
 public class MotionInstructionOutData extends OutData {
 
 	private final PIDInstructionType pidInstructionType;

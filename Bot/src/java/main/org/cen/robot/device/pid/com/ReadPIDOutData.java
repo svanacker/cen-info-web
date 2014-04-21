@@ -12,39 +12,47 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * Encapsulation of the message which ask for PID.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(header = ReadPIDOutData.HEADER,
-		type = DeviceMethodType.INPUT, parameters = { @DeviceParameter(name = "index", length = 2,
-				type = DeviceParameterType.SIGNED, unit = "") }) })
+//@formatter:off
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { 
+        @DeviceMethodSignature(
+                header = ReadPIDOutData.HEADER,
+                methodName = "readPID",
+                type = DeviceMethodType.INPUT,
+                parameters = {
+                        @DeviceParameter(name = "index", length = 2, type = DeviceParameterType.SIGNED, unit = "")
+                })
+        })
+//@formatter:on
 public class ReadPIDOutData extends OutData {
 
-	final static String HEADER = "q";
+    final static String HEADER = "q";
 
-	protected int index;
+    protected int index;
 
-	public int getIndex() {
-		return index;
-	}
+    public int getIndex() {
+        return index;
+    }
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
-	/**
-	 * Constructor.
-	 */
-	public ReadPIDOutData(int index) {
-		super();
-		this.index = index;
-	}
+    /**
+     * Constructor.
+     */
+    public ReadPIDOutData(int index) {
+        super();
+        this.index = index;
+    }
 
-	@Override
-	public String getArguments() {
-		String result = ComDataUtils.format(index, 2);
-		return result;
-	}
+    @Override
+    public String getArguments() {
+        String result = ComDataUtils.format(index, 2);
+        return result;
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 }
