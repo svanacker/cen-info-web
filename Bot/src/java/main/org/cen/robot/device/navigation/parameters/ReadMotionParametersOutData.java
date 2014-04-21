@@ -12,39 +12,37 @@ import org.cen.robot.device.navigation.NavigationDevice;
 /**
  * Message to change the default parameters for the speed and acceleration.
  */
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(
-		header = ReadMotionParametersOutData.HEADER, type = DeviceMethodType.INPUT, parameters = { @DeviceParameter(
-				name = "motionType", length = 2, type = DeviceParameterType.UNSIGNED, unit = "") }) })
+@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = { @DeviceMethodSignature(header = ReadMotionParametersOutData.HEADER, type = DeviceMethodType.INPUT, parameters = { @DeviceParameter(name = "motionType", length = 2, type = DeviceParameterType.UNSIGNED, unit = "") }) })
 public class ReadMotionParametersOutData extends OutData {
 
-	public static final String HEADER = "?";
+    public static final String HEADER = "?";
 
-	private final int motionType;
+    private final int motionType;
 
-	/**
-	 * Build an encapsulation of outData from the object model
-	 */
-	public ReadMotionParametersOutData(int motionType) {
-		super();
-		this.motionType = motionType;
-	}
+    /**
+     * Build an encapsulation of outData from the object model
+     */
+    public ReadMotionParametersOutData(int motionType) {
+        super();
+        this.motionType = motionType;
+    }
 
-	@Override
-	public String getArguments() {
-		// First Argument
-		String motionTypeString = ComDataUtils.format(motionType, 2);
-		String result = motionTypeString;
+    @Override
+    public String getArguments() {
+        // First Argument
+        String motionTypeString = ComDataUtils.format(motionType, 2);
+        String result = motionTypeString;
 
-		return result;
-	}
+        return result;
+    }
 
-	@Override
-	public String getHeader() {
-		return HEADER;
-	}
+    @Override
+    public String getHeader() {
+        return HEADER;
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[motionType=" + motionType + "]";
-	}
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[motionType=" + motionType + "]";
+    }
 }

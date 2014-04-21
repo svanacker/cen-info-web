@@ -9,13 +9,13 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DeviceDataSignature {
 
-	/**
-	 * The name of the device.
-	 */
-	public String deviceName();
+    /**
+     * The name of the device.
+     */
+    String deviceName();
 
-	/**
-	 * The method to do something on devices.
-	 */
-	public DeviceMethodSignature[] methods();
+    /**
+     * The method to do something on devices.
+     */
+    DeviceMethodSignature[] methods();
 }

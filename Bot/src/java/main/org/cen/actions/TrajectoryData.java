@@ -6,25 +6,27 @@ import java.util.List;
 import org.cen.navigation.Location;
 
 public class TrajectoryData {
-	public List<Location> locations;
 
-	public int startIndex;
+    public List<Location> locations;
 
-	public Point2D startPosition;
+    public int startIndex;
 
-	public Point2D endPosition;
+    public Point2D startPosition;
 
-	public double orientation;
+    public Point2D endPosition;
 
-	public IGameAction endAction;
+    public double orientation;
 
-	public TrajectoryData(List<Location> locations, int startIndex, Point2D startPosition, Point2D endPosition, double orientation, IGameAction endAction) {
-		super();
-		this.locations = locations;
-		this.startIndex = startIndex;
-		this.startPosition = startPosition;
-		this.endPosition = endPosition;
-		this.orientation = orientation;
-		this.endAction = endAction;
-	}
+    public IGameAction endAction;
+
+    public TrajectoryData(List<Location> locations, int startIndex, Point2D startPosition, Point2D endPosition,
+            double orientation, IGameAction endAction) {
+        super();
+        this.locations = locations;
+        this.startIndex = startIndex;
+        this.startPosition = startPosition;
+        this.endPosition = endPosition;
+        this.orientation = orientation;
+        this.endAction = endAction;
+    }
 }

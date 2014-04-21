@@ -3,46 +3,47 @@ package org.cen.actions;
 import java.awt.geom.Point2D;
 
 public class TrajectoryPathElement {
-	private Point2D start;
 
-	private Point2D end;
+    private Point2D start;
 
-	private boolean extendable = true;
+    private Point2D end;
 
-	public TrajectoryPathElement(Point2D start) {
-		super();
-		this.start = start;
-	}
+    private boolean extendable = true;
 
-	public Point2D getEnd() {
-		return end;
-	}
+    public TrajectoryPathElement(Point2D start) {
+        super();
+        this.start = start;
+    }
 
-	public double getLength() {
-		if (end != null) {
-			return start.distance(end);
-		} else {
-			return 0;
-		}
-	}
+    public Point2D getEnd() {
+        return end;
+    }
 
-	public Point2D getStart() {
-		return start;
-	}
+    public double getLength() {
+        if (end != null) {
+            return start.distance(end);
+        } else {
+            return 0;
+        }
+    }
 
-	public boolean isExtendable() {
-		return extendable;
-	}
+    public Point2D getStart() {
+        return start;
+    }
 
-	public void setEnd(Point2D end) {
-		this.end = end;
-	}
+    public boolean isExtendable() {
+        return extendable;
+    }
 
-	public void setExtendable(boolean extendable) {
-		this.extendable = extendable;
-	}
+    public void setEnd(Point2D end) {
+        this.end = end;
+    }
 
-	public void setStart(Point2D start) {
-		this.start = start;
-	}
+    public void setExtendable(boolean extendable) {
+        this.extendable = extendable;
+    }
+
+    public void setStart(Point2D start) {
+        this.start = start;
+    }
 }

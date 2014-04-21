@@ -6,3 +6,5 @@
 
 *.svn
 .metadata
+*.vpp~*
+*.bak

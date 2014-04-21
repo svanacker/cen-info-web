@@ -7,17 +7,28 @@ package org.cen.com.documentation;
  */
 public enum DeviceParameterType {
 
-	/**
-	 * Signed value.
-	 */
-	SIGNED,
-	/**
-	 * Unsigned value.
-	 */
-	UNSIGNED,
-	
-	/**
-	 * Unspecified value type.
-	 */
-	UNSPECIFIED;
+    /**
+     * Signed value.
+     */
+    SIGNED("s"),
+
+    /**
+     * Unsigned value.
+     */
+    UNSIGNED("u"),
+
+    /**
+     * Unspecified value type.
+     */
+    UNSPECIFIED("-");
+
+    private String shortName;
+
+    private DeviceParameterType(String shortName) {
+        this.shortName = shortName;
+    }
+
+    public String getShortName() {
+        return shortName;
+    }
 }
