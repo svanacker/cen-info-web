@@ -2,7 +2,6 @@ package org.cen.ui.gameboard.elements;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -12,7 +11,8 @@ import java.awt.geom.Point2D;
 
 import org.cen.ui.gameboard.AbstractGameBoardElement;
 
-public abstract class AMovableElement extends AbstractGameBoardElement implements IMovableElement {
+public abstract class AMovableElement extends AbstractGameBoardElement
+		implements IMovableElement {
 
 	protected Color color = new Color(0, 0, 0, 0);
 
@@ -38,7 +38,7 @@ public abstract class AMovableElement extends AbstractGameBoardElement implement
 
 	@Override
 	public boolean isObstacle() {
-		return obstacle ;
+		return obstacle;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public abstract class AMovableElement extends AbstractGameBoardElement implement
 
 	@Override
 	public void paint(Graphics2D g) {
-		Graphics2D g2d = (Graphics2D)g;
+		Graphics2D g2d = (Graphics2D) g;
 		g.setColor(color);
 		g2d.fill(bounds);
 	}
