@@ -9,72 +9,73 @@ import java.util.Set;
  * @author Emmanuel ZURMELY
  */
 public class LocationGroup {
-	protected Set<PathSegment> segments = new HashSet<PathSegment>();
 
-	private String name;
+    protected Set<PathSegment> segments = new HashSet<PathSegment>();
 
-	/**
-	 * Constructor.
-	 * 
-	 * @param name
-	 *            the name of this group
-	 */
-	public LocationGroup(String name) {
-		super();
-		this.name = name;
-	}
+    private final String name;
 
-	/**
-	 * Returns all the control points contained in this group.
-	 * 
-	 * @return the control points contained in this group
-	 */
-	public Set<ControlPoint> getControlPoints() {
-		Set<ControlPoint> controlPoints = new HashSet<ControlPoint>();
-		for (PathSegment s : segments) {
-			controlPoints.addAll(s.getControlPoints());
-		}
-		return controlPoints;
-	}
+    /**
+     * Constructor.
+     * 
+     * @param name
+     *            the name of this group
+     */
+    public LocationGroup(String name) {
+        super();
+        this.name = name;
+    }
 
-	/**
-	 * Returns the interest score of this group.
-	 * 
-	 * @return the interest score of this group
-	 */
-	public int getInterest() {
-		return 0;
-	}
+    /**
+     * Returns all the control points contained in this group.
+     * 
+     * @return the control points contained in this group
+     */
+    public Set<ControlPoint> getControlPoints() {
+        Set<ControlPoint> controlPoints = new HashSet<ControlPoint>();
+        for (PathSegment s : segments) {
+            controlPoints.addAll(s.getControlPoints());
+        }
+        return controlPoints;
+    }
 
-	/**
-	 * Returns the locations in this group.
-	 * 
-	 * @return the locations in this group
-	 */
-	public Set<Location> getLocations() {
-		Set<Location> locations = new HashSet<Location>();
-		for (PathSegment s : segments) {
-			locations.add(s.getStart());
-			locations.add(s.getEnd());
-		}
-		return locations;
-	}
+    /**
+     * Returns the interest score of this group.
+     * 
+     * @return the interest score of this group
+     */
+    public int getInterest() {
+        return 0;
+    }
 
-	/**
-	 * Returns the name of this group.
-	 * 
-	 * @return the name of this group
-	 */
-	public String getName() {
-		return name;
-	}
+    /**
+     * Returns the locations in this group.
+     * 
+     * @return the locations in this group
+     */
+    public Set<Location> getLocations() {
+        Set<Location> locations = new HashSet<Location>();
+        for (PathSegment s : segments) {
+            locations.add(s.getStart());
+            locations.add(s.getEnd());
+        }
+        return locations;
+    }
 
-	public Set<PathSegment> getSegments() {
-		return segments;
-	}
+    /**
+     * Returns the name of this group.
+     * 
+     * @return the name of this group
+     */
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[name=" + name + "]";
-	}
+    public Set<PathSegment> getSegments() {
+        return segments;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[name=" + name + "]";
+    }
 }

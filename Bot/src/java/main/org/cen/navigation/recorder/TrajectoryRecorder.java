@@ -1,4 +1,4 @@
-package org.cen.navigation;
+package org.cen.navigation.recorder;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import org.cen.com.IComService;
 import org.cen.com.in.InData;
 import org.cen.com.in.InDataListener;
 import org.cen.logging.LoggingUtils;
+import org.cen.navigation.WheelPosition;
 import org.cen.robot.IRobotServiceInitializable;
 import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.MotorProperties;

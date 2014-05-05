@@ -27,121 +27,118 @@ import org.cen.ui.gameboard.IGameBoardService;
 import org.cen.ui.gameboard.ISimulGameBoard;
 import org.cen.ui.gameboard.elements.SimulOpponentElement;
 import org.cen.ui.gameboard.elements.SimulRobotElement;
-import org.cen.util.ReflectionUtils;
+import org.cen.utils.ReflectionUtils;
 
 public class SimulMatchStrategy2011 extends ASimulMatchStrategy {
-	private static final boolean BEACON_ENABLE = false;
-	private static final boolean SONAR_ENABLE = true;
-	private static final boolean VISION_ENABLE = true;
-	private BeaconSimulHandler beaconHandler;
-	private GripperSimulHandler gripperHandler;
-	private boolean matchStarted;
-	private OpponentElemenHandler opponentElementHandler;
-	private SonarSimulHandler sonarHandler;
-	protected TimerSimulHandler timerHandler;
-	private VisionSimulHandler visionHandler;
+    private static final boolean BEACON_ENABLE = false;
+    private static final boolean SONAR_ENABLE = true;
+    private static final boolean VISION_ENABLE = true;
+    private BeaconSimulHandler beaconHandler;
+    private GripperSimulHandler gripperHandler;
+    private boolean matchStarted;
+    private OpponentElemenHandler opponentElementHandler;
+    private SonarSimulHandler sonarHandler;
+    protected TimerSimulHandler timerHandler;
+    private VisionSimulHandler visionHandler;
 
+    private void fulRestart() {
+        // full restart
+        Collection<IRobotService> services = servicesProvider.getServices();
+        for (IRobotService service : services) {
+            ReflectionUtils.invoke(PreDestroy.class, service, null);
+        }
 
+        IRobotFactory factory = servicesProvider.getService(IRobotFactory.class);
+        factory.restart();
 
-	private void fulRestart(){
-		//full restart
-		Collection<IRobotService> services = servicesProvider.getServices();
-		for (IRobotService service : services) {
-			ReflectionUtils.invoke(PreDestroy.class, service, null);
-		}
+        for (IRobotService service : services) {
+            ReflectionUtils.invoke(PostConstruct.class, service, null);
+        }
 
-		IRobotFactory factory = servicesProvider.getService(IRobotFactory.class);
-		factory.restart();
+        for (IRobotService service : services) {
+            if (service instanceof IRobotServiceInitializable) {
+                ((IRobotServiceInitializable) service).afterRegister();
+            }
+        }
+        matchStarted = false;
+    }
 
-		for (IRobotService service : services) {
-			ReflectionUtils.invoke(PostConstruct.class, service, null);
-		}
+    @Override
+    protected void specificAfterRegister() {
+        this.timerHandler = new TimerSimulHandler(servicesProvider);
+    }
 
-		for (IRobotService service : services) {
-			if (service instanceof IRobotServiceInitializable) {
-				((IRobotServiceInitializable) service).afterRegister();
-			}
-		}
-		matchStarted = false;
-	}
+    @Override
+    protected void specificNotifyEvent(IMatchEvent event) {
+        if (event instanceof RobotInitializedEvent) {
+            shutdown();
+            fulRestart();
+            this.opponentElementHandler = new OpponentElemenHandler(servicesProvider);
+            if (VISION_ENABLE) {
+                this.visionHandler = new VisionSimulHandler(servicesProvider);
+            }
 
-	@Override
-	protected void specificAfterRegister() {
-		this.timerHandler = new TimerSimulHandler(servicesProvider);
-	}
+            this.gripperHandler = new GripperSimulHandler(servicesProvider);
+            this.navigationHandler = new NavigationSimulHandler(servicesProvider);
 
-	@Override
-	protected void specificNotifyEvent(IMatchEvent event) {
-		if(event instanceof RobotInitializedEvent){
-			shutdown();
-			fulRestart();
-			this.opponentElementHandler = new OpponentElemenHandler(servicesProvider);
-			if(VISION_ENABLE){
-				this.visionHandler = new VisionSimulHandler(servicesProvider);
-			}
+            IComService comService = servicesProvider.getService(IComService.class);
+            comService.reconnect();
 
-			this.gripperHandler = new GripperSimulHandler(servicesProvider);
-			this.navigationHandler = new NavigationSimulHandler(servicesProvider);
+        } else if (event instanceof MatchStartedEvent) {
+            if (!matchStarted) {
+                this.dispatcher.sendRequest(new MatchStartedSimulRequest());
 
-			IComService comService = servicesProvider.getService(IComService.class);
-			comService.reconnect();
+                if (SONAR_ENABLE) {
+                    this.sonarHandler = new SonarSimulHandler(servicesProvider);
+                    this.sonarHandler.start();
+                }
+                if (BEACON_ENABLE) {
+                    this.beaconHandler = new BeaconSimulHandler(servicesProvider);
+                    this.beaconHandler.start();
+                }
+                opponentElementHandler.handleEvent(event);
+                matchStarted = true;
+            }
+        } else if (event instanceof MatchFinishedEvent) {
+            shutdown();
+            afterRegister();
+        }
+    }
 
-		}else if (event instanceof MatchStartedEvent){
-			if(!matchStarted){
-				this.dispatcher.sendRequest(new MatchStartedSimulRequest());
+    @Override
+    // @PreDestroy
+    protected void specificShutdown() {
 
-				if(SONAR_ENABLE){
-					this.sonarHandler = new SonarSimulHandler(servicesProvider);
-					this.sonarHandler.start();
-				}
-				if(BEACON_ENABLE){
-					this.beaconHandler = new BeaconSimulHandler(servicesProvider);
-					this.beaconHandler.start();
-				}
-				opponentElementHandler.handleEvent(event);
-				matchStarted = true;
-			}
-		}
-		else if (event instanceof MatchFinishedEvent){
-			shutdown();
-			afterRegister();
-		}
-	}
+        ISimulGameBoard gameBoard = (ISimulGameBoard) servicesProvider.getService(IGameBoardService.class);
+        gameBoard.getElements().removeAll(gameBoard.getElements(SimulOpponentElement.class));
+        gameBoard.getElements().removeAll(gameBoard.getElements(SimulRobotElement.class));
+        gameBoard.getElements().removeAll(gameBoard.getElements(SimulPawnElement.class));
 
-	@Override
-	//@PreDestroy
-	protected void specificShutdown() {
+        if (gripperHandler != null) {
+            gripperHandler.shutdown();
+            gripperHandler = null;
+        }
+        if (timerHandler != null) {
+            timerHandler.shutdown();
+            timerHandler = null;
+        }
 
-		ISimulGameBoard gameBoard = (ISimulGameBoard)servicesProvider.getService(IGameBoardService.class);
-		gameBoard.getElements().removeAll(gameBoard.getElements(SimulOpponentElement.class));
-		gameBoard.getElements().removeAll(gameBoard.getElements(SimulRobotElement.class));
-		gameBoard.getElements().removeAll(gameBoard.getElements(SimulPawnElement.class));
+        if (opponentElementHandler != null) {
+            opponentElementHandler.shutdown();
+            opponentElementHandler = null;
+        }
+        if (visionHandler != null) {
+            visionHandler.shutdown();
+            visionHandler = null;
+        }
+        if (sonarHandler != null) {
+            sonarHandler.shutdown();
+            sonarHandler = null;
+        }
 
-		if (gripperHandler != null) {
-			gripperHandler.shutdown();
-			gripperHandler = null;
-		}
-		if (timerHandler != null) {
-			timerHandler.shutdown();
-			timerHandler = null;
-		}
-
-		if (opponentElementHandler != null) {
-			opponentElementHandler.shutdown();
-			opponentElementHandler = null;
-		}
-		if (visionHandler != null) {
-			visionHandler.shutdown();
-			visionHandler = null;
-		}
-		if (sonarHandler != null) {
-			sonarHandler.shutdown();
-			sonarHandler = null;
-		}
-
-		if (beaconHandler != null) {
-			beaconHandler.shutdown();
-			beaconHandler = null;
-		}
-	}
+        if (beaconHandler != null) {
+            beaconHandler.shutdown();
+            beaconHandler = null;
+        }
+    }
 }

@@ -17,10 +17,10 @@ import org.cen.robot.control.MotionInstructionData;
 import org.cen.robot.control.MotionProfileType;
 import org.cen.robot.control.PIDMotionType;
 import org.cen.robot.control.PIDType;
-import org.cen.robot.device.navigation.NavigationDevice;
+import org.cen.robot.device.navigation.INavigationDevice;
 
 //@formatter:off
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
+@DeviceDataSignature(deviceName = INavigationDevice.NAME, methods = {
 // MotionInstructionInData
         @DeviceMethodSignature(
                 header = MotionInstructionInData.HEADER,

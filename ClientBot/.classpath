@@ -44,5 +44,10 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/common"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/communication"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/devices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/logging"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/math-utils"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

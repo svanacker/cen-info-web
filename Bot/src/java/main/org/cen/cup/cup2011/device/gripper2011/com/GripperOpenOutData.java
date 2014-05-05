@@ -6,11 +6,11 @@ import org.cen.com.documentation.DeviceMethodType;
 import org.cen.com.documentation.DeviceParameter;
 import org.cen.com.documentation.DeviceParameterType;
 import org.cen.com.out.OutData;
-import org.cen.robot.device.navigation.NavigationDevice;
+import org.cen.robot.device.navigation.INavigationDevice;
 
 //@formatter:off
 @DeviceDataSignature(
-        deviceName = NavigationDevice.NAME, methods = {
+        deviceName = INavigationDevice.NAME, methods = {
                 @DeviceMethodSignature(
 		header = GripperOpenOutData.HEADER,
 		methodName = "gripper",

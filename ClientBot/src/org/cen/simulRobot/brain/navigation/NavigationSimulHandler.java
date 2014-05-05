@@ -1,11 +1,11 @@
 package org.cen.simulRobot.brain.navigation;
 
-import org.cen.navigation.TrajectoryCurve;
-import org.cen.navigation.TrajectoryCurve.Direction;
 import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.RobotDimension;
 import org.cen.robot.RobotPosition;
 import org.cen.robot.RobotUtils;
+import org.cen.robot.TrajectoryCurve;
+import org.cen.robot.TrajectoryCurve.Direction;
 import org.cen.robot.brain.AbstractDeviceHandler;
 import org.cen.robot.device.DeviceRequestDispatcher;
 import org.cen.robot.device.IRobotDevicesHandler;
@@ -26,16 +26,17 @@ public class NavigationSimulHandler extends AbstractDeviceHandler implements Mov
 
     public static final String NAME = NavigationSimulDevice.NAME;
 
-    private DeviceRequestDispatcher dispatcher;
+    private final DeviceRequestDispatcher dispatcher;
 
-    private RobotDimension robotDimension;
+    private final RobotDimension robotDimension;
 
     private double speed;
 
     /**
      * Constructor.
      * 
-     * @param servicesProvider the services provider
+     * @param servicesProvider
+     *            the services provider
      */
     public NavigationSimulHandler(IRobotServiceProvider aservicesProvider) {
         super(aservicesProvider);
@@ -67,21 +68,21 @@ public class NavigationSimulHandler extends AbstractDeviceHandler implements Mov
         double right = curve.getRightWheel();
         int c = Double.compare(Math.abs(left), Math.abs(right));
         switch (c) {
-            case 0:
-                // straight (abs(left) = abs(right))
-                curve.setResults(0, Double.MAX_VALUE, left, Direction.LEFT);
-                return;
-            case 1:
-                // turn right (abs(left) > abs(right))
-                min = right;
-                max = left;
-                direction = Direction.RIGHT;
+        case 0:
+            // straight (abs(left) = abs(right))
+            curve.setResults(0, Double.MAX_VALUE, left, Direction.LEFT);
+            return;
+        case 1:
+            // turn right (abs(left) > abs(right))
+            min = right;
+            max = left;
+            direction = Direction.RIGHT;
             break;
-            default:
-                // turn left (abs(left) < abs(right))
-                min = left;
-                max = right;
-                direction = Direction.LEFT;
+        default:
+            // turn left (abs(left) < abs(right))
+            min = left;
+            max = right;
+            direction = Direction.LEFT;
             break;
         }
         double theta = max - min;
@@ -100,31 +101,31 @@ public class NavigationSimulHandler extends AbstractDeviceHandler implements Mov
         Direction direction;
         int c = Double.compare(Math.abs(left), Math.abs(right));
         switch (c) {
-            case 0:
-                // straight (abs(left) = abs(right))
-                if (Double.compare(left, right) == 0) {
-                    curve.setResults(0, Double.MAX_VALUE, left, Direction.LEFT);
-                    return;
+        case 0:
+            // straight (abs(left) = abs(right))
+            if (Double.compare(left, right) == 0) {
+                curve.setResults(0, Double.MAX_VALUE, left, Direction.LEFT);
+                return;
+            } else {
+                min = Math.min(left, right);
+                max = Math.max(left, right);
+                if (min == left) {
+                    direction = Direction.LEFT;
                 } else {
-                    min = Math.min(left, right);
-                    max = Math.max(left, right);
-                    if (min == left) {
-                        direction = Direction.LEFT;
-                    } else {
-                        direction = Direction.RIGHT;
-                    }
+                    direction = Direction.RIGHT;
                 }
-            case 1:
-                // turn right (abs(left) > abs(right))
-                max = left;
-                min = right;
-                direction = Direction.RIGHT;
+            }
+        case 1:
+            // turn right (abs(left) > abs(right))
+            max = left;
+            min = right;
+            direction = Direction.RIGHT;
             break;
-            default:
-                // turn left (abs(left) < abs(right))
-                min = left;
-                max = right;
-                direction = Direction.LEFT;
+        default:
+            // turn left (abs(left) < abs(right))
+            min = left;
+            max = right;
+            direction = Direction.LEFT;
             break;
         }
         double theta = Math.abs(min) + Math.abs(max);

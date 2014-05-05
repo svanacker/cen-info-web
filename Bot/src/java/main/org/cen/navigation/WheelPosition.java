@@ -1,21 +1,25 @@
 package org.cen.navigation;
 
+/**
+ * Encapsulation of the position of left and right encoder (neg / pos).
+ */
 public class WheelPosition {
-	private long left;
 
-	private long right;
+    private final long left;
 
-	public WheelPosition(long left, long right) {
-		super();
-		this.left = left;
-		this.right = right;
-	}
+    private final long right;
 
-	public long getLeft() {
-		return left;
-	}
+    public WheelPosition(long left, long right) {
+        super();
+        this.left = left;
+        this.right = right;
+    }
 
-	public long getRight() {
-		return right;
-	}
+    public long getLeft() {
+        return left;
+    }
+
+    public long getRight() {
+        return right;
+    }
 }

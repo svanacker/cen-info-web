@@ -3,8 +3,8 @@ package org.cen.ui.web;
 import java.util.Iterator;
 import java.util.List;
 
-import org.cen.navigation.ITrajectoryRecorder;
-import org.cen.navigation.TrajectoryRecord;
+import org.cen.navigation.recorder.ITrajectoryRecorder;
+import org.cen.navigation.recorder.TrajectoryRecord;
 import org.cen.robot.IRobotServiceProvider;
 
 public class TrajectoryRecorderView {

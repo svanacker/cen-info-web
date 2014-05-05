@@ -6,29 +6,32 @@ import java.util.Properties;
 
 import javax.vecmath.Vector3d;
 
-import org.cen.util.PropertiesUtils;
+import org.cen.math.PropertiesMathUtils;
 
-public class GripperArea extends AModelisableRobotAttribute{
+public class GripperArea extends AModelisableRobotAttribute {
 
-	protected static final String KEY_GRIPPER_DIMENSION = "gripper.dimension";
+    protected static final String KEY_GRIPPER_DIMENSION = "gripper.dimension";
 
-	protected static final String KEY_GRIPPER_POSITION = "gripper.position";
+    protected static final String KEY_GRIPPER_POSITION = "gripper.position";
 
-	private Dimension dimension;
+    private final Dimension dimension;
 
-	private Vector3d relativePosition;
+    private final Vector3d relativePosition;
 
-	public GripperArea(Properties pProperties){
-		dimension = PropertiesUtils.getDimension(pProperties, KEY_GRIPPER_DIMENSION);
-		relativePosition = (PropertiesUtils.getVector(pProperties, KEY_GRIPPER_POSITION));
-		computeRelativeCentralPoint();
-	}
+    public GripperArea(Properties pProperties) {
+        dimension = PropertiesMathUtils.getDimension(pProperties, KEY_GRIPPER_DIMENSION);
+        relativePosition = (PropertiesMathUtils.getVector(pProperties, KEY_GRIPPER_POSITION));
+        computeRelativeCentralPoint();
+    }
 
-	@Override
-	protected void  computeRelativeCorners() {
-		upLeft = new Point2D.Double(relativePosition.y + dimension.height/2, relativePosition.x - dimension.width/2);
-		upRight = new Point2D.Double(relativePosition.y + dimension.height/2, relativePosition.x + dimension.width/2);
-		bottomLeft = new Point2D.Double(relativePosition.y - dimension.height/2, relativePosition.x - dimension.width/2 );
-		bottomRight = new Point2D.Double(relativePosition.y - dimension.height/2, relativePosition.x + dimension.width/2);
-	}
+    @Override
+    protected void computeRelativeCorners() {
+        upLeft = new Point2D.Double(relativePosition.y + dimension.height / 2, relativePosition.x - dimension.width / 2);
+        upRight = new Point2D.Double(relativePosition.y + dimension.height / 2, relativePosition.x + dimension.width
+                / 2);
+        bottomLeft = new Point2D.Double(relativePosition.y - dimension.height / 2, relativePosition.x - dimension.width
+                / 2);
+        bottomRight = new Point2D.Double(relativePosition.y - dimension.height / 2, relativePosition.x
+                + dimension.width / 2);
+    }
 }

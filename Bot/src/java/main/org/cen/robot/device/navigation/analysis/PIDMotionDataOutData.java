@@ -8,13 +8,13 @@ import org.cen.com.documentation.DeviceParameter;
 import org.cen.com.documentation.DeviceParameterType;
 import org.cen.com.out.OutData;
 import org.cen.robot.control.PIDInstructionType;
-import org.cen.robot.device.navigation.NavigationDevice;
+import org.cen.robot.device.navigation.INavigationDevice;
 
 /**
  * OutData to ask the motor board to get current parameters about motion.
  */
 //@formatter:off
-@DeviceDataSignature(deviceName = NavigationDevice.NAME, methods = {
+@DeviceDataSignature(deviceName = INavigationDevice.NAME, methods = {
         @DeviceMethodSignature(
                 header = PIDMotionDataInData.HEADER,
                         methodName = "?????",

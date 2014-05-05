@@ -11,67 +11,68 @@ import java.util.Set;
  * @author Emmanuel ZURMELY
  */
 public class PathSegment {
-	private Set<ControlPoint> controlPoints = new HashSet<ControlPoint>();
 
-	private Location start;
+    private final Set<ControlPoint> controlPoints = new HashSet<ControlPoint>();
 
-	private Location end;
+    private final Location start;
 
-	private boolean enabled = true;
+    private final Location end;
 
-	public PathSegment(Location start, Location end) {
-		super();
-		this.start = start;
-		this.end = end;
-	}
+    private boolean enabled = true;
 
-	public boolean contains(Location l) {
-		return l == start || l == end;
-	}
+    public PathSegment(Location start, Location end) {
+        super();
+        this.start = start;
+        this.end = end;
+    }
 
-	private boolean controlPointsEnabled() {
-		boolean b = true;
-		for (ControlPoint cp : controlPoints) {
-			b &= cp.isEnabled();
-		}
-		return b;
-	}
+    public boolean contains(Location l) {
+        return l == start || l == end;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof PathSegment) {
-			return ((PathSegment) obj).isSameSegment(start, end);
-		} else {
-			return super.equals(obj);
-		}
-	}
+    private boolean controlPointsEnabled() {
+        boolean b = true;
+        for (ControlPoint cp : controlPoints) {
+            b &= cp.isEnabled();
+        }
+        return b;
+    }
 
-	public Set<ControlPoint> getControlPoints() {
-		return controlPoints;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof PathSegment) {
+            return ((PathSegment) obj).isSameSegment(start, end);
+        } else {
+            return super.equals(obj);
+        }
+    }
 
-	public Location getEnd() {
-		return end;
-	}
+    public Set<ControlPoint> getControlPoints() {
+        return controlPoints;
+    }
 
-	public Location getStart() {
-		return start;
-	}
+    public Location getEnd() {
+        return end;
+    }
 
-	public boolean isEnabled() {
-		return enabled && controlPointsEnabled();
-	}
+    public Location getStart() {
+        return start;
+    }
 
-	public boolean isSameSegment(Location start, Location end) {
-		return contains(start) && contains(end);
-	}
+    public boolean isEnabled() {
+        return enabled && controlPointsEnabled();
+    }
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
+    public boolean isSameSegment(Location start, Location end) {
+        return contains(start) && contains(end);
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[start=" + start + ", end=" + end + ", enabled=" + enabled + "]";
-	}
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[start=" + start + ", end=" + end + ", enabled=" + enabled + "]";
+    }
 }
