@@ -5,6 +5,7 @@ import java.util.Properties;
 import org.cen.util.PropertiesUtils;
 
 public class MotorProperties {
+	
 	private static final String PROPERTY_PULSES_PER_ROTATION = "pulsesPerRotation";
 
 	private static final String PROPERTY_ROTATIONS_PER_SECOND = "rotationsPerSecond";
@@ -47,7 +48,7 @@ public class MotorProperties {
 	}
 
 	/**
-	 * Converts an acceleration in mm / second² into pulses / second².
+	 * Converts an acceleration in mm / secondï¿½ into pulses / secondï¿½.
 	 */
 	public double accelerationToAccelerationPulse(double acceleration) {
 		return acceleration * distanceToPulse(1.0d);
