@@ -1,6 +1,7 @@
 package org.cen.util;
 
 public final class StringConstants {
+	
 	/** LF for LCD. */
 	public static final char STR_LF = 0x0A;
 

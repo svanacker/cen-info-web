@@ -1,4 +1,4 @@
-package org.cen.robot.brain;
+package org.cen.robot.control;
 
 /**
  * Type of motion.

@@ -5,7 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.awt.geom.Point2D;
 import java.util.List;
 
-import org.cen.navigation.TrajectoryCurve.Direction;
+import org.cen.robot.TrajectoryCurve;
+import org.cen.robot.TrajectoryCurve.Direction;
 import org.junit.Before;
 import org.junit.Test;
 

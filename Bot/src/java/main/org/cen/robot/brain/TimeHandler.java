@@ -23,7 +23,7 @@ import org.cen.robot.match.events.MatchFinishedEvent;
 import org.cen.robot.match.events.MatchStartedEvent;
 import org.cen.robot.match.events.RobotInitializedEvent;
 import org.cen.robot.match.events.TimerEvent;
-import org.cen.util.ReflectionUtils;
+import org.cen.utils.ReflectionUtils;
 
 /**
  * Handler of the Timer device.

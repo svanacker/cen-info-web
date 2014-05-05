@@ -1,7 +1,7 @@
 package org.cen.robot.device.navigation.analysis.com;
 
-import org.cen.robot.brain.MotionProfileType;
 import org.cen.robot.control.MotionInstructionData;
+import org.cen.robot.control.MotionProfileType;
 import org.cen.robot.control.PIDMotionType;
 import org.cen.robot.control.PIDType;
 import org.cen.robot.device.navigation.analysis.MotionAnalysisDecoder;

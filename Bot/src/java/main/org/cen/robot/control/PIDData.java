@@ -2,7 +2,7 @@ package org.cen.robot.control;
 
 import java.util.Properties;
 
-import org.cen.util.PropertiesUtils;
+import org.cen.math.PropertiesMathUtils;
 
 /**
  * Describe a PID Control for a part of the robot (alpha / theta, or an other
@@ -134,10 +134,10 @@ public class PIDData {
 	}
 
 	public void setFromProperties(Properties properties, String prefix) {
-		p = (int) PropertiesUtils.getDouble(properties, prefix + PROPERTY_P);
-		i = (int) PropertiesUtils.getDouble(properties, prefix + PROPERTY_I);
-		d = (int) PropertiesUtils.getDouble(properties, prefix + PROPERTY_D);
-		maxI = (int) PropertiesUtils.getDouble(properties, prefix + PROPERTY_MAX_I);
+		p = (int) PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_P);
+		i = (int) PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_I);
+		d = (int) PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_D);
+		maxI = (int) PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_MAX_I);
 	}
 
 	public void setI(int i) {

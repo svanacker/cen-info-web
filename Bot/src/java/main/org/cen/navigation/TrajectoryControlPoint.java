@@ -2,6 +2,8 @@ package org.cen.navigation;
 
 import java.awt.geom.Point2D;
 
+import org.cen.robot.TrajectoryCurve;
+
 /**
  * Object representing a control point of a trajectory.
  * 

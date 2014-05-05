@@ -3,7 +3,7 @@ package org.cen.cup.cup2008.robot;
 import javax.annotation.PostConstruct;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.AbstractRobot;
+import org.cen.robot.impl.AbstractRobot;
 
 /**
  * Implementation of the eurobot cup 2008 edition.

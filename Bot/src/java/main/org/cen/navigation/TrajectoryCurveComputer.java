@@ -5,7 +5,8 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.cen.navigation.TrajectoryCurve.Direction;
+import org.cen.robot.TrajectoryCurve;
+import org.cen.robot.TrajectoryCurve.Direction;
 
 /**
  * Trajectory curves computer. This object computes the properties (initial and

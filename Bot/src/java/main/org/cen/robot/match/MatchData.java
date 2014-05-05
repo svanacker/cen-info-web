@@ -2,9 +2,9 @@ package org.cen.robot.match;
 
 import java.util.Properties;
 
+import org.cen.math.PropertiesMathUtils;
 import org.cen.robot.AdvancedRobotAttribute;
 import org.cen.robot.match.strategy.IGameStrategy;
-import org.cen.util.PropertiesUtils;
 
 /**
  * Informations and properties about a match.
@@ -141,7 +141,7 @@ public class MatchData extends AdvancedRobotAttribute {
 	 *            the prefix of the properties to set
 	 */
 	public void setFromProperties(Properties properties, String prefix) {
-		double duration = PropertiesUtils.getDouble(properties, prefix
+		double duration = PropertiesMathUtils.getDouble(properties, prefix
 				+ PROPERTY_DURATION, DEFAULT_DURATION);
 		// convert to milliseconds
 		setDuration((long) (duration * 1000));

@@ -1,6 +1,5 @@
 package org.cen.robot.control;
 
-import org.cen.robot.brain.MotionProfileType;
 
 /**
  * Encapsulates data which give the profile of the instruction.

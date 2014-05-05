@@ -3,11 +3,11 @@ package org.cen.cup.cup2009.robot;
 import java.util.Properties;
 
 import org.cen.cup.cup2009.robot.match.MatchData2009;
-import org.cen.robot.AbstractRobot;
 import org.cen.robot.AbstractRobotFactory;
 import org.cen.robot.IRobot;
 import org.cen.robot.RobotDimension;
 import org.cen.robot.control.RobotControlEngine;
+import org.cen.robot.impl.AbstractRobot;
 import org.cen.robot.match.MatchData;
 import org.cen.vision.dataobjects.WebCamProperties;
 

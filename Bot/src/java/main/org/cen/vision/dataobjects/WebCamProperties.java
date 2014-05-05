@@ -5,9 +5,9 @@ import java.util.Properties;
 
 import javax.vecmath.Vector3d;
 
+import org.cen.math.PropertiesMathUtils;
 import org.cen.math.Size2D;
 import org.cen.robot.AdvancedRobotAttribute;
-import org.cen.util.PropertiesUtils;
 
 /**
  * Encapsulated the properties of a webcam.
@@ -83,10 +83,10 @@ public class WebCamProperties extends AdvancedRobotAttribute {
 	}
 
 	public void set(Properties properties) {
-		setPosition(PropertiesUtils.getVector(properties, KEY_POSITION));
-		setRotation(PropertiesUtils.getVector(properties, KEY_ROTATION));
-		setImageDimension(PropertiesUtils.getDimension(properties, KEY_IMAGEDIMENSION));
-		setVisionAngles(PropertiesUtils.getSize(properties, KEY_VISIONANGLES));
+		setPosition(PropertiesMathUtils.getVector(properties, KEY_POSITION));
+		setRotation(PropertiesMathUtils.getVector(properties, KEY_ROTATION));
+		setImageDimension(PropertiesMathUtils.getDimension(properties, KEY_IMAGEDIMENSION));
+		setVisionAngles(PropertiesMathUtils.getSize(properties, KEY_VISIONANGLES));
 		String unit = properties.getProperty("angleUnit");
 		if ((unit != null) && unit.equals("degrees")) {
 			Size2D va = getVisionAngles();

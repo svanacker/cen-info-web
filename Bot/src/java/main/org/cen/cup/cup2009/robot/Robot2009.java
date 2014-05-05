@@ -1,6 +1,6 @@
 package org.cen.cup.cup2009.robot;
 
-import org.cen.robot.AbstractRobot;
+import org.cen.robot.impl.AbstractRobot;
 
 /**
  * Implementation of the eurobot cup 2009 edition.

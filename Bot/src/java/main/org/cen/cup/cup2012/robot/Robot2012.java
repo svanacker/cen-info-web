@@ -1,6 +1,6 @@
 package org.cen.cup.cup2012.robot;
 
-import org.cen.robot.AbstractRobot;
+import org.cen.robot.impl.AbstractRobot;
 
 public class Robot2012 extends AbstractRobot {
 

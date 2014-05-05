@@ -2,9 +2,10 @@ package org.cen.robot;
 
 import java.util.Properties;
 
-import org.cen.util.PropertiesUtils;
+import org.cen.math.PropertiesMathUtils;
 
 public class CollisionConfiguration implements IRobotAttribute {
+	
 	private static final String PROPERTY_STARTANGLE = "startAngle";
 
 	private static final String PROPERTY_EXTENT = "extent";
@@ -63,10 +64,10 @@ public class CollisionConfiguration implements IRobotAttribute {
 	}
 
 	public void setFromProperties(Properties properties, String prefix) {
-		startAngle = PropertiesUtils.getDouble(properties, prefix + PROPERTY_STARTANGLE);
-		extent = PropertiesUtils.getDouble(properties, prefix + PROPERTY_EXTENT);
-		distance = PropertiesUtils.getDouble(properties, prefix + PROPERTY_DISTANCE);
-		offset = PropertiesUtils.getDouble(properties, prefix + PROPERTY_OFFSET);
+		startAngle = PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_STARTANGLE);
+		extent = PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_EXTENT);
+		distance = PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_DISTANCE);
+		offset = PropertiesMathUtils.getDouble(properties, prefix + PROPERTY_OFFSET);
 	}
 
 	@Override

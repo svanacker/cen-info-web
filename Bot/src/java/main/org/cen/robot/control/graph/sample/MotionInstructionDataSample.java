@@ -1,7 +1,7 @@
 package org.cen.robot.control.graph.sample;
 
-import org.cen.robot.brain.MotionProfileType;
 import org.cen.robot.control.MotionInstructionData;
+import org.cen.robot.control.MotionProfileType;
 import org.cen.robot.control.PIDType;
 
 /**

@@ -1,6 +1,6 @@
 package org.cen.cup.cup2010.robot;
 
-import org.cen.robot.AbstractRobot;
+import org.cen.robot.impl.AbstractRobot;
 
 /**
  * Implementation of the robot for the cup 2010.

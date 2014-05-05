@@ -26,6 +26,7 @@ import org.cen.cup.cup2009.device.plier.com.PlierMiddleOutData;
 import org.cen.cup.cup2009.device.plier.com.PlierOpenOutData;
 import org.cen.cup.cup2009.device.plier.com.PlierRightOutData;
 import org.cen.logging.LoggingUtils;
+import org.cen.math.PropertiesMathUtils;
 import org.cen.robot.IRobotFactory;
 import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.AbstractRobotDevice;
@@ -36,7 +37,6 @@ import org.cen.robot.device.collision.com.CollisionDetectionEnabledOutData;
 import org.cen.robot.device.motor.com.MotorOutData;
 import org.cen.robot.device.navigation.com.MoveOutData;
 import org.cen.robot.device.navigation.com.StopOutData;
-import org.cen.util.PropertiesUtils;
 
 public class Specific2009Device extends AbstractRobotDevice implements InDataListener {
 	private static final Logger LOGGER = LoggingUtils.getClassLogger();
@@ -465,7 +465,7 @@ public class Specific2009Device extends AbstractRobotDevice implements InDataLis
 		super.initialize(servicesProvider);
 		IRobotFactory factory = servicesProvider.getService(IRobotFactory.class);
 		Properties properties = factory.getRobotConfiguration().getProperties();
-		liftMoveFactor = PropertiesUtils.getDouble(properties, PROPERTY_LIFT_MOVE_FACTOR, 1);
+		liftMoveFactor = PropertiesMathUtils.getDouble(properties, PROPERTY_LIFT_MOVE_FACTOR, 1);
 		LOGGER.config("liftFactor: " + liftMoveFactor);
 		// IComService comService =
 		// servicesProvider.getService(IComService.class);

@@ -4,12 +4,12 @@ import java.util.Properties;
 
 import org.cen.actions.GameActionAttribute;
 import org.cen.cup.cup2012.robot.match.MatchData2012;
-import org.cen.robot.AbstractRobot;
 import org.cen.robot.AbstractRobotFactory;
 import org.cen.robot.CollisionConfiguration;
 import org.cen.robot.IRobot;
 import org.cen.robot.RobotDimension;
 import org.cen.robot.control.RobotControlEngine;
+import org.cen.robot.impl.AbstractRobot;
 import org.cen.robot.match.MatchData;
 import org.cen.robot.match.Opponent;
 import org.cen.vision.dataobjects.WebCamProperties;

@@ -12,6 +12,7 @@ import java.util.Map.Entry;
  * @author Emmanuel ZURMELY
  */
 public abstract class AdvancedRobotAttribute implements IRobotAttribute {
+	
 	private Map<String, Object> properties = new HashMap<String, Object>();
 
 	/**
