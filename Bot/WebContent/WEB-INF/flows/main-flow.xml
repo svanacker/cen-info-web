@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <flow xmlns="http://www.springframework.org/schema/webflow"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/webflow
-              http://www.springframework.org/schema/webflow/spring-webflow-1.0.xsd">
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
-	<start-state idref="start" />
+<!-- 	<start-state idref="start" /> -->
 
 	<view-state id="start" view="/views/start.jsp">
 		<transition on="log" to="log" />
@@ -25,9 +25,9 @@
 	</view-state>
 
 	<view-state id="robot-status" view="/views/robot-status.jsp">
-		<render-actions>
+		<!-- <render-actions>
 			<action bean="RobotStatus" method="display" />
-		</render-actions>
+		</render-actions> -->
 		<transition on="submit" to="ok" />
 	</view-state>
 

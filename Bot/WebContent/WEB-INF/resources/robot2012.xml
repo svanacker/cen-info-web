@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
        http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd"
+       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
 	default-init-method="initialize" default-destroy-method="shutdown">
 	<bean id="LoggingService" class="org.cen.logging.LoggingService" />
 	<bean id="ComService" class="org.cen.com.ComManager">

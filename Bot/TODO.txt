@@ -1,3 +1,8 @@
+- Mise à jour des versions des librairies, 
+=> notamment SMC
+=> Spring
+
+
 Effacement de la valeur absolue renvoie des erreurs bizarres
 
 Séparer nettement la détection de fin de blocage de la détection.

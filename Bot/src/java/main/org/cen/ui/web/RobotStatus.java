@@ -5,7 +5,8 @@ import org.springframework.webflow.execution.Event;
 import org.springframework.webflow.execution.RequestContext;
 
 public class RobotStatus extends MultiAction {
-	public Event display(RequestContext context) {
-		return success();
-	}
+
+    public Event display(RequestContext context) {
+        return success();
+    }
 }
