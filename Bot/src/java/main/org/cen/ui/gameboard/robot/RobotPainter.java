@@ -12,10 +12,10 @@ import java.awt.geom.Arc2D;
 import java.awt.geom.Area;
 
 import org.cen.robot.CollisionConfiguration;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotDimension;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.IRobotDimension;
+import org.cen.robot.attributes.impl.RobotPosition;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.ui.gameboard.ShapeData;
 
 public class RobotPainter {
@@ -41,7 +41,7 @@ public class RobotPainter {
 		CollisionConfiguration configuration = RobotUtils.getRobotAttribute(CollisionConfiguration.class,
 				servicesProvider);
 		if (configuration != null) {
-			RobotDimension dimensions = RobotUtils.getRobotAttribute(RobotDimension.class, servicesProvider);
+			IRobotDimension dimensions = RobotUtils.getRobotAttribute(IRobotDimension.class, servicesProvider);
 			double d = configuration.getDistance();
 			double w = dimensions.getWidth() + d * 2;
 			double h = dimensions.getDepth() + d * 2;

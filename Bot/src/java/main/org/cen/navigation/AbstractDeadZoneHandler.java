@@ -1,10 +1,11 @@
 package org.cen.navigation;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
+
 import java.util.logging.Logger;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public abstract class AbstractDeadZoneHandler implements Runnable {
 	private int weightDecay;

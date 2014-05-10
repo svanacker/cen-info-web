@@ -1,10 +1,10 @@
 package org.cen.navigation;
 
-import java.awt.geom.Point2D;
 import java.util.List;
 
-import org.cen.robot.IRobotService;
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.geom.Point2D;
+import org.cen.robot.device.request.IRobotDeviceRequest;
+import org.cen.robot.services.IRobotService;
 import org.cen.util.Holder;
 import org.springframework.beans.factory.annotation.Required;
 
@@ -29,7 +29,7 @@ public interface ITrajectoryService extends IRobotService {
      *            flag indicating that the robot moves backward
      * @return the final orientation angle of the robot in radians
      */
-    double buildTrajectoryRequests(List<Point2D> path, double orientation, List<RobotDeviceRequest> requests,
+    double buildTrajectoryRequests(List<Point2D> path, double orientation, List<IRobotDeviceRequest> requests,
             boolean backward);
 
     /**
@@ -91,7 +91,7 @@ public interface ITrajectoryService extends IRobotService {
      * @see buildTrajectoryRequests
      */
     @Deprecated
-    List<RobotDeviceRequest> getRequests(List<Location> path);
+    List<IRobotDeviceRequest> getRequests(List<Location> path);
 
     /**
      * Returns the rotation angle threshold, indicating the minimum angle needed

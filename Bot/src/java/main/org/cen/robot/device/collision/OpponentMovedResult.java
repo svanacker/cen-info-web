@@ -1,22 +1,23 @@
 package org.cen.robot.device.collision;
 
-import org.cen.robot.device.RobotDeviceRequest;
 import org.cen.robot.device.collision.com.OpponentPositionInData;
+import org.cen.robot.device.request.IRobotDeviceRequest;
 
 public class OpponentMovedResult extends CollisionResult {
-	private OpponentPositionInData position;
 
-	public OpponentMovedResult(RobotDeviceRequest request, OpponentPositionInData position) {
-		super(request);
-		this.position = position;
-	}
+    private final OpponentPositionInData position;
 
-	public OpponentPositionInData getData() {
-		return position;
-	}
+    public OpponentMovedResult(IRobotDeviceRequest request, OpponentPositionInData position) {
+        super(request);
+        this.position = position;
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[position=" + position + "]";
-	}
+    public OpponentPositionInData getData() {
+        return position;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[position=" + position + "]";
+    }
 }

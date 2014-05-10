@@ -1,7 +1,9 @@
 package org.cen.cup.cup2012.gameboard;
 
 import java.awt.Color;
-import java.awt.geom.Point2D;
+
+import org.cen.geom.Point2D;
+
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +15,8 @@ import org.cen.cup.cup2012.gameboard.elements.StartArea2012;
 import org.cen.cup.cup2012.gameboard.elements.Totem;
 import org.cen.cup.cup2012.gameboard.elements.WhiteCoin;
 import org.cen.cup.cup2012.gameboard.lines.FollowLine2012;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.match.Opponent;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.ui.gameboard.AbstractGameBoard;
 import org.cen.ui.gameboard.GameBoardClickEvent;
 import org.cen.ui.gameboard.IGameBoardElement;

@@ -3,7 +3,7 @@ package org.cen.actions;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.cen.robot.IRobotAttribute;
+import org.cen.robot.attributes.IRobotAttribute;
 
 public class GameActionAttribute implements IRobotAttribute {
 	protected Collection<IGameActionHandler> handlers = new ArrayList<IGameActionHandler>();

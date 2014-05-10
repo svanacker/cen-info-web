@@ -1,7 +1,8 @@
 package org.cen.robot.match.strategy;
 
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.IRobotDeviceRequest;
 
 public interface ITargetActionItem {
-	RobotDeviceRequest getRequest();
+
+    IRobotDeviceRequest getRequest();
 }

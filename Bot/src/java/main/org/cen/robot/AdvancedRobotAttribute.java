@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.cen.robot.attributes.IRobotAttribute;
+
 /**
  * Abstract base class of a robot attribute object based on a properties set.
  * 

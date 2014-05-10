@@ -1,6 +1,6 @@
 package org.cen.robot.match;
 
-import org.cen.robot.IRobotService;
+import org.cen.robot.services.IRobotService;
 
 /**
  * Interface of a strategy handler delegate. The strategy service delegates all

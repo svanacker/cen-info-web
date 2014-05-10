@@ -1,6 +1,6 @@
 package org.cen.ui.gameboard;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 /**
  * Event sent when a click on the game board has occurred.

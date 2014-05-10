@@ -1,6 +1,6 @@
 package org.cen.cup.cup2008.device.container.com;
 
-import org.cen.com.ComDataUtils;
+import org.cen.com.utils.ComDataUtils;
 
 public class MoveContainerOutData extends ContainerOutData {
 	static final String HEADER = "J";

@@ -2,20 +2,20 @@ package org.cen.robot.device.configuration.console;
 
 import java.util.Properties;
 
-import org.cen.robot.RobotUtils;
 import org.cen.robot.device.AbstractRobotDeviceAction;
 import org.cen.robot.device.IRobotDevice;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.RobotDeviceDebugEvent;
-import org.cen.robot.device.RobotDeviceDebugListener;
+import org.cen.robot.device.IRobotDeviceDebugListener;
 import org.cen.robot.device.configuration.ConfigurationDevice;
 import org.cen.robot.device.configuration.ConfigurationReadResult;
 import org.cen.robot.device.configuration.ConfigurationResult;
 import org.cen.robot.device.console.AbstractRobotDeviceConsole;
 import org.cen.robot.match.MatchData;
+import org.cen.robot.utils.RobotUtils;
 
 public class ConfigurationDeviceConsole extends AbstractRobotDeviceConsole
-		implements RobotDeviceDebugListener {
+		implements IRobotDeviceDebugListener {
 
 	public ConfigurationDevice device;
 

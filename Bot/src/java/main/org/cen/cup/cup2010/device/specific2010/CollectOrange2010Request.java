@@ -1,6 +1,6 @@
 package org.cen.cup.cup2010.device.specific2010;
 
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.impl.RobotDeviceRequest;
 
 public class CollectOrange2010Request extends RobotDeviceRequest {
 	public enum Action {

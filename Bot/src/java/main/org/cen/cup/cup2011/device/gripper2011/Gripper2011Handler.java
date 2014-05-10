@@ -1,9 +1,9 @@
 package org.cen.cup.cup2011.device.gripper2011;
 
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.brain.AbstractDeviceHandler;
 import org.cen.robot.device.RobotDeviceResult;
 import org.cen.robot.match.IMatchStrategy;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class Gripper2011Handler extends AbstractDeviceHandler {
 

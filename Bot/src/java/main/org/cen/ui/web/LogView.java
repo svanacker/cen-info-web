@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.logging.LogRecord;
 
 import org.cen.logging.ILoggingService;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Presentation object which encapsulates the log from the system.

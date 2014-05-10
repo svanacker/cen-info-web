@@ -11,10 +11,7 @@ import org.cen.com.in.InData;
 import org.cen.com.in.InDataListener;
 import org.cen.com.out.OutData;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotDimension;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.IRobotDimension;
 import org.cen.robot.control.PIDInstructionType;
 import org.cen.robot.control.RobotControlEngine;
 import org.cen.robot.device.IRobotDevicesHandler;
@@ -40,6 +37,9 @@ import org.cen.robot.device.navigation.position.com.PositionAskOutData;
 import org.cen.robot.device.navigation.position.com.ReadPositionPulseInData;
 import org.cen.robot.device.navigation.position.com.ReadPositionPulseOutData;
 import org.cen.robot.device.navigation.position.com.SetInitialPositionOutData;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 
 /**
  * Presentation Objet for the view Motor.
@@ -136,7 +136,7 @@ public class MotorView implements IRobotService, ActionListener, InDataListener 
 	}
 
 	public String getDistanceData() {
-		RobotDimension dimension = RobotUtils.getRobotAttribute(RobotDimension.class, servicesProvider);
+		IRobotDimension dimension = RobotUtils.getRobotAttribute(IRobotDimension.class, servicesProvider);
 		return Double.toString(dimension.getLeftMotor().pulseToDistance(pulses));
 	}
 

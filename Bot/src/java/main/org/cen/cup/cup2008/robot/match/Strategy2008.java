@@ -5,9 +5,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.robot.brain.TimeHandler;
 import org.cen.robot.match.IMatchEvent;
 import org.cen.robot.match.IMatchStrategy;
@@ -15,6 +13,8 @@ import org.cen.robot.match.IMatchStrategyHandler;
 import org.cen.robot.match.MatchData;
 import org.cen.robot.match.events.MatchConfigurationDone;
 import org.cen.robot.match.events.MatchStartedEvent;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 
 public class Strategy2008 implements IMatchStrategyHandler {
 	private static final Logger LOGGER = LoggingUtils.getClassLogger();

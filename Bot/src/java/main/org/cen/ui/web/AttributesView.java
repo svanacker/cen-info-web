@@ -2,9 +2,9 @@ package org.cen.ui.web;
 
 import java.util.List;
 
-import org.cen.robot.IRobotAttribute;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.IRobotAttribute;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 
 public class AttributesView {
 	private IRobotServiceProvider servicesProvider;

@@ -1,6 +1,6 @@
 package org.cen.cup.cup2008.gameboard;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;

@@ -3,11 +3,11 @@ package org.cen.robot.brain;
 import java.util.logging.Logger;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.IRobotDevicesHandler;
-import org.cen.robot.device.RobotDeviceListener;
+import org.cen.robot.device.IRobotDeviceListener;
+import org.cen.robot.services.IRobotServiceProvider;
 
-public abstract class AbstractDeviceHandler implements RobotDeviceListener {
+public abstract class AbstractDeviceHandler implements IRobotDeviceListener {
 
 	protected IRobotServiceProvider servicesProvider;
 

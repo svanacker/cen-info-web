@@ -9,11 +9,11 @@ import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
 
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
+import org.cen.geom.Point2D;
 import org.cen.robot.match.Opponent;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.ui.gameboard.ShapeData;
 
 public class OpponentRobotPainter {

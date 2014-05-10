@@ -3,6 +3,7 @@ package org.cen.robot;
 import java.util.Properties;
 
 import org.cen.math.PropertiesMathUtils;
+import org.cen.robot.attributes.IRobotAttribute;
 
 public class CollisionConfiguration implements IRobotAttribute {
 	

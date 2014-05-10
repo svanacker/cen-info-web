@@ -3,7 +3,7 @@ package org.cen.cup.cup2009.gameboard;
 import static org.cen.cup.cup2009.gameboard.elements.BeaconSupport.BEACON_HEIGHT;
 
 import java.awt.Color;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;

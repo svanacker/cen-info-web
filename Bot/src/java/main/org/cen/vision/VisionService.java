@@ -13,8 +13,8 @@ import javax.media.jai.OperationRegistry;
 import javax.media.jai.registry.RIFRegistry;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.vision.control.IVideoDeviceControl;
 import org.cen.vision.dataobjects.CalibrationDescriptor;
 import org.cen.vision.dataobjects.WebCamProperties;

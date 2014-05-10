@@ -1,6 +1,6 @@
 package org.cen.robot.match.strategy.impl;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 public class SimpleTarget extends AbstractTarget {
 	private double gain;

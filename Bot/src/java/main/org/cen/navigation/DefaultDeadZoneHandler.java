@@ -1,6 +1,6 @@
 package org.cen.navigation;
 
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class DefaultDeadZoneHandler extends AbstractDeadZoneHandler {
 

@@ -1,6 +1,6 @@
 package org.cen.cup.cup2011.actions;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 import org.cen.actions.AbstractGameAction;
 import org.cen.actions.IGameActionHandler;

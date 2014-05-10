@@ -1,10 +1,11 @@
 package org.cen.navigation;
 
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.cen.adapter.AwtAdapterUtils;
+import org.cen.geom.Point2D;
 import org.cen.robot.TrajectoryCurve;
 import org.cen.robot.TrajectoryCurve.Direction;
 
@@ -102,8 +103,8 @@ public class TrajectoryCurveComputer {
         Point2D end = new Point2D.Double(dx, dy);
         AffineTransform tr = AffineTransform.getRotateInstance(orientation);
         tr.translate(start.getX(), start.getY());
-        tr.transform(end, end);
-        tr.transform(icr, icr);
+        tr.transform(AwtAdapterUtils.toAwtPoint2D(end), AwtAdapterUtils.toAwtPoint2D(end));
+        tr.transform(AwtAdapterUtils.toAwtPoint2D(icr), AwtAdapterUtils.toAwtPoint2D(icr));
         return new TrajectoryControlPoint(curve, start, end, orientation, endOrientation, icr);
     }
 

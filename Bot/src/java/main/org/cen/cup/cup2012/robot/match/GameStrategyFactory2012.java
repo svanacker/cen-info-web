@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import org.cen.cup.cup2012.navigation.NavigationMap2012;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.match.MatchSide;
 import org.cen.robot.match.strategy.IGameStrategy;
 import org.cen.robot.match.strategy.IGameStrategyItemList;
@@ -14,6 +13,7 @@ import org.cen.robot.match.strategy.gain.factor.ComposedFactorTargetGain;
 import org.cen.robot.match.strategy.impl.DefaultGameStrategy;
 import org.cen.robot.match.strategy.impl.DefaultGameStrategyItem;
 import org.cen.robot.match.strategy.impl.DefaultGameStrategyList;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class GameStrategyFactory2012 {
 	private static final Logger LOGGER = LoggingUtils.getClassLogger();

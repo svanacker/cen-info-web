@@ -28,8 +28,8 @@ import javax.media.protocol.DataSource;
 import javax.media.protocol.FileTypeDescriptor;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class VideoRecorder implements IRobotService, ControllerListener, DataSinkListener {
 	private IRobotServiceProvider provider;

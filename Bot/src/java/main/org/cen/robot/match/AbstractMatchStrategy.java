@@ -5,8 +5,8 @@ import java.util.Collection;
 
 import javax.annotation.PreDestroy;
 
-import org.cen.robot.IRobotServiceInitializable;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceInitializable;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public abstract class AbstractMatchStrategy implements IMatchStrategy, IRobotServiceInitializable {
 

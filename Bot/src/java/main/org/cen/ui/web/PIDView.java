@@ -14,9 +14,6 @@ import org.cen.com.IComService;
 import org.cen.com.in.InData;
 import org.cen.com.in.InDataListener;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.control.PIDData;
 import org.cen.robot.control.PIDInstructionType;
 import org.cen.robot.control.PIDType;
@@ -27,6 +24,9 @@ import org.cen.robot.device.pid.com.ReadMotionEndDetectionParametersOutData;
 import org.cen.robot.device.pid.com.ReadPIDInData;
 import org.cen.robot.device.pid.com.ReadPIDOutData;
 import org.cen.robot.device.pid.com.WritePIDOutData;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 
 /**
  * Encapsulate information about PID.

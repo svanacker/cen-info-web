@@ -1,6 +1,6 @@
 package org.cen.cup.cup2012.device.arm2012;
 
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.impl.RobotDeviceRequest;
 
 public class ArmRequest2012 extends RobotDeviceRequest {
 

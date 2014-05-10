@@ -1,6 +1,6 @@
 package org.cen.navigation;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;

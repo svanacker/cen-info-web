@@ -2,7 +2,7 @@ package org.cen.vision.util;
 
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.awt.image.renderable.ParameterBlock;
 import java.util.ArrayList;
 import java.util.Collections;

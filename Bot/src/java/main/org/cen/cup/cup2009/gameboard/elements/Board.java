@@ -1,7 +1,7 @@
 package org.cen.cup.cup2009.gameboard.elements;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 import org.cen.cup.cup2009.gameboard.GameBoard2009;
 import org.cen.ui.gameboard.AbstractGameBoardElement;

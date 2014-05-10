@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.cen.com.IComService;
-import org.cen.com.InDataDecoder;
+import org.cen.com.decoder.IInDataDecoder;
 import org.cen.com.out.OutData;
 import org.cen.com.out.OutDataSender;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.IRobotDevice;
 import org.cen.robot.device.IRobotDevicesHandler;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Handles the documentation of communication incoming and outgoing data. Builds
@@ -42,7 +42,7 @@ public class ComDataDocumentationHandler {
         builder = new ComDataDocumentationMethodSignatureBuilder();
     }
 
-    private Set<InDataDecoder> getDecoders() {
+    private Set<IInDataDecoder> getDecoders() {
         IComService comService = provider.getService(IComService.class);
         return comService.getDecodingService().getDecoders();
     }
@@ -81,8 +81,8 @@ public class ComDataDocumentationHandler {
 
     private List<String> getSignatureFromInDataDecoders() {
         List<String> results = new ArrayList<String>();
-        Set<InDataDecoder> decoders = getDecoders();
-        for (InDataDecoder decoder : decoders) {
+        Set<IInDataDecoder> decoders = getDecoders();
+        for (IInDataDecoder decoder : decoders) {
             DeviceDataSignature signature = decoder.getClass().getAnnotation(DeviceDataSignature.class);
             if (signature == null) {
                 // The decoder has no signature

@@ -1,6 +1,6 @@
 package org.cen.robot.match.events;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 import org.cen.robot.match.IMatchEvent;
 

@@ -1,7 +1,7 @@
 package org.cen.cup.cup2009.device.lift.com;
 
-import org.cen.com.ComDataUtils;
 import org.cen.com.out.OutData;
+import org.cen.com.utils.ComDataUtils;
 
 public class LiftMoveOutData extends OutData {
 	static final String HEADER = "J";

@@ -3,7 +3,9 @@ package org.cen.cup.cup2009.robot.match;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.geom.Point2D;
+
+import org.cen.geom.Point2D;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,12 +18,12 @@ import javax.swing.ImageIcon;
 import org.cen.com.IComService;
 import org.cen.cup.cup2009.gameboard.configuration.GameboardConfigurationHandler2009;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.robot.device.lcd.com.LcdPrintOutData;
 import org.cen.robot.match.IMatchStrategy;
 import org.cen.robot.match.MatchData;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.util.StringConstants;
 import org.cen.vision.IVisionService;
 import org.cen.vision.dataobjects.WebCamProperties;

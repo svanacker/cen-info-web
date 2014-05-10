@@ -3,8 +3,8 @@ package org.cen.robot.device.triangulation.com;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.cen.com.DefaultDecoder;
 import org.cen.com.IllegalComDataException;
+import org.cen.com.decoder.impl.DefaultDecoder;
 import org.cen.com.in.InData;
 
 public class TriangulationInDataDecoder extends DefaultDecoder {

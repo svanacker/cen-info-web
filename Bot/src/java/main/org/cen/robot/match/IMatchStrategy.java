@@ -2,7 +2,7 @@ package org.cen.robot.match;
 
 import java.util.Collection;
 
-import org.cen.robot.IRobotService;
+import org.cen.robot.services.IRobotService;
 
 public interface IMatchStrategy extends IRobotService {
 

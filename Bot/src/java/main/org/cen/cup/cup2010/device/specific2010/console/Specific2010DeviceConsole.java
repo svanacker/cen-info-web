@@ -5,10 +5,10 @@ import org.cen.robot.device.AbstractRobotDeviceAction;
 import org.cen.robot.device.IRobotDevice;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.RobotDeviceDebugEvent;
-import org.cen.robot.device.RobotDeviceDebugListener;
+import org.cen.robot.device.IRobotDeviceDebugListener;
 import org.cen.robot.device.console.AbstractRobotDeviceConsole;
 
-public class Specific2010DeviceConsole extends AbstractRobotDeviceConsole implements RobotDeviceDebugListener {
+public class Specific2010DeviceConsole extends AbstractRobotDeviceConsole implements IRobotDeviceDebugListener {
 	private class DebugAction extends AbstractRobotDeviceAction {
 		private static final long serialVersionUID = 1L;
 

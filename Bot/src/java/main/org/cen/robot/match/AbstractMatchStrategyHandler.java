@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public abstract class AbstractMatchStrategyHandler implements IMatchStrategyHandler {
 

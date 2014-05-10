@@ -4,11 +4,11 @@ import java.util.logging.Logger;
 
 import org.cen.com.IComService;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.servo.ServoChangeListener;
 import org.cen.robot.device.servo.ServoData;
 import org.cen.robot.device.servo.com.ServoOutData;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Presentation Objet for the view Servo.

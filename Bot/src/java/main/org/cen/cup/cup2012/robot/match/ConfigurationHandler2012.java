@@ -3,12 +3,12 @@ package org.cen.cup.cup2012.robot.match;
 import java.util.logging.Logger;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.brain.ConfigurationHandler;
 import org.cen.robot.device.configuration.ConfigurationReadResult;
 import org.cen.robot.match.MatchData;
 import org.cen.robot.match.MatchSide;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 
 public class ConfigurationHandler2012 extends ConfigurationHandler {
 	private static final Logger LOGGER = LoggingUtils.getClassLogger();

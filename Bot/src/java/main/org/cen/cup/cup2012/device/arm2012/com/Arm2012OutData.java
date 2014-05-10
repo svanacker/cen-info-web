@@ -1,7 +1,7 @@
 package org.cen.cup.cup2012.device.arm2012.com;
 
-import org.cen.com.ComDataUtils;
 import org.cen.com.out.OutData;
+import org.cen.com.utils.ComDataUtils;
 import org.cen.cup.cup2012.device.arm2012.ArmType2012;
 
 public abstract class Arm2012OutData extends OutData {

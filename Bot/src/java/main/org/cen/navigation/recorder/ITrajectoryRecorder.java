@@ -2,7 +2,7 @@ package org.cen.navigation.recorder;
 
 import java.util.List;
 
-import org.cen.robot.IRobotService;
+import org.cen.robot.services.IRobotService;
 
 /**
  * Trajectory recording service.

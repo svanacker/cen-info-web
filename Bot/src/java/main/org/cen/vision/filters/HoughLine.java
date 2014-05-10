@@ -1,6 +1,6 @@
 package org.cen.vision.filters;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 public class HoughLine {
 	private int height;

@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 
 import org.cen.cup.cup2009.robot.match.ConfigurationAnalyzer;
 import org.cen.cup.cup2009.robot.match.Strategy2009;
-import org.cen.robot.RobotPosition;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.vision.dataobjects.WebCamProperties;
 import org.cen.vision.util.JAIUtils;
 import org.junit.Assert;

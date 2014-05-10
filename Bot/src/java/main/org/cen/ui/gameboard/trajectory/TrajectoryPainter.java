@@ -3,7 +3,7 @@ package org.cen.ui.gameboard.trajectory;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.util.List;
 
 import org.cen.navigation.Location;

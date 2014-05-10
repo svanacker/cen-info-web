@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import javax.media.Format;
 
-import org.cen.robot.IRobotService;
+import org.cen.robot.services.IRobotService;
 import org.cen.vision.control.IVideoDeviceControl;
 import org.cen.vision.dataobjects.CalibrationDescriptor;
 import org.cen.vision.dataobjects.WebCamProperties;

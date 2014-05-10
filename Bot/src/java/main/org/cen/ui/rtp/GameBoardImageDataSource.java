@@ -3,7 +3,7 @@ package org.cen.ui.rtp;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.ui.gameboard.GameBoardPainter;
 
 public class GameBoardImageDataSource extends PushImageDataSource {

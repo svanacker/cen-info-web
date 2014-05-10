@@ -18,13 +18,10 @@ import org.cen.cup.cup2009.device.Specific2009Handler;
 import org.cen.cup.cup2009.device.Specific2009Request;
 import org.cen.cup.cup2009.navigation.NavigationHandler2009;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotConfiguration;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.robot.brain.TimeHandler;
+import org.cen.robot.configuration.IRobotConfiguration;
 import org.cen.robot.device.IRobotDevicesHandler;
-import org.cen.robot.device.RobotDeviceRequest;
 import org.cen.robot.device.configuration.ConfigurationReadRequest;
 import org.cen.robot.device.lcd.com.LcdPrintOutData;
 import org.cen.robot.device.navigation.INavigationDevice;
@@ -33,6 +30,7 @@ import org.cen.robot.device.navigation.NavigationRequest;
 import org.cen.robot.device.navigation.StopRequest;
 import org.cen.robot.device.navigation.com.MoveOutData;
 import org.cen.robot.device.navigation.com.StopOutData;
+import org.cen.robot.device.request.IRobotDeviceRequest;
 import org.cen.robot.match.IMatchEvent;
 import org.cen.robot.match.IMatchStrategy;
 import org.cen.robot.match.IMatchStrategyHandler;
@@ -41,6 +39,8 @@ import org.cen.robot.match.events.MatchConfigurationDone;
 import org.cen.robot.match.events.MatchFinishedEvent;
 import org.cen.robot.match.events.MatchStartedEvent;
 import org.cen.robot.match.events.RobotInitializedEvent;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.util.Holder;
 import org.cen.util.StringConstants;
 import org.springframework.context.ResourceLoaderAware;
@@ -68,7 +68,7 @@ public class Strategy2009 implements IMatchStrategyHandler, ResourceLoaderAware 
 
     private IRobotServiceProvider servicesProvider;
 
-    private void buildOutData(List<OutData> list, RobotDeviceRequest request) {
+    private void buildOutData(List<OutData> list, IRobotDeviceRequest request) {
         if (request instanceof NavigationRequest) {
             List<OutData> outData = getOutData(new StopRequest());
             list.addAll(outData);
@@ -197,17 +197,17 @@ public class Strategy2009 implements IMatchStrategyHandler, ResourceLoaderAware 
         int phases = navigationHandler.getPhasesCount();
 
         // Initializing the navigation handler
-        List<RobotDeviceRequest> requests = new ArrayList<RobotDeviceRequest>();
+        List<IRobotDeviceRequest> requests = new ArrayList<IRobotDeviceRequest>();
         MatchData matchData = RobotUtils.getRobotAttribute(MatchData.class, servicesProvider);
         StringBuilder b = new StringBuilder();
         Holder<Double> orientation = new Holder<Double>(Double.NaN);
         for (int phase = 0; phase < phases; phase++) {
             b.setLength(0);
-            List<RobotDeviceRequest> phaseRequests = navigationHandler.getRequests(card, phase,
+            List<IRobotDeviceRequest> phaseRequests = navigationHandler.getRequests(card, phase,
                     matchData.getProperty(MatchData2009.PROPERTY_TRAJECTORY_SUFFIX), orientation);
             requests.addAll(phaseRequests);
             List<OutData> s = new ArrayList<OutData>();
-            for (RobotDeviceRequest request : phaseRequests) {
+            for (IRobotDeviceRequest request : phaseRequests) {
                 // build out data
                 buildOutData(s, request);
                 // build out data messages list

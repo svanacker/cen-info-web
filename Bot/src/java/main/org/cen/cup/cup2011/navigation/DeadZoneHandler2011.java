@@ -1,7 +1,7 @@
 package org.cen.cup.cup2011.navigation;
 
 import org.cen.navigation.AbstractDeadZoneHandler;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class DeadZoneHandler2011 extends AbstractDeadZoneHandler {
 

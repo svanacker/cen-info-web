@@ -1,18 +1,19 @@
 package org.cen.robot.device.collision.com;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
+
 import java.util.HashSet;
 import java.util.Set;
 
-import org.cen.com.ComDataUtils;
-import org.cen.com.DefaultDecoder;
 import org.cen.com.IllegalComDataException;
+import org.cen.com.decoder.impl.DefaultDecoder;
 import org.cen.com.documentation.DeviceDataSignature;
 import org.cen.com.documentation.DeviceMethodSignature;
 import org.cen.com.documentation.DeviceMethodType;
 import org.cen.com.documentation.DeviceParameter;
 import org.cen.com.documentation.DeviceParameterType;
 import org.cen.com.in.InData;
+import org.cen.com.utils.ComDataUtils;
 import org.cen.robot.device.collision.CollisionDetectionDevice;
 
 //@formatter:off

@@ -1,6 +1,5 @@
 package org.cen.cup.cup2011.navigation;
 
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.brain.AbstractDeviceHandler;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.RobotDeviceResult;
@@ -11,6 +10,7 @@ import org.cen.robot.device.navigation.NavigationResult;
 import org.cen.robot.match.IMatchStrategy;
 import org.cen.robot.match.events.MoveStoppedEvent;
 import org.cen.robot.match.events.PositionReachedEvent;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class NavigationHandler2011 extends AbstractDeviceHandler {
     public NavigationHandler2011(IRobotServiceProvider servicesProvider) {
@@ -48,7 +48,7 @@ public class NavigationHandler2011 extends AbstractDeviceHandler {
     @Override
     public void shutdown() {
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
-        handler.getRequestDispatcher().purgeQueue();
+        handler.getRequestDispatcher().clearRequests();
         super.shutdown();
     }
 }

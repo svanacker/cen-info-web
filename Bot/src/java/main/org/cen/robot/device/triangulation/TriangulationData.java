@@ -1,8 +1,8 @@
 package org.cen.robot.device.triangulation;
 
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.triangulation.com.ReadTriangulationInData;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Wrapper object for incomming data.

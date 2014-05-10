@@ -9,11 +9,11 @@ import org.cen.cup.cup2010.device.specific2010.CollectOrange2010Request;
 import org.cen.cup.cup2010.device.specific2010.CollectTomato2010Request;
 import org.cen.cup.cup2010.device.specific2010.ReleaseObjects2010Request;
 import org.cen.cup.cup2010.device.specific2010.RobotLift2010Request;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.device.DeviceRequestDispatcher;
 import org.cen.robot.device.IRobotDevicesHandler;
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.IDeviceRequestDispatcher;
+import org.cen.robot.device.request.IRobotDeviceRequest;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Backing bean for tha actions view.
@@ -44,7 +44,7 @@ public class Actions2010View implements IRobotService {
         collectCorn(Side.RIGHT, Action.COLLECT);
     }
 
-    private DeviceRequestDispatcher getDispatcher() {
+    private IDeviceRequestDispatcher getDispatcher() {
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
         return handler.getRequestDispatcher();
     }
@@ -65,7 +65,7 @@ public class Actions2010View implements IRobotService {
         sendRequest(new RobotLift2010Request(RobotLift2010Request.Action.UP));
     }
 
-    private void sendRequest(RobotDeviceRequest request) {
+    private void sendRequest(IRobotDeviceRequest request) {
         getDispatcher().sendRequest(request);
     }
 

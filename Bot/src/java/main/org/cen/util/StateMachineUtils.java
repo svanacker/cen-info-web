@@ -1,7 +1,7 @@
 package org.cen.util;
 
 import org.cen.ApplicationConst;
-import org.cen.robot.IRobotConfiguration;
+import org.cen.robot.configuration.IRobotConfiguration;
 
 import statemap.FSMContext;
 

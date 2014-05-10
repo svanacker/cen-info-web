@@ -1,7 +1,7 @@
 package org.cen.vision.util;
 
 import java.awt.Point;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.util.Collections;
 
 import org.cen.vision.Acquisition;

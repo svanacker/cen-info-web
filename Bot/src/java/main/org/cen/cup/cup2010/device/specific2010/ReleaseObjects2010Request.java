@@ -2,7 +2,7 @@ package org.cen.cup.cup2010.device.specific2010;
 
 import java.util.EnumSet;
 
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.impl.RobotDeviceRequest;
 
 public class ReleaseObjects2010Request extends RobotDeviceRequest {
 	public enum Target {

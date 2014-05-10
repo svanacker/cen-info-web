@@ -8,9 +8,9 @@ import org.cen.cup.cup2011.gameboard.elements.Pawn;
 import org.cen.navigation.INavigationMap;
 import org.cen.navigation.ITrajectoryService;
 import org.cen.navigation.Location;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.match.Opponent;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.ui.gameboard.IGameBoardService;
 
 // TODO changer l'encapsulation

@@ -4,12 +4,12 @@ import java.util.logging.Logger;
 
 import org.cen.com.IComService;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.lcd.LcdWriteRequest;
 import org.cen.robot.device.lcd.com.LcdBacklightOutData;
 import org.cen.robot.device.lcd.com.LcdPrintOutData;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Encapsulates the view for the LCD

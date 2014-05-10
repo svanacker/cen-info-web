@@ -1,31 +1,32 @@
 package org.cen.cup.cup2008.device.container;
 
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.impl.RobotDeviceRequest;
 
 public class ContainerRequest extends RobotDeviceRequest {
-	public enum Action {
-		CLOSE, MOVE, OPEN, UNDEPLOY, DEPLOY;
-	}
 
-	private Action action;
+    public enum Action {
+        CLOSE, MOVE, OPEN, UNDEPLOY, DEPLOY;
+    }
 
-	private int data;
+    private final Action action;
 
-	public ContainerRequest(Action action) {
-		this(action, 0);
-	}
+    private final int data;
 
-	public ContainerRequest(Action action, int data) {
-		super(ContainerDevice.NAME);
-		this.action = action;
-		this.data = data;
-	}
+    public ContainerRequest(Action action) {
+        this(action, 0);
+    }
 
-	public Action getAction() {
-		return action;
-	}
+    public ContainerRequest(Action action, int data) {
+        super(ContainerDevice.NAME);
+        this.action = action;
+        this.data = data;
+    }
 
-	public int getData() {
-		return data;
-	}
+    public Action getAction() {
+        return action;
+    }
+
+    public int getData() {
+        return data;
+    }
 }

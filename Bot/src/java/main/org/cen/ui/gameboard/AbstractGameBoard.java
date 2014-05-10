@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.swing.event.EventListenerList;
 
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Abstract base class of IGameboard implementations.

@@ -1,7 +1,7 @@
 package org.cen.robot.device.collision.com;
 
-import org.cen.com.ComDataUtils;
 import org.cen.com.out.OutData;
+import org.cen.com.utils.ComDataUtils;
 
 /**
  * Abstract class to enable or disable the collision system

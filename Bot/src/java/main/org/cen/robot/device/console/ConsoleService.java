@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cen.robot.IRobot;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.device.IRobotDevice;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 
 public class ConsoleService implements IRobotDeviceConsoleService {
     protected List<IRobotDeviceConsole> consoles;

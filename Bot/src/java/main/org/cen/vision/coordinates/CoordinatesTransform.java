@@ -1,8 +1,7 @@
 package org.cen.vision.coordinates;
 
-import java.awt.geom.Point2D;
-
-import org.cen.robot.RobotPosition;
+import org.cen.geom.Point2D;
+import org.cen.robot.attributes.impl.RobotPosition;
 
 public interface CoordinatesTransform {
 	public Point2D absoluteToScreen(RobotPosition position, Point2D p);

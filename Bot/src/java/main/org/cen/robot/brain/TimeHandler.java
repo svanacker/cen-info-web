@@ -7,22 +7,22 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotFactory;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceInitializable;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.RobotDeviceResult;
 import org.cen.robot.device.timer.MatchFinishedResult;
 import org.cen.robot.device.timer.MatchStartedResult;
 import org.cen.robot.device.timer.RobotInitializedResult;
 import org.cen.robot.device.timer.SleepResult;
 import org.cen.robot.device.timer.TimerDevice;
+import org.cen.robot.factory.IRobotFactory;
 import org.cen.robot.match.IMatchEvent;
 import org.cen.robot.match.IMatchStrategy;
 import org.cen.robot.match.events.MatchFinishedEvent;
 import org.cen.robot.match.events.MatchStartedEvent;
 import org.cen.robot.match.events.RobotInitializedEvent;
 import org.cen.robot.match.events.TimerEvent;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceInitializable;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.utils.ReflectionUtils;
 
 /**

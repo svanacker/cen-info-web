@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.cen.navigation.recorder.ITrajectoryRecorder;
 import org.cen.navigation.recorder.TrajectoryRecord;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class TrajectoryRecorderView {
 	private IRobotServiceProvider servicesProvider;

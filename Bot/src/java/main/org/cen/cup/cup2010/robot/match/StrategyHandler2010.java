@@ -1,6 +1,7 @@
 package org.cen.cup.cup2010.robot.match;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
+
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -8,11 +9,10 @@ import java.util.logging.Logger;
 import org.cen.cup.cup2010.navigation.NavigationHandler2010;
 import org.cen.logging.LoggingUtils;
 import org.cen.navigation.DefaultDeadZoneHandler;
-import org.cen.robot.IRobotConfiguration;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.robot.brain.CollisionHandler;
 import org.cen.robot.brain.TimeHandler;
+import org.cen.robot.configuration.IRobotConfiguration;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.configuration.ConfigurationReadRequest;
 import org.cen.robot.match.AbstractMatchStrategyHandler;
@@ -24,6 +24,7 @@ import org.cen.robot.match.events.MatchConfigurationDone;
 import org.cen.robot.match.events.MatchFinishedEvent;
 import org.cen.robot.match.events.MatchStartedEvent;
 import org.cen.robot.match.events.RobotInitializedEvent;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.util.StringConstants;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;

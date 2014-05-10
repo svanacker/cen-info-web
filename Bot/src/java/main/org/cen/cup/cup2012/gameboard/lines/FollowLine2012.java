@@ -1,7 +1,7 @@
 package org.cen.cup.cup2012.gameboard.lines;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 import org.cen.cup.cup2012.gameboard.Color2012;
 import org.cen.cup.cup2012.gameboard.GameBoard2012;

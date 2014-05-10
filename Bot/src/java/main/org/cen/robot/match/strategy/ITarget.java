@@ -1,6 +1,6 @@
 package org.cen.robot.match.strategy;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 /**
  * Encapsulates a target that a robot can reach to generally obtains poins.

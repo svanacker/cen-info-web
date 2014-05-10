@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.cen.navigation.ITrajectoryService;
 import org.cen.navigation.Location;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.match.Opponent;
 import org.cen.robot.match.strategy.IGameStrategy;
 import org.cen.robot.match.strategy.IGameStrategyItem;
@@ -14,6 +12,8 @@ import org.cen.robot.match.strategy.INextGameStrategyItemComputer;
 import org.cen.robot.match.strategy.ITarget;
 import org.cen.robot.match.strategy.ITargetAction;
 import org.cen.robot.match.strategy.gain.ITargetGain;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.util.Holder;
 
 public class DefaultNextGameStrategyItemComputer implements INextGameStrategyItemComputer {

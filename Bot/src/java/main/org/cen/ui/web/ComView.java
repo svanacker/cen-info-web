@@ -7,7 +7,7 @@ import java.util.Map;
 import javax.faces.model.SelectItem;
 import javax.servlet.ServletContext;
 
-import org.cen.com.ComDebugListener;
+import org.cen.com.IComDebugListener;
 import org.cen.com.IComService;
 import org.cen.com.documentation.ComDataDocumentationHandler;
 import org.cen.com.documentation.diff.ComDataDocumentationDiffHandler;
@@ -17,10 +17,10 @@ import org.cen.com.in.RawInData;
 import org.cen.com.out.OutData;
 import org.cen.com.out.OutDataListener;
 import org.cen.com.out.RawOutData;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.match.MatchData;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.springframework.web.context.ServletContextAware;
 
 /**
@@ -30,7 +30,7 @@ import org.springframework.web.context.ServletContextAware;
  * @author svanacker
  * @version 24/02/2008
  */
-public class ComView implements IRobotService, InDataListener, ComDebugListener, OutDataListener, ServletContextAware {
+public class ComView implements IRobotService, InDataListener, IComDebugListener, OutDataListener, ServletContextAware {
 
     private int currentStatement = 0;
 

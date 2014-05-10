@@ -1,6 +1,5 @@
 package org.cen.cup.cup2010.navigation;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,6 +21,7 @@ import org.cen.cup.cup2010.device.specific2010.CollectTomato2010Request.Action;
 import org.cen.cup.cup2010.device.specific2010.Specific2010SleepRequest;
 import org.cen.cup.cup2010.device.specific2010.com.CollectTomato2010OutData;
 import org.cen.cup.cup2010.gameboard.elements.ControlPointMarker;
+import org.cen.geom.Point2D;
 import org.cen.logging.LoggingUtils;
 import org.cen.math.Angle;
 import org.cen.navigation.ControlPoint;
@@ -35,13 +35,9 @@ import org.cen.navigation.NavigationStrategyHandler;
 import org.cen.navigation.PathSegment;
 import org.cen.navigation.TrajectoryPathElement;
 import org.cen.navigation.TrajectoryPathElementComparator;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.robot.brain.AbstractDeviceHandler;
-import org.cen.robot.device.DeviceRequestDispatcher;
 import org.cen.robot.device.IRobotDevicesHandler;
-import org.cen.robot.device.RobotDeviceRequest;
 import org.cen.robot.device.RobotDeviceResult;
 import org.cen.robot.device.navigation.CollisionDetectionRequest;
 import org.cen.robot.device.navigation.INavigationDevice;
@@ -53,8 +49,12 @@ import org.cen.robot.device.navigation.NavigationResult;
 import org.cen.robot.device.navigation.StopRequest;
 import org.cen.robot.device.navigation.WaitPositionUpdateRequest;
 import org.cen.robot.device.navigation.com.StopOutData;
+import org.cen.robot.device.request.IDeviceRequestDispatcher;
+import org.cen.robot.device.request.IRobotDeviceRequest;
 import org.cen.robot.match.MatchData;
 import org.cen.robot.match.MatchSide;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.ui.gameboard.IGameBoardService;
 
 public class NavigationHandler2010 extends AbstractDeviceHandler {
@@ -90,9 +90,9 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
 
     private Properties properties;
 
-    private final BlockingQueue<RobotDeviceRequest> queue = new ArrayBlockingQueue<RobotDeviceRequest>(5, true);
+    private final BlockingQueue<IRobotDeviceRequest> queue = new ArrayBlockingQueue<IRobotDeviceRequest>(5, true);
 
-    private List<RobotDeviceRequest> requests;
+    private List<IRobotDeviceRequest> requests;
 
     private Thread sender;
 
@@ -137,7 +137,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         initialize();
     }
 
-    private void addCommands(List<RobotDeviceRequest> requests, TrajectoryPathElement pathElement,
+    private void addCommands(List<IRobotDeviceRequest> requests, TrajectoryPathElement pathElement,
             Point2D centralPoint, Set<TomatoControlPoint2010> tomatoes) {
         ControlPoint cp = pathElement.getControlPoint();
         if (cp != null && cp.isEnabled()) {
@@ -145,7 +145,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
                 TomatoControlPoint2010 tcp = (TomatoControlPoint2010) cp;
                 if (tcp.isFinalPoint()) {
                     int n = requests.size();
-                    RobotDeviceRequest r = requests.get(n - 1);
+                    IRobotDeviceRequest r = requests.get(n - 1);
                     if (r instanceof MoveRequest) {
                         MoveRequest mr = (MoveRequest) r;
                         requests.remove(n - 1);
@@ -174,7 +174,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
                 }
                 // Calcul des positions
                 int n = requests.size();
-                RobotDeviceRequest r = requests.get(n - 1);
+                IRobotDeviceRequest r = requests.get(n - 1);
                 if (r instanceof MoveRequest) {
                     // Marque la cible courante
                     CornControlPoint2010 ccp = (CornControlPoint2010) cp;
@@ -319,7 +319,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         }
 
         // Calcul de la trajectoire
-        List<RobotDeviceRequest> requests = goToPoint(p);
+        List<IRobotDeviceRequest> requests = goToPoint(p);
         addCommands(requests, pathElement, centralPoint, tomatoes);
 
         nextRequest = 0;
@@ -443,7 +443,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         computeNextRequests();
     }
 
-    private List<RobotDeviceRequest> goToPoint(Point2D point) {
+    private List<IRobotDeviceRequest> goToPoint(Point2D point) {
         LOGGER.finest("going to point " + point);
         RobotPosition position = RobotUtils.getRobotAttribute(RobotPosition.class, servicesProvider);
         Point2D centralPoint = position.getCentralPoint();
@@ -454,10 +454,10 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         points.add(point);
 
         // Construction des requêtes
-        List<RobotDeviceRequest> requests = new ArrayList<RobotDeviceRequest>();
+        List<IRobotDeviceRequest> requests = new ArrayList<IRobotDeviceRequest>();
         ITrajectoryService trajectoryService = servicesProvider.getService(ITrajectoryService.class);
         trajectoryService.buildTrajectoryRequests(points, position.getAlpha(), requests, false);
-        for (RobotDeviceRequest r : requests) {
+        for (IRobotDeviceRequest r : requests) {
             System.out.println(r);
         }
 
@@ -518,7 +518,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         }
     }
 
-    private void handleSentRequest(RobotDeviceRequest r) {
+    private void handleSentRequest(IRobotDeviceRequest r) {
         if (r instanceof CollectCorn2010Request) {
             setCurrentCornCollected();
             // attends la fin de la collecte
@@ -713,7 +713,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         }
         if (requests != null && nextRequest < requests.size()) {
             LOGGER.finest("sending next request");
-            RobotDeviceRequest r = requests.get(nextRequest++);
+            IRobotDeviceRequest r = requests.get(nextRequest++);
             queue.offer(r);
         } else {
             nextRequest = 0;
@@ -757,7 +757,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         sender = null;
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
         handler.removeDeviceListener(this);
-        handler.getRequestDispatcher().purgeQueue();
+        handler.getRequestDispatcher().clearRequests();
         IComService comService = servicesProvider.getService(IComService.class);
         comService.writeOutData(new StopOutData());
         comService.writeOutData(new CollectTomato2010OutData(Action.OFF));
@@ -778,7 +778,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         // nextRequest = 0;
 
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
-        final DeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
+        final IDeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
 
         // Mode asynchrone
         NavigationDevice device = (NavigationDevice) handler.getDevice(INavigationDevice.NAME);
@@ -790,7 +790,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
                 dispatcher.sendRequest(new NavigationInitializeRequest());
                 while (!terminated) {
                     try {
-                        RobotDeviceRequest r = queue.take();
+                        IRobotDeviceRequest r = queue.take();
                         dispatcher.sendRequest(r);
                         handleSentRequest(r);
                     } catch (InterruptedException e) {
@@ -813,7 +813,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         // data.get(PROPERTY_REQUESTS);
 
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
-        final DeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
+        final IDeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
 
         // Mode synchrone
         NavigationDevice device = (NavigationDevice) handler.getDevice(INavigationDevice.NAME);
@@ -822,7 +822,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         sender = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (RobotDeviceRequest r : requests) {
+                for (IRobotDeviceRequest r : requests) {
                     if (r instanceof NavigationRequest && !(r instanceof StopRequest)) {
                         dispatcher.sendRequest(new StopRequest());
                     }
@@ -858,7 +858,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
                 // on est au but
                 // on attend la dépose
                 goalTrajectory = true;
-                List<RobotDeviceRequest> request = new ArrayList<RobotDeviceRequest>();
+                List<IRobotDeviceRequest> request = new ArrayList<IRobotDeviceRequest>();
                 request.add(new Specific2010SleepRequest(DURATION_RELEASE));
                 request.add(new MoveRequest(-DISTANCE_GOAL_BACKWARD));
                 nextRequest = 0;
@@ -873,7 +873,7 @@ public class NavigationHandler2010 extends AbstractDeviceHandler {
         }
     }
 
-    private boolean waitForResult(RobotDeviceRequest r) {
+    private boolean waitForResult(IRobotDeviceRequest r) {
         if (r instanceof CollectTomato2010Request || r instanceof Specific2010SleepRequest
                 || r instanceof WaitPositionUpdateRequest) {
             return false;

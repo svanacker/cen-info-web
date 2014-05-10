@@ -1,6 +1,6 @@
 package org.cen.vision.util;
 
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class TargetHandlerService implements ITargetHandler {
 	private IRobotServiceProvider servicesProvider;

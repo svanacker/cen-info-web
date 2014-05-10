@@ -3,12 +3,12 @@ package org.cen.robot.brain;
 import java.util.logging.Logger;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.RobotDeviceResult;
 import org.cen.robot.device.configuration.ConfigurationDevice;
 import org.cen.robot.device.configuration.ConfigurationReadResult;
 import org.cen.robot.match.IMatchStrategy;
 import org.cen.robot.match.events.MatchConfigurationDone;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Abstract base class of the configuration handler. The configuration handler

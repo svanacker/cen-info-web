@@ -1,6 +1,5 @@
 package org.cen.navigation.recorder;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -12,16 +11,17 @@ import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
+import org.cen.geom.Point2D;
 import org.cen.navigation.INavigationMap;
 import org.cen.navigation.IPathVector;
 import org.cen.navigation.ITrajectoryService;
 import org.cen.navigation.Location;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.robot.device.navigation.MoveRequest;
 import org.cen.robot.device.navigation.RotationRequest;
+import org.cen.robot.device.request.IRobotDeviceRequest;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.util.Holder;
 
 /**
@@ -71,7 +71,7 @@ public class TrajectoryService implements ITrajectoryService {
     private IRobotServiceProvider serviceProvider;
 
     @Override
-    public double buildTrajectoryRequests(List<Point2D> path, double orientation, List<RobotDeviceRequest> requests,
+    public double buildTrajectoryRequests(List<Point2D> path, double orientation, List<IRobotDeviceRequest> requests,
             boolean backward) {
         double previousAngle = orientation;
         int distance = 0;
@@ -268,8 +268,8 @@ public class TrajectoryService implements ITrajectoryService {
     }
 
     @Override
-    public List<RobotDeviceRequest> getRequests(List<Location> path) {
-        List<RobotDeviceRequest> list = new ArrayList<RobotDeviceRequest>();
+    public List<IRobotDeviceRequest> getRequests(List<Location> path) {
+        List<IRobotDeviceRequest> list = new ArrayList<IRobotDeviceRequest>();
 
         RobotPosition robotPosition = RobotUtils.getRobotAttribute(RobotPosition.class, serviceProvider);
 

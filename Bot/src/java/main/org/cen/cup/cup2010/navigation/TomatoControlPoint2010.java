@@ -1,6 +1,6 @@
 package org.cen.cup.cup2010.navigation;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 public class TomatoControlPoint2010 extends ControlPoint2010 {
 	private Tomato2010 tomato;

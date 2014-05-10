@@ -1,7 +1,9 @@
 package org.cen.cup.cup2011.gameboard.configuration;
 
 import java.awt.Color;
-import java.awt.geom.Point2D;
+
+import org.cen.geom.Point2D;
+
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -9,8 +11,8 @@ import java.util.Set;
 
 import org.cen.cup.cup2011.gameboard.elements.Pawn;
 import org.cen.navigation.ITrajectoryService;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.match.MatchSide;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.ui.gameboard.IGameBoardElement;
 import org.cen.ui.gameboard.IGameBoardService;
 

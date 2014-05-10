@@ -2,7 +2,7 @@ package org.cen.ui.gameboard;
 
 import java.awt.Graphics2D;
 import java.awt.Shape;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 /**
  * Abstract base class of a game board element.

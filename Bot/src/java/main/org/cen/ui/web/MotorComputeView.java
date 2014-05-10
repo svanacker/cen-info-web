@@ -2,9 +2,9 @@ package org.cen.ui.web;
 
 import java.math.BigDecimal;
 
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotDimension;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.IRobotDimension;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.springframework.beans.factory.annotation.Required;
 
 /**
@@ -194,7 +194,7 @@ public class MotorComputeView {
 	}
 
 	private void initialize() {
-		RobotDimension dimension = RobotUtils.getRobotAttribute(RobotDimension.class, servicesProvider);
+		IRobotDimension dimension = RobotUtils.getRobotAttribute(IRobotDimension.class, servicesProvider);
 		motorRotationByMinute = dimension.getLeftMotor().getRotationsPerSecond() * 60;
 		motorTorque = dimension.getLeftMotor().getMotorTorque();
 		wheelDiameter = dimension.getLeftMotor().getWheelDiameter() / 1000;

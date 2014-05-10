@@ -1,6 +1,6 @@
 package org.cen.robot.device.triangulation;
 
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.impl.RobotDeviceRequest;
 
 /**
  * Base class of request objects sent to to the triangulation device.
@@ -8,7 +8,8 @@ import org.cen.robot.device.RobotDeviceRequest;
  * @author Emmanuel ZURMELY
  */
 public abstract class TriangulationRequest extends RobotDeviceRequest {
-	public TriangulationRequest() {
-		super(TriangulationDevice.NAME);
-	}
+
+    public TriangulationRequest() {
+        super(TriangulationDevice.NAME);
+    }
 }

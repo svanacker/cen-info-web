@@ -8,11 +8,15 @@ import javax.annotation.PostConstruct;
 
 import org.cen.logging.LoggingUtils;
 import org.cen.robot.IRobot;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.attributes.impl.RobotPosition;
+import org.cen.robot.configuration.IRobotConfiguration;
+import org.cen.robot.configuration.impl.RobotConfiguration;
 import org.cen.robot.device.IRobotDevice;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.RobotDeviceFactory;
+import org.cen.robot.factory.IRobotFactory;
 import org.cen.robot.impl.AbstractRobot;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.utils.ReflectionUtils;
 import org.springframework.beans.factory.config.AbstractFactoryBean;
 import org.springframework.context.ResourceLoaderAware;

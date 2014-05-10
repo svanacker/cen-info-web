@@ -28,7 +28,7 @@ import org.cen.navigation.AbstractNavigationMap;
 import org.cen.navigation.IPathVector;
 import org.cen.navigation.Location;
 import org.cen.navigation.PathVectorLine;
-import org.cen.robot.RobotPosition;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;

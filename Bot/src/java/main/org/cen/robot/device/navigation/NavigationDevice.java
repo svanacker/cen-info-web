@@ -1,24 +1,20 @@
 package org.cen.robot.device.navigation;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
 import org.cen.com.IComService;
-import org.cen.com.InDataDecodingService;
+import org.cen.com.decoder.IInDataDecodingService;
 import org.cen.com.in.InData;
 import org.cen.com.in.InDataListener;
 import org.cen.com.out.OutData;
+import org.cen.geom.Point2D;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotFactory;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotDimension;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.IRobotDimension;
+import org.cen.robot.attributes.impl.RobotPosition;
 import org.cen.robot.device.AbstractRobotDevice;
 import org.cen.robot.device.IRobotDevicesHandler;
-import org.cen.robot.device.RobotDeviceRequest;
 import org.cen.robot.device.navigation.NavigationResult.NavigationResultStatus;
 import org.cen.robot.device.navigation.analysis.MotionAnalysisDecoder;
 import org.cen.robot.device.navigation.com.BezierMoveOutData;
@@ -36,6 +32,10 @@ import org.cen.robot.device.navigation.position.com.PositionStatus;
 import org.cen.robot.device.navigation.position.com.ReadPositionPulseInData;
 import org.cen.robot.device.navigation.position.com.ReadPositionPulseOutData;
 import org.cen.robot.device.navigation.position.com.SetInitialPositionOutData;
+import org.cen.robot.device.request.IRobotDeviceRequest;
+import org.cen.robot.factory.IRobotFactory;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.util.StateMachineUtils;
 
 public class NavigationDevice extends AbstractRobotDevice implements INavigationDevice, InDataListener {
@@ -171,7 +171,7 @@ public class NavigationDevice extends AbstractRobotDevice implements INavigation
         fsm = new NavigationDeviceContext(this);
         fsm.setName(NAME);
         comService = servicesProvider.getService(IComService.class);
-        InDataDecodingService decodingService = comService.getDecodingService();
+        IInDataDecodingService decodingService = comService.getDecodingService();
 
         NavigationDataDecoder navigationDecoder = new NavigationDataDecoder();
         decodingService.registerDecoder(navigationDecoder);
@@ -185,7 +185,7 @@ public class NavigationDevice extends AbstractRobotDevice implements INavigation
     }
 
     @Override
-    protected void internalHandleRequest(RobotDeviceRequest request) {
+    protected void internalHandleRequest(IRobotDeviceRequest request) {
         if (request instanceof SetInitialPositionRequest || request instanceof EnableCollisionDetectionRequest) {
             this.request = (NavigationRequest) request;
             sendData();
@@ -313,7 +313,7 @@ public class NavigationDevice extends AbstractRobotDevice implements INavigation
     private void updatePosition(long left, long right) {
         LOGGER.fine("updating robot position");
         RobotPosition position = RobotUtils.getRobotAttribute(RobotPosition.class, servicesProvider);
-        RobotDimension dimension = RobotUtils.getRobotAttribute(RobotDimension.class, servicesProvider);
+        IRobotDimension dimension = RobotUtils.getRobotAttribute(IRobotDimension.class, servicesProvider);
         position.updateFromPulses(left, right, dimension);
     }
 }

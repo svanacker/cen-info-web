@@ -1,7 +1,7 @@
 package org.cen.cup.cup2010.device.specific2010.com;
 
-import org.cen.com.ComDataUtils;
 import org.cen.com.out.OutData;
+import org.cen.com.utils.ComDataUtils;
 import org.cen.cup.cup2010.device.specific2010.RobotLift2010Request.Action;
 
 public class RobotLift2010OutData extends OutData {

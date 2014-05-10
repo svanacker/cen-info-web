@@ -3,8 +3,8 @@ package org.cen.ui.web;
 import java.awt.Graphics2D;
 import java.awt.Image;
 
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.vision.IVisionService;
 
 public class VideoPreview implements IRobotService {

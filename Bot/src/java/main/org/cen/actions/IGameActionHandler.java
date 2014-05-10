@@ -1,6 +1,6 @@
 package org.cen.actions;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 /**
  * Interface of an action handler. An action handler can handle an IGameAction

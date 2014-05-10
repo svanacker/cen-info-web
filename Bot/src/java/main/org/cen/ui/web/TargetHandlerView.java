@@ -6,8 +6,8 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
 
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.vision.filters.TargetStat;
 import org.cen.vision.filters.TargetStat.TargetLocation;
 import org.cen.vision.util.GoalTargetHandler;

@@ -3,8 +3,8 @@ package org.cen.cup.cup2010.device.specific2010;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.cen.com.DefaultDecoder;
 import org.cen.com.IllegalComDataException;
+import org.cen.com.decoder.impl.DefaultDecoder;
 import org.cen.com.in.InData;
 import org.cen.com.in.UntypedInData;
 import org.cen.cup.cup2010.device.specific2010.com.CollectDoneInData;

@@ -8,8 +8,8 @@ import javax.media.Format;
 import javax.media.jai.JAI;
 import javax.media.jai.PlanarImage;
 
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.vision.IVisionService;
 
 @Deprecated

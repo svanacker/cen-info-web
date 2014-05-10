@@ -1,6 +1,6 @@
 package org.cen.actions;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.util.List;
 
 import org.cen.navigation.Location;

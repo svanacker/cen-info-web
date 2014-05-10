@@ -1,14 +1,13 @@
 package org.cen.cup.cup2011.robot.match;
 
-import java.awt.geom.Point2D;
-
+import org.cen.geom.Point2D;
 import org.cen.cup.cup2011.device.vision2011.PawnPositionResult;
 import org.cen.cup.cup2011.device.vision2011.Vision2011Device;
 import org.cen.cup.cup2011.gameboard.configuration.GameboardConfigurationHandler2011;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.brain.AbstractDeviceHandler;
 import org.cen.robot.device.RobotDeviceResult;
 import org.cen.robot.match.IMatchStrategyHandler;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class Vision2011Handler extends AbstractDeviceHandler {
 	private GameboardConfigurationHandler2011 gameBoardConfigurationHandler;

@@ -1,6 +1,7 @@
 package org.cen.navigation.recorder;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,15 +15,15 @@ import org.cen.com.in.InData;
 import org.cen.com.in.InDataListener;
 import org.cen.logging.LoggingUtils;
 import org.cen.navigation.WheelPosition;
-import org.cen.robot.IRobotServiceInitializable;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.MotorProperties;
-import org.cen.robot.RobotDimension;
-import org.cen.robot.RobotUtils;
+import org.cen.robot.attributes.IMotorProperties;
+import org.cen.robot.attributes.IRobotDimension;
 import org.cen.robot.device.navigation.com.MoveOutData;
 import org.cen.robot.device.navigation.com.StopOutData;
 import org.cen.robot.device.navigation.position.com.ReadPositionPulseInData;
 import org.cen.robot.device.navigation.position.com.ReadPositionPulseOutData;
+import org.cen.robot.services.IRobotServiceInitializable;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 
 public class TrajectoryRecorder implements ITrajectoryRecorder, IRobotServiceInitializable, Runnable, InDataListener {
 
@@ -139,8 +140,8 @@ public class TrajectoryRecorder implements ITrajectoryRecorder, IRobotServiceIni
             e = 0.2;
             w = (.075 * Math.PI) / 2000d;
         } else {
-            RobotDimension dimension = RobotUtils.getRobotAttribute(RobotDimension.class, servicesProvider);
-            MotorProperties leftMotor = dimension.getLeftMotor();
+            IRobotDimension dimension = RobotUtils.getRobotAttribute(IRobotDimension.class, servicesProvider);
+            IMotorProperties leftMotor = dimension.getLeftMotor();
             // TODO rightMotor
             w = leftMotor.getWheelPerimeter() / leftMotor.getPulseCount();
             e = dimension.getWheelDistance();

@@ -2,7 +2,7 @@ package org.cen.cup.cup2012.gameboard.elements;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 import org.cen.ui.gameboard.AbstractGameBoardElement;
 

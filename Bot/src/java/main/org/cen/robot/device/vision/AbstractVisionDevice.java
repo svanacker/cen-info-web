@@ -1,7 +1,7 @@
 package org.cen.robot.device.vision;
 
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.AbstractRobotDevice;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.vision.IVisionService;
 
 public abstract class AbstractVisionDevice extends AbstractRobotDevice {

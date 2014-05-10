@@ -4,10 +4,10 @@ import org.cen.cup.cup2009.device.Specific2009Device;
 import org.cen.robot.device.IRobotDevice;
 import org.cen.robot.device.IRobotDevicesHandler;
 import org.cen.robot.device.RobotDeviceDebugEvent;
-import org.cen.robot.device.RobotDeviceDebugListener;
+import org.cen.robot.device.IRobotDeviceDebugListener;
 import org.cen.robot.device.console.AbstractRobotDeviceConsole;
 
-public class Specific2009DeviceConsole extends AbstractRobotDeviceConsole implements RobotDeviceDebugListener {
+public class Specific2009DeviceConsole extends AbstractRobotDeviceConsole implements IRobotDeviceDebugListener {
 	
 	private Specific2009Device device;
 

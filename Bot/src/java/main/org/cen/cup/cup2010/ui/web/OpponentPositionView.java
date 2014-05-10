@@ -1,6 +1,6 @@
 package org.cen.cup.cup2010.ui.web;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.util.Date;
 
 import org.cen.robot.match.OpponentPosition;

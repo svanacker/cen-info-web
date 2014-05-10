@@ -2,8 +2,8 @@ package org.cen.ui.web;
 
 import javax.annotation.PostConstruct;
 
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.vision.IVisionService;
 import org.cen.vision.control.IVideoDeviceControl;
 import org.cen.vision.control.VideoDeviceProperty;

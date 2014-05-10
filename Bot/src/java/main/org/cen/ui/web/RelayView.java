@@ -4,11 +4,11 @@ import java.util.logging.Logger;
 
 import org.cen.com.IComService;
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceProvider;
 import org.cen.robot.device.relay.RelayChangeListener;
 import org.cen.robot.device.relay.RelayData;
 import org.cen.robot.device.relay.com.RelayOutData;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceProvider;
 
 /**
  * Presentation object for the relay.

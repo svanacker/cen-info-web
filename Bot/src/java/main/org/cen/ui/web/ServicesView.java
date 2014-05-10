@@ -7,10 +7,10 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.cen.logging.LoggingUtils;
-import org.cen.robot.IRobotFactory;
-import org.cen.robot.IRobotService;
-import org.cen.robot.IRobotServiceInitializable;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.factory.IRobotFactory;
+import org.cen.robot.services.IRobotService;
+import org.cen.robot.services.IRobotServiceInitializable;
+import org.cen.robot.services.IRobotServiceProvider;
 import org.cen.utils.ReflectionUtils;
 
 public class ServicesView implements IRobotService {

@@ -1,6 +1,7 @@
 package org.cen.cup.cup2009.ui.web;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
@@ -20,10 +21,10 @@ import org.cen.cup.cup2009.gameboard.elements.VerticalDispenser;
 import org.cen.navigation.INavigationMap;
 import org.cen.navigation.ITrajectoryService;
 import org.cen.navigation.Location;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotUtils;
 import org.cen.robot.match.MatchData;
 import org.cen.robot.match.MatchSide;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.ui.gameboard.IGameBoardElement;
 import org.cen.ui.gameboard.IGameBoardService;
 import org.springframework.context.ResourceLoaderAware;

@@ -3,7 +3,7 @@ package org.cen.vision.filters;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.color.ColorSpace;
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 import java.util.ArrayDeque;

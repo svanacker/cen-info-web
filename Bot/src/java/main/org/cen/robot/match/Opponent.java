@@ -1,10 +1,11 @@
 package org.cen.robot.match;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.cen.robot.IRobotAttribute;
+import org.cen.robot.attributes.IRobotAttribute;
 
 /**
  * Object representing the opponent.

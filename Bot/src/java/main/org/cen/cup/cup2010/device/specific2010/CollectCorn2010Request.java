@@ -1,36 +1,37 @@
 package org.cen.cup.cup2010.device.specific2010;
 
-import org.cen.robot.device.RobotDeviceRequest;
+import org.cen.robot.device.request.impl.RobotDeviceRequest;
 
 public class CollectCorn2010Request extends RobotDeviceRequest {
-	public enum Action {
-		DOWN, COLLECT, RELEASE, SEQUENCE;
-	}
 
-	public enum Side {
-		LEFT, RIGHT;
-	}
+    public enum Action {
+        DOWN, COLLECT, RELEASE, SEQUENCE;
+    }
 
-	private Action action;
+    public enum Side {
+        LEFT, RIGHT;
+    }
 
-	private Side side;
+    private final Action action;
 
-	public CollectCorn2010Request(Side side, Action action) {
-		super(Specific2010Device.NAME);
-		this.side = side;
-		this.action = action;
-	}
+    private final Side side;
 
-	public Action getAction() {
-		return action;
-	}
+    public CollectCorn2010Request(Side side, Action action) {
+        super(Specific2010Device.NAME);
+        this.side = side;
+        this.action = action;
+    }
 
-	public Side getSide() {
-		return side;
-	}
+    public Action getAction() {
+        return action;
+    }
 
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "[action=" + action + ", side=" + side + "]";
-	}
+    public Side getSide() {
+        return side;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "[action=" + action + ", side=" + side + "]";
+    }
 }

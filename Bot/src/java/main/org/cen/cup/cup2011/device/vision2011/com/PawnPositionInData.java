@@ -1,6 +1,6 @@
 package org.cen.cup.cup2011.device.vision2011.com;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 import org.cen.com.in.InData;
 

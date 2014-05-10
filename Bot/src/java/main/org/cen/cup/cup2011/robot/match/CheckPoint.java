@@ -1,6 +1,6 @@
 package org.cen.cup.cup2011.robot.match;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 public class CheckPoint {
 	

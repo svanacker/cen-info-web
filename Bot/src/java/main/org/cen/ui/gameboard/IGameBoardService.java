@@ -3,7 +3,7 @@ package org.cen.ui.gameboard;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-import org.cen.robot.IRobotService;
+import org.cen.robot.services.IRobotService;
 
 /**
  * Interface describing the game board.

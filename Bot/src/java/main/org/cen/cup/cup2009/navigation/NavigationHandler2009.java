@@ -1,6 +1,5 @@
 package org.cen.cup.cup2009.navigation;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,17 +10,14 @@ import java.util.concurrent.BlockingQueue;
 import java.util.logging.Logger;
 
 import org.cen.cup.cup2009.device.Sequence2009Request;
+import org.cen.geom.Point2D;
 import org.cen.logging.LoggingUtils;
 import org.cen.navigation.INavigationMap;
 import org.cen.navigation.ITrajectoryService;
 import org.cen.navigation.Location;
-import org.cen.robot.IRobotServiceProvider;
-import org.cen.robot.RobotPosition;
-import org.cen.robot.RobotUtils;
-import org.cen.robot.device.DeviceRequestDispatcher;
+import org.cen.robot.attributes.impl.RobotPosition;
+import org.cen.robot.device.IRobotDeviceListener;
 import org.cen.robot.device.IRobotDevicesHandler;
-import org.cen.robot.device.RobotDeviceListener;
-import org.cen.robot.device.RobotDeviceRequest;
 import org.cen.robot.device.RobotDeviceResult;
 import org.cen.robot.device.navigation.INavigationDevice;
 import org.cen.robot.device.navigation.MoveRequest;
@@ -29,10 +25,14 @@ import org.cen.robot.device.navigation.NavigationDevice;
 import org.cen.robot.device.navigation.NavigationRequest;
 import org.cen.robot.device.navigation.NavigationResult;
 import org.cen.robot.device.navigation.StopRequest;
+import org.cen.robot.device.request.IDeviceRequestDispatcher;
+import org.cen.robot.device.request.IRobotDeviceRequest;
 import org.cen.robot.match.MatchData;
+import org.cen.robot.services.IRobotServiceProvider;
+import org.cen.robot.utils.RobotUtils;
 import org.cen.util.Holder;
 
-public class NavigationHandler2009 implements RobotDeviceListener {
+public class NavigationHandler2009 implements IRobotDeviceListener {
     /** Instruction to disable the detection of collision. */
     private static final String COLLISION_OFF = "c_off";
 
@@ -117,9 +117,9 @@ public class NavigationHandler2009 implements RobotDeviceListener {
 
     private Properties properties;
 
-    private final BlockingQueue<RobotDeviceRequest> queue = new ArrayBlockingQueue<RobotDeviceRequest>(5, true);
+    private final BlockingQueue<IRobotDeviceRequest> queue = new ArrayBlockingQueue<IRobotDeviceRequest>(5, true);
 
-    private List<RobotDeviceRequest> requests;
+    private List<IRobotDeviceRequest> requests;
 
     private Thread sender;
 
@@ -144,7 +144,7 @@ public class NavigationHandler2009 implements RobotDeviceListener {
         return phases;
     }
 
-    public List<RobotDeviceRequest> getRequests(int configurationId, int trajectoryIndex, String suffix,
+    public List<IRobotDeviceRequest> getRequests(int configurationId, int trajectoryIndex, String suffix,
             Holder<Double> initialOrientation) {
         MatchData data = RobotUtils.getRobotAttribute(MatchData.class, servicesProvider);
         String prefix = "";
@@ -156,7 +156,7 @@ public class NavigationHandler2009 implements RobotDeviceListener {
             prefix = "red-";
             break;
         }
-        List<RobotDeviceRequest> requests = new ArrayList<RobotDeviceRequest>();
+        List<IRobotDeviceRequest> requests = new ArrayList<IRobotDeviceRequest>();
         List<Point2D> path = new ArrayList<Point2D>();
 
         // initial orientation of the robot
@@ -218,8 +218,8 @@ public class NavigationHandler2009 implements RobotDeviceListener {
         return requests;
     }
 
-    private void handleCentralPosition(List<RobotDeviceRequest> requests) {
-        RobotDeviceRequest r = requests.get(requests.size() - 1);
+    private void handleCentralPosition(List<IRobotDeviceRequest> requests) {
+        IRobotDeviceRequest r = requests.get(requests.size() - 1);
         if (r instanceof MoveRequest) {
             MoveRequest mr = (MoveRequest) r;
             double d = mr.getDistance();
@@ -234,62 +234,63 @@ public class NavigationHandler2009 implements RobotDeviceListener {
         }
     }
 
-    private void handleCommand(List<RobotDeviceRequest> requests, String command) {
+    private void handleCommand(List<IRobotDeviceRequest> requests, String command) {
         if (command.equals(TAKE_COLUMN)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.TAKE_COLUMN);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.TAKE_COLUMN);
             requests.add(request);
             // Phase 1
         } else if (command.equals(PREPARE_TO_BUILD_STEP_1)) {
-            RobotDeviceRequest request = new Sequence2009Request(
+            IRobotDeviceRequest request = new Sequence2009Request(
                     Sequence2009Request.Action.PREPARE_TO_BUILD_FIRST_CONSTRUCTION);
             requests.add(request);
         } else if (command.equals(FIRST_BUILD_COLUMNS_TYPE_1)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.FIRST_BUILD_COLUMNS_TYPE_1);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.FIRST_BUILD_COLUMNS_TYPE_1);
             requests.add(request);
             // Type 1
         } else if (command.equals(FIRST_BUILD_LINTEL_TYPE_1)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.FIRST_BUILD_LINTEL_TYPE1);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.FIRST_BUILD_LINTEL_TYPE1);
             requests.add(request);
             // Type 2
         } else if (command.equals(FIRST_BUILD_COLUMNS_AND_LINTEL_TYPE_2)) {
-            RobotDeviceRequest request = new Sequence2009Request(
+            IRobotDeviceRequest request = new Sequence2009Request(
                     Sequence2009Request.Action.FIRST_BUILD_COLUMNS_AND_LINTEL_TYPE_2);
             requests.add(request);
             // Phase 2 / Type 1
         } else if (command.equals(PREPARE_TO_BUILD_SECOND_CONSTRUCTION)) {
-            RobotDeviceRequest request = new Sequence2009Request(
+            IRobotDeviceRequest request = new Sequence2009Request(
                     Sequence2009Request.Action.PREPARE_TO_BUILD_SECOND_CONSTRUCTION);
             requests.add(request);
         } else if (command.equals(BUILD_2_COLUMNS_ON_TOP)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.BUILD_2_COLUMNS_ON_TOP);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.BUILD_2_COLUMNS_ON_TOP);
             requests.add(request);
 
             // Phase 2 / Type 2
         } else if (command.equals(PREPARE_TO_LOAD_SECOND_LINTEL)) {
-            RobotDeviceRequest request = new Sequence2009Request(
+            IRobotDeviceRequest request = new Sequence2009Request(
                     Sequence2009Request.Action.PREPARE_TO_LOAD_SECOND_LINTEL);
             requests.add(request);
         } else if (command.equals(LOAD_SECOND_LINTEL)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.LOAD_SECOND_LINTEL);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.LOAD_SECOND_LINTEL);
             requests.add(request);
         } else if (command.equals(SECOND_BUILD_LINTEL_STEP_2)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.SECOND_LINTEL_CONSTRUCTION);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.SECOND_LINTEL_CONSTRUCTION);
             requests.add(request);
         }
         // General
         else if (command.startsWith(INIT)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.INIT);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.INIT);
             requests.add(request);
         } else if (command.startsWith(COLLISION_OFF)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.DISABLE_COLLISION_DETECTION);
+            IRobotDeviceRequest request = new Sequence2009Request(
+                    Sequence2009Request.Action.DISABLE_COLLISION_DETECTION);
             requests.add(request);
         } else if (command.startsWith(COLLISION_ON)) {
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.ENABLE_COLLISION_DETECTION);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.ENABLE_COLLISION_DETECTION);
             requests.add(request);
         } else if (command.startsWith(WAIT_TIME)) {
             String timeAsString = command.substring(1);
             int time = Integer.valueOf(timeAsString).intValue();
-            RobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.TIME, time);
+            IRobotDeviceRequest request = new Sequence2009Request(Sequence2009Request.Action.TIME, time);
             requests.add(request);
         }
     }
@@ -324,7 +325,7 @@ public class NavigationHandler2009 implements RobotDeviceListener {
 
     private void sendNextRequest() {
         if (nextRequest <= requests.size()) {
-            RobotDeviceRequest r = requests.get(nextRequest++);
+            IRobotDeviceRequest r = requests.get(nextRequest++);
             queue.offer(r);
         }
     }
@@ -364,18 +365,18 @@ public class NavigationHandler2009 implements RobotDeviceListener {
         sender = null;
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
         handler.removeDeviceListener(this);
-        handler.getRequestDispatcher().purgeQueue();
+        handler.getRequestDispatcher().clearRequests();
     }
 
     private void startAsynchronousTrajectory() {
         LOGGER.fine("starting asynchronous trajectory");
 
         MatchData data = RobotUtils.getRobotAttribute(MatchData.class, servicesProvider);
-        requests = (List<RobotDeviceRequest>) data.get("requests");
+        requests = (List<IRobotDeviceRequest>) data.get("requests");
         nextRequest = 0;
 
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
-        final DeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
+        final IDeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
 
         // Mode asynchrone
         NavigationDevice device = (NavigationDevice) handler.getDevice(INavigationDevice.NAME);
@@ -386,7 +387,7 @@ public class NavigationHandler2009 implements RobotDeviceListener {
             public void run() {
                 while (!terminated) {
                     try {
-                        RobotDeviceRequest r = queue.take();
+                        IRobotDeviceRequest r = queue.take();
                         dispatcher.sendRequest(r);
                         if (!(r instanceof NavigationRequest)) {
                             sendNextRequest();
@@ -406,10 +407,10 @@ public class NavigationHandler2009 implements RobotDeviceListener {
         LOGGER.fine("starting synchronous trajectory");
 
         MatchData data = RobotUtils.getRobotAttribute(MatchData.class, servicesProvider);
-        final List<RobotDeviceRequest> requests = (List<RobotDeviceRequest>) data.get("requests");
+        final List<IRobotDeviceRequest> requests = (List<IRobotDeviceRequest>) data.get("requests");
 
         IRobotDevicesHandler handler = servicesProvider.getService(IRobotDevicesHandler.class);
-        final DeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
+        final IDeviceRequestDispatcher dispatcher = handler.getRequestDispatcher();
 
         // Mode synchrone
         NavigationDevice device = (NavigationDevice) handler.getDevice(INavigationDevice.NAME);
@@ -418,7 +419,7 @@ public class NavigationHandler2009 implements RobotDeviceListener {
         sender = new Thread(new Runnable() {
             @Override
             public void run() {
-                for (RobotDeviceRequest r : requests) {
+                for (IRobotDeviceRequest r : requests) {
                     if (r instanceof NavigationRequest && !(r instanceof StopRequest)) {
                         dispatcher.sendRequest(new StopRequest());
                     }

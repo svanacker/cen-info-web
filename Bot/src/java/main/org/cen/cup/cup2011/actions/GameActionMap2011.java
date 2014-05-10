@@ -2,7 +2,7 @@ package org.cen.cup.cup2011.actions;
 
 import org.cen.actions.AbstractGameActionMap;
 import org.cen.actions.IGameAction;
-import org.cen.robot.IRobotServiceProvider;
+import org.cen.robot.services.IRobotServiceProvider;
 
 public class GameActionMap2011 extends AbstractGameActionMap {
 

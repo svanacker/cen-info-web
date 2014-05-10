@@ -1,6 +1,6 @@
 package org.cen.actions;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 
 /**
  * Interface describing an action available somewhere on the gameboard.

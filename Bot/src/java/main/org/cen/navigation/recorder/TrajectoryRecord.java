@@ -1,6 +1,6 @@
 package org.cen.navigation.recorder;
 
-import java.awt.geom.Point2D;
+import org.cen.geom.Point2D;
 import java.util.Date;
 import java.util.List;
 
